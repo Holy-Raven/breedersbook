@@ -2,7 +2,7 @@
 
 ---
 #### codesquad creative association presents
-![logo](bb-service/src/main/resources/readme-resources/BB_logo.png)
+![logo](bb-service/src/main/resources/readme-resources/bb_logo.png)
 ---
 
 
