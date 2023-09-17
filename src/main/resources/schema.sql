@@ -127,9 +127,9 @@ CREATE TABLE IF NOT EXISTS news (
 	text_news		VARCHAR(5000) 														NOT NULL,
 	news_date	 	TIMESTAMP 				WITHOUT TIME ZONE 								NOT NULL,
 	likes		   	BIGINT					DEFAULT 0									NOT NULL,
-	views		   	BIGINT					DEFAULT 0										NOT NULL,
+	views		   	BIGINT					DEFAULT 0									NOT NULL,
 
-	kennel_id		BIGINT		 																NOT NULL,
+	kennel_id		BIGINT		 													NOT NULL,
 
 	CONSTRAINT pk_news PRIMARY KEY (id),
 
@@ -141,8 +141,8 @@ CREATE TABLE IF NOT EXISTS message (
 	text 			VARCHAR(2000) 														NOT NULL,
 	message_date		TIMESTAMP 				WITHOUT TIME ZONE 								NOT NULL,
 
-	user_one_id		BIGINT		 														NOT NULL,
-	user_two_id		BIGINT		 														NOT NULL,
+	user_one_id		BIGINT		 													NOT NULL,
+	user_two_id		BIGINT		 													NOT NULL,
 
 	CONSTRAINT pk_message PRIMARY KEY (id),
 
