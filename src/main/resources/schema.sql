@@ -58,8 +58,6 @@ CREATE TABLE IF NOT EXISTS pets (
 	type			VARCHAR(50) 														NOT NULL,
 	sex 			BOOLEAN		 													NOT NULL,
 	color			VARCHAR(50) 														NOT NULL,
-	weight			INTEGER 														NOT NULL,
-	height			INTEGER 														NOT NULL,
 	temper			VARCHAR(2000),
 	description		VARCHAR(5000),
 	name 			VARCHAR(250),
@@ -161,17 +159,6 @@ CREATE TABLE IF NOT EXISTS users_pets (
 	PRIMARY KEY (user_id, pet_id)
 );
 
-CREATE TABLE IF NOT EXISTS user_messages (
-
-	user_id			BIGINT		 													NOT NULL,
-	message_id		BIGINT		 													NOT NULL,
-
-	CONSTRAINT fk_user_messages_to_users FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-	CONSTRAINT fk_user_messages_to_messages FOREIGN KEY (message_id) REFERENCES message (id) ON DELETE CASCADE,
-
-	PRIMARY KEY (user_id, message_id)
-);
-
 CREATE TABLE IF NOT EXISTS parents (
 
 	pet_id			BIGINT	 														NOT NULL,
@@ -227,15 +214,4 @@ CREATE TABLE IF NOT EXISTS pets_vacs (
 	CONSTRAINT fk_pets_vacs_to_vacs FOREIGN KEY (vac_id) REFERENCES vacs (id) ON DELETE CASCADE,
 
 	PRIMARY KEY (pet_id, vac_id)
-);
-
-CREATE TABLE IF NOT EXISTS kennel_news (
-
-	kennel_id		BIGINT		 													NOT NULL,
-	news_id			BIGINT		 													NOT NULL,
-
-	CONSTRAINT fk_kennel_news_to_kennels FOREIGN KEY (kennel_id) REFERENCES kennels (id) ON DELETE CASCADE,
-	CONSTRAINT fk_kennel_news_to_news FOREIGN KEY (news_id) REFERENCES news (id) ON DELETE CASCADE,
-
-	PRIMARY KEY (kennel_id, news_id)
 );
