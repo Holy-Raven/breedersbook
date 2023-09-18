@@ -1,10 +1,9 @@
 # Breeder's book
 
 ---
-#### codesquad creativ assotiation preaents
-![logo](src/main/resources/readme-resources/BB_logo.png)
+#### codesquad creative association presents
+![logo](bb-service/src/main/resources/readme-resources/bb_logo.png)
 ---
-
 
 ## Описание:
 
