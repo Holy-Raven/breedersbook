@@ -41,19 +41,6 @@ public class MapperUser {
         return userShortInfoDto;
     }
 
-    public static User returnUser(UserDto userDto) {
-        User user = User.builder()
-                .id(userDto.getId())
-                .email(userDto.getEmail())
-                .name(userDto.getName())
-                .login(userDto.getLogin())
-                .gender(userDto.getGender())
-                .userInfo(MapperUserInfo.returnUserInfo(userDto.getUserInfo()))
-                .kennel(MapperKennel.returnKennel(userDto.getKennel()))
-                .build();
-        return user;
-    }
-
     public static User returnUser(UserNewDto UserNewDto) {
         User user = User.builder()
                 .email(UserNewDto.getEmail())
