@@ -1,10 +1,10 @@
 package ru.codesquad.user.dto;
 
 import lombok.experimental.UtilityClass;
-
 import ru.codesquad.kennel.dto.MapperKennel;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.dto.MapperUserInfo;
+import ru.codesquad.util.enums.Gender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,15 @@ public class MapperUser {
         return userDto;
     }
 
+    public UserShortDto returnUserShortDto(User user) {
+        UserShortDto userShortDto = UserShortDto.builder()
+                .name(user.getName())
+                .gender(user.getGender())
+                .userInfo(MapperUserInfo.returnUserInfoDto(user.getUserInfo()))
+                .build();
+        return userShortDto;
+    }
+
     public static User returnUser(UserDto userDto) {
         User user = User.builder()
                 .id(userDto.getId())
@@ -36,6 +45,17 @@ public class MapperUser {
                 .build();
         return user;
     }
+
+    public static User returnUser(UserNewDto UserNewDto) {
+        User user = User.builder()
+                .email(UserNewDto.getEmail())
+                .name(UserNewDto.getName())
+                .login(UserNewDto.getLogin())
+                .gender(Gender.getGenderValue(UserNewDto.getGender()))
+                .build();
+        return user;
+    }
+
     public static List<UserDto> returnUserDtoList(Iterable<User> users) {
         List<UserDto> result = new ArrayList<>();
 

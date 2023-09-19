@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserNewDto;
 import ru.codesquad.user.dto.UserDto;
+import ru.codesquad.user.dto.UserShortDto;
 
 import javax.validation.Valid;
 
@@ -24,5 +25,13 @@ public class PublicUserController {
 
         log.info("Add User {} ", newUserDto.getName());
         return userService.addUser(newUserDto);
+    }
+
+    @GetMapping("/{userId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public UserShortDto getUser(@PathVariable Long userId) {
+
+        log.info("Get User {} ", userId);
+        return userService.getPublicUserById(userId);
     }
 }

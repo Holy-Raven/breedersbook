@@ -22,5 +22,5 @@ public class UserUpdateDto {
 
     String login;
 
-    Gender gender;
+    String gender;
 }
