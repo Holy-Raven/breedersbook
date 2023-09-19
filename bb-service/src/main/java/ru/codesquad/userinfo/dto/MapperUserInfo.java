@@ -1,6 +1,8 @@
 package ru.codesquad.userinfo.dto;
 
 import lombok.experimental.UtilityClass;
+import ru.codesquad.user.User;
+import ru.codesquad.user.dto.MapperUser;
 import ru.codesquad.userinfo.UserInfo;
 
 import java.time.LocalDateTime;
@@ -15,19 +17,23 @@ public class MapperUserInfo {
                 .phone(userInfo.getPhone())
                 .photo(userInfo.getPhoto())
                 .birthDate(userInfo.getBirthDate())
+                .owner(MapperUser.returnUserInfoShortDto(userInfo.getOwner()))
                 .build();
         return userInfoDto;
     }
 
-    public static UserInfo returnUserInfo(UserInfoDto userInfoDto) {
+
+
+
+    public static UserInfo returnUserInfo(UserInfoNewDto userInfoNewDto, User user) {
         UserInfo userInfo = UserInfo.builder()
-                .id(userInfoDto.getId())
-                .description(userInfoDto.getDescription())
-                .address(userInfoDto.getAddress())
-                .phone(userInfoDto.getPhone())
-                .photo(userInfoDto.getPhoto())
-                .birthDate(userInfoDto.getBirthDate())
+                .description(userInfoNewDto.getDescription())
+                .address(userInfoNewDto.getAddress())
+                .phone(userInfoNewDto.getPhone())
+                .photo(userInfoNewDto.getPhoto())
+                .birthDate(userInfoNewDto.getBirthDate())
                 .created(LocalDateTime.now())
+                .owner(user)
                 .build();
         return userInfo;
     }

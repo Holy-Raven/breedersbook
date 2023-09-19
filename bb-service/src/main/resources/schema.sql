@@ -7,7 +7,10 @@ CREATE TABLE IF NOT EXISTS user_info (
 	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
 	photo_url	   	VARCHAR(250),
 
-	CONSTRAINT pk_user_info PRIMARY KEY (id)
+	owner_id		BIGINT		 													NOT NULL,
+
+	CONSTRAINT pk_user_info PRIMARY KEY (id),
+	CONSTRAINT fk_user_info_owner_id FOREIGN KEY (owner_id) REFERENCES users (id)
 );
 
 CREATE TABLE IF NOT EXISTS kennels (

@@ -33,6 +33,14 @@ public class MapperUser {
         return userShortDto;
     }
 
+    public UserShortInfoDto returnUserInfoShortDto(User user) {
+        UserShortInfoDto userShortInfoDto = UserShortInfoDto.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .build();
+        return userShortInfoDto;
+    }
+
     public static User returnUser(UserDto userDto) {
         User user = User.builder()
                 .id(userDto.getId())

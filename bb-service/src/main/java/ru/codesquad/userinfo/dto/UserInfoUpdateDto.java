@@ -1,25 +1,28 @@
-package ru.codesquad.user.dto;
+package ru.codesquad.userinfo.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserUpdateDto {
+public class UserInfoUpdateDto {
 
     @NotNull
     Long id;
 
-    String name;
+    String description;
 
-    String email;
+    String address;
 
-    String login;
+    String phone;
 
-    String gender;
+    String photo;
+
+    LocalDateTime birthDate;
 }

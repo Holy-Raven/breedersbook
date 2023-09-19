@@ -3,6 +3,7 @@ package ru.codesquad.userinfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -48,4 +49,8 @@ public class UserInfo {
     @Column(name = "created")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDateTime created;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    User owner;
 }
