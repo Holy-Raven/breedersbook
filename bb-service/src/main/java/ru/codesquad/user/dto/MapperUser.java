@@ -6,6 +6,7 @@ import ru.codesquad.user.User;
 import ru.codesquad.userinfo.dto.MapperUserInfo;
 import ru.codesquad.util.enums.Gender;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class MapperUser {
                 .gender(user.getGender())
                 .userInfo(MapperUserInfo.returnUserInfoDto(user.getUserInfo()))
                 .kennel(MapperKennel.returnKennelDto(user.getKennel()))
+                .created(LocalDateTime.now())
                 .build();
         return userDto;
     }

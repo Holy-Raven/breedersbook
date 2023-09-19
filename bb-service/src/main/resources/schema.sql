@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS user_info (
 	address 		VARCHAR(1000),
 	phone_number		VARCHAR(20),
 	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE) 				NOT NULL,
-	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
 	photo_url	   	VARCHAR(250),
 
 	owner_id		BIGINT		 													NOT NULL,
@@ -35,6 +34,7 @@ CREATE TABLE IF NOT EXISTS users (
 	login 			VARCHAR(250) 														NOT NULL,
 	email 			VARCHAR(40) 				CHECK (email <> '')								NOT NULL,
 	gender			VARCHAR(10)														NOT NULL,
+	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
 
 	user_info_id		BIGINT					 										NOT NULL,
 	kennel_id 		BIGINT,
