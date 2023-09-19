@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.User;
+import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.dto.MapperUserInfo;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.userinfo.dto.UserInfoNewDto;
@@ -21,14 +22,18 @@ import java.time.LocalDateTime;
 public class UserInfoServiceImpl implements UserInfoService {
 
     private final UserInfoRepository userInfoRepository;
+    private final UserRepository userRepository;
     private final UnionService unionService;
 
     @Override
     public UserInfoDto addUserInfo(UserInfoNewDto userInfoNewDto, Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
+        UserInfo userInfo = MapperUserInfo.returnUserInfo(userInfoNewDto);
 
-        UserInfo userInfo = MapperUserInfo.returnUserInfo(userInfoNewDto, user);
+        userInfo = userInfoRepository.save(userInfo);
+        user.setUserInfo(userInfo);
+        userRepository.save(user);
 
         return MapperUserInfo.returnUserInfoDto(userInfo);
     }
@@ -39,7 +44,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         User user = unionService.getUserOrNotFound(userId);
         UserInfo userInfo = unionService.getUserInfoOrNotFound(userInfoId);
 
-        if (!userInfo.getOwner().equals(user)) {
+        if (!user.getUserInfo().getId().equals(userInfoId)) {
             throw new ConflictException(String.format("User %s can only update his personal information",userId));
         }
 
@@ -59,7 +64,6 @@ public class UserInfoServiceImpl implements UserInfoService {
             userInfo.setBirthDate(userInfoUpdateDto.getBirthDate());
         }
 
-        userInfo.setOwner(user);
         userInfo = userInfoRepository.save(userInfo);
 
         return MapperUserInfo.returnUserInfoDto(userInfo);

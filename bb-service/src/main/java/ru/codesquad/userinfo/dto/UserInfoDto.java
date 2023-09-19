@@ -3,7 +3,6 @@ package ru.codesquad.userinfo.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.user.dto.UserShortInfoDto;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +27,4 @@ public class UserInfoDto {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDateTime birthDate;
-
-    UserShortInfoDto owner;
 }
