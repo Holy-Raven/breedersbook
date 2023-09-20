@@ -23,11 +23,10 @@ public class UserNewDto {
     @NotBlank(message = "Email cannot be empty and consist only of spaces.")
     String email;
 
-    @Size(min = 6, max = 250, message = "Login must be greater than 6 and less than 250")
+    @Size(min = 4, max = 250, message = "Login must be greater than 4 and less than 250")
     @NotBlank(message = "Login cannot be empty and consist only of spaces.")
     String login;
 
-    @Size(min = 2, max = 10, message = "Gender must be greater than 2 and less than 10")
     @NotBlank(message = "Genger cannot be empty and consist only of spaces.")
     String gender;
 }

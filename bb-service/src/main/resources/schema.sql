@@ -30,10 +30,10 @@ CREATE TABLE IF NOT EXISTS users (
 	name 			VARCHAR(250) 														NOT NULL,
 	login 			VARCHAR(250) 														NOT NULL,
 	email 			VARCHAR(40) 				CHECK (email <> '')								NOT NULL,
-	gender			VARCHAR(10)														NOT NULL,
+	gender			VARCHAR(6)														NOT NULL,
 	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
 
-	user_info_id		BIGINT					 										NOT NULL,
+	user_info_id		BIGINT,
 	kennel_id 		BIGINT,
 
 	CONSTRAINT fk_user_info_id FOREIGN KEY (user_info_id) REFERENCES user_info (id) ON DELETE CASCADE ON UPDATE CASCADE,

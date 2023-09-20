@@ -11,13 +11,13 @@ public interface UserService {
 
     UserDto addUser(UserNewDto userNewDto);
 
-    UserDto getPrivateUserById(Long userId);
+    UserDto getPrivateUserById(Long userId, Long yourId);
 
     UserShortDto getPublicUserById(Long userId);
 
     UserDto updateUser(Long userId, UserUpdateDto userUpdateDto);
 
-    void deletePrivateUser(Long userId);
+    void deletePrivateUser(Long userId, Long yourId);
 
     void deleteAdminUser(Long userId);
 

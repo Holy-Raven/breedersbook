@@ -33,9 +33,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDto getPrivateUserById(Long userId) {
+    public UserDto getPrivateUserById(Long userId, Long yourId) {
 
-        unionService.getUserOrNotFound(userId);
+        User user = unionService.getUserOrNotFound(userId);
+
+        if (!user.getId().equals(yourId)) {
+            throw new ConflictException(String.format("User %s can only update his account",userId));
+        }
 
         return MapperUser.returnUserDto(userRepository.findById(userId).get());
     }
@@ -54,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
         User user = unionService.getUserOrNotFound(userId);
 
-        if (!user.getId().equals(userId)) {
+        if (!user.getId().equals(userUpdateDto.getId())) {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
 
@@ -80,11 +84,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deletePrivateUser(Long userId) {
+    public void deletePrivateUser(Long userId, Long yourId) {
 
         User user = unionService.getUserOrNotFound(userId);
 
-        if (!user.getId().equals(userId)) {
+        if (!user.getId().equals(yourId)) {
             throw new ConflictException(String.format("User %s can only delete his account",userId));
         }
 

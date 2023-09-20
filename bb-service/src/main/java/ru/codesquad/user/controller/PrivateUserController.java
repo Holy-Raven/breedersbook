@@ -18,20 +18,22 @@ public class PrivateUserController {
 
     private final UserService userService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{userId}/users/{yourId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto getUser(@PathVariable Long userId) {
+    public UserDto getUser(@PathVariable Long userId,
+                           @PathVariable Long yourId) {
 
         log.info("Get User {} ", userId);
-        return userService.getPrivateUserById(userId);
+        return userService.getPrivateUserById(userId,yourId);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/{userId}/users/{yourId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long userId) {
+    public void deleteUser(@PathVariable Long userId,
+                           @PathVariable Long yourId) {
 
         log.info("User {} deleted ", userId);
-        userService.deletePrivateUser(userId);
+        userService.deletePrivateUser(userId, yourId);
     }
 
     @PatchMapping("/{userId}")

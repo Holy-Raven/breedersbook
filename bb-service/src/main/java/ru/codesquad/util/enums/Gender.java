@@ -11,7 +11,7 @@ public enum Gender {
         try {
             return Gender.valueOf(gender);
         } catch (Exception e) {
-            throw new ValidationException("Unknown Gender: " + gender);
+            throw new ValidationException("Unknown Gender, you are not in Europe: " + gender);
         }
     }
 }

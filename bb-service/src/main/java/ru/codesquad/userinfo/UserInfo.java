@@ -3,7 +3,6 @@ package ru.codesquad.userinfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;

@@ -15,8 +15,6 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserInfoDto {
 
-    Long id;
-
     String description;
 
     String address;
