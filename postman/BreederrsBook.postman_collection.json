@@ -627,26 +627,26 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "6",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
-									"value": "6"
-								},
-								{
-									"key": "yourId",
 									"value": "6"
 								}
 							]
@@ -673,27 +673,27 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "6",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
 									"value": "2"
-								},
-								{
-									"key": "yourId",
-									"value": "6"
 								}
 							]
 						}
@@ -717,26 +717,26 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "6",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
-									"value": "6"
-								},
-								{
-									"key": "yourId",
 									"value": "6"
 								}
 							]
@@ -763,27 +763,27 @@
 					],
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "6",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
 									"value": "2"
-								},
-								{
-									"key": "yourId",
-									"value": "6"
 								}
 							]
 						}
@@ -809,7 +809,13 @@
 					],
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"id\": \"1\",\r\n  \"login\": \"JDLeto\"\r\n}",
@@ -820,24 +826,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
-									"value": "1"
-								},
-								{
-									"key": "yourId",
 									"value": "1"
 								}
 							]
@@ -864,7 +864,13 @@
 					],
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"id\": \"2\",\r\n  \"login\": \"TMomsen\"\r\n}\r\n",
@@ -875,25 +881,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId/users/:yourId",
+							"raw": "{{baseUrl}}/private/users/:userId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"users",
-								":userId",
-								"users",
-								":yourId"
+								":userId"
 							],
 							"variable": [
 								{
 									"key": "userId",
-									"value": "1"
-								},
-								{
-									"key": "yourId",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}

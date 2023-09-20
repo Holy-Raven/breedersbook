@@ -54,11 +54,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updateUser(Long userId, UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto) {
 
         User user = unionService.getUserOrNotFound(userId);
 
-        if (!user.getId().equals(userUpdateDto.getId())) {
+        if (!user.getId().equals(yourId)) {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
 

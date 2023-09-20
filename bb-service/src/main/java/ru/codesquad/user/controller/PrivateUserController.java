@@ -10,38 +10,41 @@ import ru.codesquad.user.dto.UserUpdateDto;
 
 import javax.validation.Valid;
 
+import static ru.codesquad.util.Constant.HEADER_USER;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/private/users")
+@RequestMapping(path = "/private/users/{userId}")
 public class PrivateUserController {
 
     private final UserService userService;
 
-    @GetMapping("/{userId}/users/{yourId}")
+    @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto getUser(@PathVariable Long userId,
-                           @PathVariable Long yourId) {
+    public UserDto getUser(@RequestHeader(HEADER_USER) Long yourId,
+                           @PathVariable Long userId) {
 
         log.info("Get User {} ", userId);
         return userService.getPrivateUserById(userId,yourId);
     }
 
-    @DeleteMapping("/{userId}/users/{yourId}")
+    @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long userId,
-                           @PathVariable Long yourId) {
+    public void deleteUser(@RequestHeader(HEADER_USER) Long yourId,
+                           @PathVariable Long userId) {
 
         log.info("User {} deleted ", userId);
         userService.deletePrivateUser(userId, yourId);
     }
 
-    @PatchMapping("/{userId}")
+    @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto updateComment(@Valid @RequestBody UserUpdateDto userUpdateDto,
-                                        @PathVariable Long userId) {
+    public UserDto updateComment(@RequestHeader(HEADER_USER) Long yourId,
+                                 @Valid @RequestBody UserUpdateDto userUpdateDto,
+                                 @PathVariable Long userId) {
 
         log.info("User id {} update profile {} ", userId);
-        return userService.updateUser(userId, userUpdateDto);
+        return userService.updateUser(userId, yourId, userUpdateDto);
     }
 }
