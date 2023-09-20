@@ -818,7 +818,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"1\",\r\n  \"login\": \"JDLeto\"\r\n}",
+							"raw": "{\r\n  \"login\": \"JDLeto\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -873,7 +873,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": \"2\",\r\n  \"login\": \"TMomsen\"\r\n}\r\n",
+							"raw": "{\r\n  \"login\": \"TMomsen\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
