@@ -24,7 +24,7 @@ public class AdminUserController {
     public void deleteUser(@PathVariable Long userId) {
 
         log.info("User {} deleted ", userId);
-        userService.deleteAdminUser(userId);
+        userService.deleteUser(userId);
     }
 
     @GetMapping

@@ -84,20 +84,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deletePrivateUser(Long userId, Long yourId) {
-
-        User user = unionService.getUserOrNotFound(userId);
-
-        if (!user.getId().equals(yourId)) {
-            throw new ConflictException(String.format("User %s can only delete his account",userId));
-        }
-
-        userRepository.deleteById(userId);
-    }
-
-    @Override
     @Transactional
-    public void deleteAdminUser(Long userId) {
+    public void deleteUser(Long userId) {
 
         unionService.getUserOrNotFound(userId);
         userRepository.deleteById(userId);

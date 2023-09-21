@@ -15,12 +15,12 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/private/users/{userId}")
+@RequestMapping(path = "/private/users")
 public class PrivateUserController {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserDto getUser(@RequestHeader(HEADER_USER) Long yourId,
                            @PathVariable Long userId) {
@@ -31,14 +31,13 @@ public class PrivateUserController {
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteUser(@RequestHeader(HEADER_USER) Long yourId,
-                           @PathVariable Long userId) {
+    public void deleteUser(@RequestHeader(HEADER_USER) Long yourId) {
 
-        log.info("User {} deleted ", userId);
-        userService.deletePrivateUser(userId, yourId);
+        log.info("User {} deleted his profile ", yourId);
+        userService.deleteUser(yourId);
     }
 
-    @PatchMapping
+    @PatchMapping("/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserDto updateComment(@RequestHeader(HEADER_USER) Long yourId,
                                  @Valid @RequestBody UserUpdateDto userUpdateDto,
