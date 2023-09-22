@@ -20,4 +20,6 @@ public class Kennel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     Long id;
+
+    String name;
 }
