@@ -44,9 +44,9 @@ public class MapperUser {
                 .build();
 
         if (user.getUserInfo() != null) {
-            userShortDto.setUserInfo(userInfoMapper.returnUserInfoDto(user.getUserInfo()));
+            userShortDto.setUserInfoDto(userInfoMapper.returnUserInfoDto(user.getUserInfo()));
         } else {
-            userShortDto.setUserInfo(new UserInfoDto());
+            userShortDto.setUserInfoDto(new UserInfoDto());
         }
         return userShortDto;
     }

@@ -14,9 +14,7 @@ import java.util.UUID;
 @Mapper(uses = {UserInfoMapper.class, KennelMapper.class}, componentModel = "spring", imports = {LocalDateTime.class, UUID.class, Gender.class, UserInfoDto.class})
 public interface UserMapper {
 
-    @Mapping(target = "id", ignore = true)
-   // @Mapping(source = "userInfo", target = "userInfoDto", defaultExpression = "java(new UserInfoDto())")
-    @Mapping(source = "userInfo", target = "userInfoDto", ignore = true)
+    @Mapping(source = "userInfo", target = "userInfoDto", defaultExpression = "java(new UserInfoDto())")
     @Mapping(source = "kennel", target ="kennelDto", ignore = true)
     UserDto returnUserDto(User user);
 
@@ -24,5 +22,6 @@ public interface UserMapper {
     @Mapping (target = "created", expression = "java(LocalDateTime.now())")
     User returnUser(UserNewDto userNewDto);
 
+    @Mapping(source = "userInfo", target = "userInfoDto", ignore = true)
     UserShortDto returnUserShortDto(User user);
 }

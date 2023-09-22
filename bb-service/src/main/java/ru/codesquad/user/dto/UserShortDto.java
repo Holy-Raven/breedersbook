@@ -16,5 +16,5 @@ public class UserShortDto {
 
     Gender gender;
 
-    UserInfoDto userInfo;
+    UserInfoDto userInfoDto;
 }

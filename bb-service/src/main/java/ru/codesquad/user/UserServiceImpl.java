@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.dto.*;
-import ru.codesquad.userinfo.UserInfo;
-import ru.codesquad.userinfo.dto.UserInfoMapper;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Gender;
 
@@ -31,10 +29,9 @@ public class UserServiceImpl implements UserService {
     public UserDto addUser(UserNewDto userNewDto) {
 
         User user = userMapper.returnUser(userNewDto);
-       // user.setUserInfo(new UserInfo());
         userRepository.save(user);
 
-        return MapperUser.returnUserDto(user);
+        return userMapper.returnUserDto(user);
     }
 
     @Override
@@ -47,7 +44,7 @@ public class UserServiceImpl implements UserService {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
 
-        return MapperUser.returnUserDto(userRepository.findById(userId).get());
+        return userMapper.returnUserDto(userRepository.findById(userId).get());
     }
 
     @Override
@@ -56,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
         unionService.getUserOrNotFound(userId);
 
-        return MapperUser.returnUserShortDto(userRepository.findById(userId).get());
+        return userMapper.returnUserShortDto(userRepository.findById(userId).get());
     }
 
     @Override
@@ -86,7 +83,7 @@ public class UserServiceImpl implements UserService {
 
         user = userRepository.save(user);
 
-        return MapperUser.returnUserDto(user);
+        return userMapper.returnUserDto(user);
     }
 
     @Override
@@ -103,11 +100,11 @@ public class UserServiceImpl implements UserService {
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
 
-//        List<UserDto> result = new ArrayList<>();
-//        for (User user : userRepository.findAll(pageRequest)) {
-//            result.add(userMapper.returnUserDto(user));
-//        }
-//        return result;
-        return MapperUser.returnUserDtoList(userRepository.findAll(pageRequest));
+        List<UserDto> result = new ArrayList<>();
+        for (User user : userRepository.findAll(pageRequest)) {
+            result.add(userMapper.returnUserDto(user));
+        }
+        return result;
+//        return MapperUser.returnUserDtoList(userRepository.findAll(pageRequest));
     }
 }

@@ -6,6 +6,7 @@ import ru.codesquad.userinfo.UserInfo;
 
 @Mapper(componentModel = "spring")
 public interface UserInfoMapper {
+
     @Mapping(target = "id", ignore = true)
     UserInfo returnUserInfo(UserInfoNewDto userInfonewDto);
 
