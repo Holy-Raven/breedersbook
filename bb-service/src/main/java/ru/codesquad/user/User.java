@@ -40,12 +40,6 @@ public class User {
     @Column(name = "gender", nullable = false)
     Gender gender;
 
-
-//    @Builder.Default
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_info_id")
-//    UserInfo userInfo = new UserInfo();
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_info_id")
     UserInfo userInfo;

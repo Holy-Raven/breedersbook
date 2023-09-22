@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface UserMapper {
 
     @Mapping(source = "userInfo", target = "userInfoDto", defaultExpression = "java(new UserInfoDto())")
-    @Mapping(source = "kennel", target ="kennelDto", ignore = true)
+    @Mapping(source = "kennel", target ="kennelDto", defaultExpression = "java(null)")
     UserDto returnUserDto(User user);
 
     @Mapping(target = "gender", expression = "java(Gender.getGenderValue(userNewDto.getGender()))")
