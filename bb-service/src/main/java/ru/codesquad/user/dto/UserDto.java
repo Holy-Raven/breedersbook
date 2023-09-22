@@ -31,7 +31,7 @@ public class UserDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDateTime created;
 
-    UserInfoDto userInfo;
+    UserInfoDto userInfoDto;
 
-    KennelDto kennel;
+    KennelDto kennelDto;
 }

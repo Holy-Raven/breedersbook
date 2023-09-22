@@ -1,5 +1,6 @@
 package ru.codesquad.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
@@ -7,6 +8,9 @@ import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Gender;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+
+import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data
 @Builder
@@ -43,4 +47,8 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kennel_id")
     Kennel kennel;
+
+    @Column(name = "created")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    LocalDateTime created;
 }

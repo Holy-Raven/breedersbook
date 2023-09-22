@@ -2,14 +2,18 @@ package ru.codesquad.user;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.dto.*;
+import ru.codesquad.userinfo.UserInfo;
+import ru.codesquad.userinfo.dto.UserInfoMapper;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Gender;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -20,12 +24,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UnionService unionService;
+    private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
     @Override
     @Transactional
     public UserDto addUser(UserNewDto userNewDto) {
 
-        User user = MapperUser.returnUser(userNewDto);
+        User user = userMapper.returnUser(userNewDto);
+       // user.setUserInfo(new UserInfo());
         userRepository.save(user);
 
         return MapperUser.returnUserDto(user);
@@ -97,6 +103,11 @@ public class UserServiceImpl implements UserService {
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
 
+//        List<UserDto> result = new ArrayList<>();
+//        for (User user : userRepository.findAll(pageRequest)) {
+//            result.add(userMapper.returnUserDto(user));
+//        }
+//        return result;
         return MapperUser.returnUserDtoList(userRepository.findAll(pageRequest));
     }
 }

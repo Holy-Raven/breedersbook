@@ -27,7 +27,7 @@ public class UserInfoController {
         return userInfoService.addUserInfo(userInfoNewDto, userId);
     }
 
-    @PatchMapping("/{userInfo}/users/{userId}")
+    @PatchMapping("/{userInfoId}/users/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
     public UserInfoDto updateUserInfo(@Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto,
                                       @PathVariable Long userInfoId,

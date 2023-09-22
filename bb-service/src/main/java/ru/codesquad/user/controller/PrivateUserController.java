@@ -43,7 +43,7 @@ public class PrivateUserController {
                                  @Valid @RequestBody UserUpdateDto userUpdateDto,
                                  @PathVariable Long userId) {
 
-        log.info("User id {} update profile {} ", userId);
+        log.info("User id {} update profile", userId);
         return userService.updateUser(userId, yourId, userUpdateDto);
     }
 }

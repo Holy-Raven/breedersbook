@@ -2,15 +2,13 @@ package ru.codesquad.userinfo;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
-import ru.codesquad.userinfo.dto.MapperUserInfo;
-import ru.codesquad.userinfo.dto.UserInfoDto;
-import ru.codesquad.userinfo.dto.UserInfoNewDto;
-import ru.codesquad.userinfo.dto.UserInfoUpdateDto;
+import ru.codesquad.userinfo.dto.*;
 import ru.codesquad.util.UnionService;
 
 import java.time.LocalDateTime;
@@ -25,17 +23,20 @@ public class UserInfoServiceImpl implements UserInfoService {
     private final UserRepository userRepository;
     private final UnionService unionService;
 
+    private final UserInfoMapper userInfoMapper = Mappers.getMapper(UserInfoMapper.class);
+
+
     @Override
     public UserInfoDto addUserInfo(UserInfoNewDto userInfoNewDto, Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
-        UserInfo userInfo = MapperUserInfo.returnUserInfo(userInfoNewDto);
+        UserInfo userInfo = userInfoMapper.returnUserInfo(userInfoNewDto);
 
         userInfo = userInfoRepository.save(userInfo);
         user.setUserInfo(userInfo);
         userRepository.save(user);
 
-        return MapperUserInfo.returnUserInfoDto(userInfo);
+        return userInfoMapper.returnUserInfoDto(userInfo);
     }
 
     @Override
@@ -66,6 +67,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         userInfo = userInfoRepository.save(userInfo);
 
-        return MapperUserInfo.returnUserInfoDto(userInfo);
+        return userInfoMapper.returnUserInfoDto(userInfo);
     }
 }

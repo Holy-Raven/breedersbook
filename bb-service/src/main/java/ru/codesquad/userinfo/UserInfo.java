@@ -44,8 +44,4 @@ public class UserInfo {
     @Column(name = "birth_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDateTime birthDate;
-
-    @Column(name = "created")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-    LocalDateTime created;
 }

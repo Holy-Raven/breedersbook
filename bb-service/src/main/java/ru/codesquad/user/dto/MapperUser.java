@@ -1,10 +1,11 @@
 package ru.codesquad.user.dto;
 
 import lombok.experimental.UtilityClass;
-import ru.codesquad.kennel.dto.MapperKennel;
+import org.mapstruct.factory.Mappers;
+import ru.codesquad.kennel.dto.KennelMapper;
 import ru.codesquad.user.User;
-import ru.codesquad.userinfo.dto.MapperUserInfo;
 import ru.codesquad.userinfo.dto.UserInfoDto;
+import ru.codesquad.userinfo.dto.UserInfoMapper;
 import ru.codesquad.util.enums.Gender;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,9 @@ import java.util.List;
 @UtilityClass
 public class MapperUser {
 
+    private final KennelMapper kennelMapper = Mappers.getMapper(KennelMapper.class);
+    private final UserInfoMapper userInfoMapper = Mappers.getMapper(UserInfoMapper.class);
+
     public UserDto returnUserDto(User user) {
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
@@ -21,14 +25,14 @@ public class MapperUser {
                 .name(user.getName())
                 .login(user.getLogin())
                 .gender(user.getGender())
-                .kennel(MapperKennel.returnKennelDto(user.getKennel()))
-                .created(LocalDateTime.now())
+                .kennelDto(kennelMapper.returnKennelDto(user.getKennel()))
+                .created(user.getCreated())
                 .build();
 
         if (user.getUserInfo() != null) {
-            userDto.setUserInfo(MapperUserInfo.returnUserInfoDto(user.getUserInfo()));
+            userDto.setUserInfoDto(userInfoMapper.returnUserInfoDto(user.getUserInfo()));
         } else {
-            userDto.setUserInfo(new UserInfoDto());
+            userDto.setUserInfoDto(new UserInfoDto());
         }
         return userDto;
     }
@@ -40,7 +44,7 @@ public class MapperUser {
                 .build();
 
         if (user.getUserInfo() != null) {
-            userShortDto.setUserInfo(MapperUserInfo.returnUserInfoDto(user.getUserInfo()));
+            userShortDto.setUserInfo(userInfoMapper.returnUserInfoDto(user.getUserInfo()));
         } else {
             userShortDto.setUserInfo(new UserInfoDto());
         }
@@ -53,6 +57,7 @@ public class MapperUser {
                 .name(UserNewDto.getName())
                 .login(UserNewDto.getLogin())
                 .gender(Gender.getGenderValue(UserNewDto.getGender()))
+                .created(LocalDateTime.now())
                 .build();
         return user;
     }
