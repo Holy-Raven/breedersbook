@@ -51,12 +51,13 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public UserShortDto getPublicUserById(Long userId) {
 
-        unionService.getUserOrNotFound(userId);
+        User user = unionService.getUserOrNotFound(userId);
 
-        return userMapper.returnUserShortDto(userRepository.findById(userId).get());
+        return userMapper.returnUserShortDto(user);
     }
 
     @Override
+    @Transactional
     public UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto) {
 
         User user = unionService.getUserOrNotFound(userId);
@@ -102,9 +103,11 @@ public class UserServiceImpl implements UserService {
 
         List<UserDto> result = new ArrayList<>();
         for (User user : userRepository.findAll(pageRequest)) {
+
+            System.out.println(user);
+
             result.add(userMapper.returnUserDto(user));
         }
         return result;
-//        return MapperUser.returnUserDtoList(userRepository.findAll(pageRequest));
     }
 }

@@ -27,19 +27,24 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 
     @Override
+    @Transactional
     public UserInfoDto addUserInfo(UserInfoNewDto userInfoNewDto, Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
         UserInfo userInfo = userInfoMapper.returnUserInfo(userInfoNewDto);
 
         userInfo = userInfoRepository.save(userInfo);
+
         user.setUserInfo(userInfo);
         userRepository.save(user);
+
+        System.out.println(user);
 
         return userInfoMapper.returnUserInfoDto(userInfo);
     }
 
     @Override
+    @Transactional
     public UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId, Long userInfoId) {
 
         User user = unionService.getUserOrNotFound(userId);

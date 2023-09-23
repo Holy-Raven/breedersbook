@@ -10,6 +10,8 @@ import ru.codesquad.userinfo.dto.UserInfoUpdateDto;
 
 import javax.validation.Valid;
 
+import static ru.codesquad.util.Constant.HEADER_USER;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -18,22 +20,22 @@ public class UserInfoController {
 
     private final UserInfoService userInfoService;
 
-    @PostMapping("/users/{userId}")
+    @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public UserInfoDto addUserInfo(@Valid @RequestBody UserInfoNewDto userInfoNewDto,
-                                   @PathVariable Long userId) {
+    public UserInfoDto addUserInfo(@RequestHeader(HEADER_USER) Long yourId,
+                                   @Valid @RequestBody UserInfoNewDto userInfoNewDto) {
 
-        log.info("User id {} add userInfoDto", userId);
-        return userInfoService.addUserInfo(userInfoNewDto, userId);
+        log.info("User id {} add userInfoDto", yourId);
+        return userInfoService.addUserInfo(userInfoNewDto, yourId);
     }
 
-    @PatchMapping("/{userInfoId}/users/{userId}")
+    @PatchMapping("/{userInfoId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public UserInfoDto updateUserInfo(@Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto,
-                                      @PathVariable Long userInfoId,
-                                      @PathVariable Long userId) {
+    public UserInfoDto updateUserInfo(@RequestHeader(HEADER_USER) Long yourId,
+                                      @Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto,
+                                      @PathVariable Long userInfoId) {
 
-        log.info("User id {} update profile {} ", userId, userInfoId);
-        return userInfoService.updateUserInfo(userInfoUpdateDto,  userId, userInfoId);
+        log.info("User id {} update profile {} ", yourId, userInfoId);
+        return userInfoService.updateUserInfo(userInfoUpdateDto,  yourId, userInfoId);
     }
 }
