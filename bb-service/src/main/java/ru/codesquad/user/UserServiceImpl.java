@@ -28,10 +28,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserDto addUser(UserNewDto userNewDto) {
 
-        User user = userMapper.returnUser(userNewDto);
+        User user = MapperUser.returnUser(userNewDto);
         userRepository.save(user);
 
-        return userMapper.returnUserDto(user);
+        return MapperUser.returnUserDto(user);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
 
-        return userMapper.returnUserDto(userRepository.findById(userId).get());
+        return MapperUser.returnUserDto(userRepository.findById(userId).get());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
         User user = unionService.getUserOrNotFound(userId);
 
-        return userMapper.returnUserShortDto(user);
+        return MapperUser.returnUserShortDto(user);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
         user = userRepository.save(user);
 
-        return userMapper.returnUserDto(user);
+        return MapperUser.returnUserDto(user);
     }
 
     @Override
@@ -103,10 +103,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserDto> result = new ArrayList<>();
         for (User user : userRepository.findAll(pageRequest)) {
-
-            System.out.println(user);
-
-            result.add(userMapper.returnUserDto(user));
+            result.add(MapperUser.returnUserDto(user));
         }
         return result;
     }

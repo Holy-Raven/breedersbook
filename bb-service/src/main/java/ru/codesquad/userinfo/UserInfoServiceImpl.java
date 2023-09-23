@@ -45,14 +45,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     @Transactional
-    public UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId, Long userInfoId) {
+    public UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
-        UserInfo userInfo = unionService.getUserInfoOrNotFound(userInfoId);
-
-        if (!user.getUserInfo().getId().equals(userInfoId)) {
-            throw new ConflictException(String.format("User %s can only update his personal information",userId));
-        }
+        UserInfo userInfo = unionService.getUserInfoOrNotFound(user.getUserInfo().getId());
 
         if (userInfoUpdateDto.getDescription() != null && !userInfoUpdateDto.getDescription().isBlank()) {
             userInfo.setDescription(userInfoUpdateDto.getDescription());
@@ -71,6 +67,26 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         userInfo = userInfoRepository.save(userInfo);
+
+        return userInfoMapper.returnUserInfoDto(userInfo);
+    }
+
+    @Override
+    @Transactional
+    public void deleteUserInfo(Long yourId) {
+
+        User user = unionService.getUserOrNotFound(yourId);
+        UserInfo userInfo = unionService.getUserInfoOrNotFound(user.getUserInfo().getId());
+
+        userInfoRepository.deleteById(userInfo.getId());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserInfoDto getUserInfoById(Long yourId) {
+
+        User user = unionService.getUserOrNotFound(yourId);
+        UserInfo userInfo = unionService.getUserInfoOrNotFound(user.getUserInfo().getId());
 
         return userInfoMapper.returnUserInfoDto(userInfo);
     }

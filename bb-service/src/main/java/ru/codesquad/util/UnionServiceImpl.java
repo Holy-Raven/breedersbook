@@ -37,7 +37,7 @@ public class UnionServiceImpl implements  UnionService {
         Optional<UserInfo> userInfo = userInfoRepository.findById(userInfoId);
 
         if (userInfo.isEmpty()) {
-            throw new NotFoundException(User.class, "UserInfo id " + userInfoId + " not found.");
+            throw new NotFoundException(UserInfo.class, "UserInfo id " + userInfoId + " not found.");
         } else {
             return userInfo.get();
         }

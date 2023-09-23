@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
@@ -15,9 +14,6 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserInfoUpdateDto {
-
-    @NotNull
-    Long id;
 
     String description;
 

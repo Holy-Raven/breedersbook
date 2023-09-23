@@ -8,5 +8,9 @@ public interface UserInfoService {
 
     UserInfoDto addUserInfo(UserInfoNewDto userInfoNewDto, Long userId);
 
-    UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId, Long userInfoId);
+    UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId);
+
+    void  deleteUserInfo(Long yourId);
+
+    UserInfoDto getUserInfoById(Long yourId);
 }
