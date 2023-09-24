@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.dto.*;
+import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Gender;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final UserInfoRepository userInfoRepository;
     private final UnionService unionService;
     private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
@@ -91,7 +93,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUser(Long userId) {
 
-        unionService.getUserOrNotFound(userId);
+        User user = unionService.getUserOrNotFound(userId);
+
+        if (user.getUserInfo() != null) {
+            userInfoRepository.deleteById(user.getUserInfo().getId());
+        }
         userRepository.deleteById(userId);
     }
 

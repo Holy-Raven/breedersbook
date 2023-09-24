@@ -548,7 +548,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"pm.test(\"Ответ должен содержать код статус 404\", function() {\r",
 									"    pm.response.to.have.status(404);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -700,7 +700,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {\r",
+									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
 									"    pm.response.to.have.status(409);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -829,7 +829,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
 									"    pm.response.to.have.status(409);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1038,8 +1038,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Ответ должен содержать код статуса 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
 									"});\r",
