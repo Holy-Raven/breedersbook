@@ -3,8 +3,7 @@ CREATE TABLE IF NOT EXISTS user_info (
 	description		VARCHAR(5000),
 	address 		VARCHAR(1000),
 	phone_number		VARCHAR(20),
-	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE) 				NOT NULL,
-	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
+	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE),
 	photo_url	   	VARCHAR(250),
 
 	CONSTRAINT pk_user_info PRIMARY KEY (id)
@@ -22,8 +21,8 @@ CREATE TABLE IF NOT EXISTS kennels (
 	photo_url	   	VARCHAR(250),
 
 	CONSTRAINT pk_kennels PRIMARY KEY (id),
-	CONSTRAINT uq_kennels UNIQUE (name),
-	CONSTRAINT uq_kennels UNIQUE (address)
+	CONSTRAINT uq_kennels_name UNIQUE (name),
+	CONSTRAINT uq_kennels_address UNIQUE (address)
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -31,17 +30,18 @@ CREATE TABLE IF NOT EXISTS users (
 	name 			VARCHAR(250) 														NOT NULL,
 	login 			VARCHAR(250) 														NOT NULL,
 	email 			VARCHAR(40) 				CHECK (email <> '')								NOT NULL,
-	role			VARCHAR(50) 														NOT NULL,
+	gender			VARCHAR(6)														NOT NULL,
+	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
 
-	user_info_id		BIGINT					 										NOT NULL,
+	user_info_id		BIGINT,
 	kennel_id 		BIGINT,
 
-	CONSTRAINT fk_user_info_id FOREIGN KEY (user_info_id) REFERENCES user_info (id) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennels (id),
+	CONSTRAINT fk_user_info_id FOREIGN KEY (user_info_id) REFERENCES user_info (id) ON DELETE SET NULL,
+	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennels (id) ON DELETE SET NULL,
 
 	CONSTRAINT pk_users PRIMARY KEY (id),
-	CONSTRAINT uq_users UNIQUE (email),
-	CONSTRAINT uq_users UNIQUE (login)
+	CONSTRAINT uq_users_email UNIQUE (email),
+	CONSTRAINT uq_users_login UNIQUE (login)
 );
 
 CREATE TABLE IF NOT EXISTS breeds (
@@ -76,9 +76,9 @@ CREATE TABLE IF NOT EXISTS pets (
 	CONSTRAINT pk_pets PRIMARY KEY (id),
 	CONSTRAINT uq_pets UNIQUE (passport_img),
 
-	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennelS (id),
-	CONSTRAINT fk_owner_id FOREIGN KEY (owner_id) REFERENCES users (id),
-	CONSTRAINT fk_breed_id FOREIGN KEY (breed_id) REFERENCES breeds (id)
+	CONSTRAINT fk_pets_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennelS (id),
+	CONSTRAINT fk_pets_owner_id FOREIGN KEY (owner_id) REFERENCES users (id),
+	CONSTRAINT fk_pets_breed_id FOREIGN KEY (breed_id) REFERENCES breeds (id)
 );
 
 CREATE TABLE IF NOT EXISTS awards (
@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS news (
 
 	CONSTRAINT pk_news PRIMARY KEY (id),
 
-	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennelS (id)
+	CONSTRAINT fk_news_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennelS (id)
 );
 
 CREATE TABLE IF NOT EXISTS message (
