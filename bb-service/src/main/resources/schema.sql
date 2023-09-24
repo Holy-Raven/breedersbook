@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS user_info (
 	description		VARCHAR(5000),
 	address 		VARCHAR(1000),
 	phone_number		VARCHAR(20),
-	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE) 				NOT NULL,
+	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE),
 	photo_url	   	VARCHAR(250),
 
 	CONSTRAINT pk_user_info PRIMARY KEY (id)
@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS users (
 	user_info_id		BIGINT,
 	kennel_id 		BIGINT,
 
-	CONSTRAINT fk_user_info_id FOREIGN KEY (user_info_id) REFERENCES user_info (id) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennels (id),
+	CONSTRAINT fk_user_info_id FOREIGN KEY (user_info_id) REFERENCES user_info (id) ON DELETE SET NULL,
+	CONSTRAINT fk_kennel_id FOREIGN KEY (kennel_id) REFERENCES kennels (id) ON DELETE SET NULL,
 
 	CONSTRAINT pk_users PRIMARY KEY (id),
 	CONSTRAINT uq_users_email UNIQUE (email),
