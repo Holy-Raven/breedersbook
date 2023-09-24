@@ -883,7 +883,7 @@
 			"name": "User Info",
 			"item": [
 				{
-					"name": "add user User Info Jared Leto",
+					"name": "add user User Info Jared Leto phone +7",
 					"event": [
 						{
 							"listen": "test",
@@ -928,7 +928,7 @@
 					"response": []
 				},
 				{
-					"name": "add user User Info Teylor Momsen",
+					"name": "add user User Info Teylor Momsen phone 8",
 					"event": [
 						{
 							"listen": "test",
@@ -966,7 +966,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Сперва популярная актрисса, а потом уже и рок герл.\",\n  \"address\": \"Sant Luis\",\n  \"phone\": \"+7 987 564 77 51\",\n  \"photo\": \"https://w.forfun.com/fetch/e4/e452d3b29d9483b0c49eb1d4a7f4b054.jpeg\",\n  \"birthDate\": \"1971-12-06 08:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Сперва популярная актрисса, а потом уже и рок герл.\",\n  \"address\": \"Sant Luis\",\n  \"phone\": \"8 987 564 77 51\",\n  \"photo\": \"https://w.forfun.com/fetch/e4/e452d3b29d9483b0c49eb1d4a7f4b054.jpeg\",\n  \"birthDate\": \"1971-12-06 08:00:00\"\n}"
 						},
 						"url": "{{baseUrl}}/userinfo"
 					},

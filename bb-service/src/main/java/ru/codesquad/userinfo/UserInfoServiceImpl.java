@@ -33,6 +33,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         User user = unionService.getUserOrNotFound(userId);
         UserInfo userInfo = userInfoMapper.returnUserInfo(userInfoNewDto);
 
+        userInfo.setPhone(unionService.checkPhoneNumber(userInfo.getPhone()));
         userInfo = userInfoRepository.save(userInfo);
 
         user.setUserInfo(userInfo);

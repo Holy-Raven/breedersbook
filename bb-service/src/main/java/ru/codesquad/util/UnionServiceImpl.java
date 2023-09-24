@@ -56,7 +56,7 @@ public class UnionServiceImpl implements  UnionService {
             if (number.charAt(0) == '8') {
                 return "+7" + number.substring(number.indexOf('8') + 1);
             } else if (number.charAt(0) == '7') {
-                return "+7" + number;
+                return "+" + number;
             } else if (number.charAt(0) != '7' || number.charAt(0) != '8') {
                 throw new ValidationException("Invalid number format");
             }
