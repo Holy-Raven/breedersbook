@@ -7,4 +7,6 @@ public interface UnionService {
     User getUserOrNotFound(Long userId);
 
     UserInfo getUserInfoOrNotFound(Long userInfoId);
+
+    String checkPhoneNumber(String number);
 }

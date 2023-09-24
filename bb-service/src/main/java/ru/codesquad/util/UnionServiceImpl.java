@@ -3,6 +3,7 @@ package ru.codesquad.util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.codesquad.exception.NotFoundException;
+import ru.codesquad.exception.ValidationException;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
@@ -41,5 +42,26 @@ public class UnionServiceImpl implements  UnionService {
         } else {
             return userInfo.get();
         }
+    }
+
+    @Override
+    public String checkPhoneNumber(String number) {
+
+        number = number.replaceAll("[^0-9]", "");
+
+        if (number.length() == 10) {
+            return "+7" + number;
+        }
+        if (number.length() == 11) {
+            if (number.charAt(0) == '8') {
+                return "+7" + number.substring(number.indexOf('8') + 1);
+            } else if (number.charAt(0) == '7') {
+                return "+7" + number;
+            } else if (number.charAt(0) != '7' || number.charAt(0) != '8') {
+                throw new ValidationException("Invalid number format");
+            }
+        }
+
+        throw new ValidationException("Invalid number format");
     }
 }
