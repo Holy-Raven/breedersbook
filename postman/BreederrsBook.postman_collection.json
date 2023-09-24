@@ -150,7 +150,7 @@
 					"response": []
 				},
 				{
-					"name": "add user Ozzy Ozborn",
+					"name": "add user Ozzy Osbourne",
 					"event": [
 						{
 							"listen": "test",
@@ -183,7 +183,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Ozzy Ozborn\",\n  \"email\": \"o.ozborn@yandex.ru\",\n  \"login\": \"Ozborn\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Ozzy Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"login\": \"Osbourne\",\n  \"gender\": \"MALE\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -1143,6 +1143,141 @@
 								"type": "text"
 							}
 						],
+						"url": "{{baseUrl}}/userinfo"
+					},
+					"response": []
+				},
+				{
+					"name": "add user User Info Jared Leto again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"address\": \"LA\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/userinfo"
+					},
+					"response": []
+				},
+				{
+					"name": "add user User Info Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"address\": \"GDR\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/userinfo"
+					},
+					"response": []
+				},
+				{
+					"name": "add user User Info Ozzy Osbourne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Отец всей тяжелой рок музыки, не больше не меньше\",\n  \"address\": \"Birmingem\",\n  \"phone\": \"+7 919 355 07 22\",\n  \"photo\": \"https://rusvesna.su/sites/default/files/styles/orign_wm/public/ozzi_osborn.jpg\",\n  \"birthDate\": \"1948-12-03 07:00:00\"\n}"
+						},
 						"url": "{{baseUrl}}/userinfo"
 					},
 					"response": []

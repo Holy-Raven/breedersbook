@@ -38,8 +38,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         user.setUserInfo(userInfo);
         userRepository.save(user);
 
-        System.out.println(user);
-
         return userInfoMapper.returnUserInfoDto(userInfo);
     }
 
@@ -73,12 +71,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     @Override
     @Transactional
-    public void deleteUserInfo(Long yourId) {
+    public boolean deleteUserInfo(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);
         UserInfo userInfo = unionService.getUserInfoOrNotFound(user.getUserInfo().getId());
 
         userInfoRepository.deleteById(userInfo.getId());
+
+        return true;
     }
 
     @Override

@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public UserDto addUser(UserNewDto userNewDto) {
 
         User user = userMapper.returnUser(userNewDto);
-        userRepository.save(user);
+        user = userRepository.save(user);
 
         return MapperUser.returnUserDto(user);
     }
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void deleteUser(Long userId) {
+    public boolean deleteUser(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
 
@@ -99,6 +99,8 @@ public class UserServiceImpl implements UserService {
             userInfoRepository.deleteById(user.getUserInfo().getId());
         }
         userRepository.deleteById(userId);
+
+        return true;
     }
 
     @Override
@@ -111,6 +113,7 @@ public class UserServiceImpl implements UserService {
         for (User user : userRepository.findAll(pageRequest)) {
             result.add(MapperUser.returnUserDto(user));
         }
+
         return result;
     }
 }
