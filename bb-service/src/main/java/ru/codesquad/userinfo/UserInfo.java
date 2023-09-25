@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-import static ru.codesquad.util.Constant.DATE_FORMAT;
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder
@@ -42,6 +42,6 @@ public class UserInfo {
     String photo;
 
     @Column(name = "birth_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime birthDate;
 }

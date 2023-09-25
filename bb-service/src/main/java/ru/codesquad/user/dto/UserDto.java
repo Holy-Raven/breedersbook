@@ -9,7 +9,7 @@ import ru.codesquad.util.enums.Gender;
 
 import java.time.LocalDateTime;
 
-import static ru.codesquad.util.Constant.DATE_FORMAT;
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder
@@ -28,7 +28,7 @@ public class UserDto {
 
     Gender gender;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
 
     UserInfoDto userInfo;
