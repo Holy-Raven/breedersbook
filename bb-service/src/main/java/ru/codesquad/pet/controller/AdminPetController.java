@@ -9,7 +9,7 @@ import ru.codesquad.pet.service.PetService;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping(path = "/pets")
-public class PublicPetController {
+@RequestMapping(path = "/admin/pets")
+public class AdminPetController {
     private final PetService service;
 }

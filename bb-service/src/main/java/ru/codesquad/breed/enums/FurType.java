@@ -1,4 +1,4 @@
-package ru.codesquad.pet.enums;
+package ru.codesquad.breed.enums;
 
 import java.util.Optional;
 

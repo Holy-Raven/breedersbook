@@ -1,15 +1,13 @@
-package ru.codesquad.pet.controller;
+package ru.codesquad.breed.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.codesquad.pet.service.PetService;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping(path = "/pets")
-public class PublicPetController {
-    private final PetService service;
+@RequestMapping(path = "/admin/breeds")
+public class AdminBreedController {
 }

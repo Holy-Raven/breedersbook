@@ -1,9 +1,8 @@
-package ru.codesquad.pet.model;
+package ru.codesquad.breed;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.pet.enums.FurType;
-import ru.codesquad.pet.enums.PetType;
+import ru.codesquad.breed.enums.FurType;
 
 import javax.persistence.*;
 

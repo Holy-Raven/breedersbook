@@ -3,6 +3,7 @@ package ru.codesquad.pet.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.breed.Breed;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.PetType;
