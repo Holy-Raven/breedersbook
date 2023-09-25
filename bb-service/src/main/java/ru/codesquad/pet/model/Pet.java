@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
+import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.PetType;
 import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.user.User;
@@ -11,6 +12,8 @@ import ru.codesquad.util.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
@@ -36,8 +39,14 @@ public class Pet {
     @Column(name = "gender", nullable = false)
     private Gender gender;
 
-    @Column(name = "color", nullable = false)
-    private String color;
+    @Column(name = "pattern", nullable = false)
+    private String pattern;
+
+    @ElementCollection
+    @CollectionTable(name = "pets_color", joinColumns = @JoinColumn(name = "pet_id"))
+    @Column(name = "color")
+    @Enumerated(EnumType.STRING)
+    Set<Color> colors = new HashSet<>();
 
     @Column(name = "temper", nullable = false)
     private String temper;
@@ -72,7 +81,7 @@ public class Pet {
     @Column(name = "sterilization")
     boolean sterilization;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kennel_id")
     Kennel kennel;
 

@@ -2,6 +2,8 @@ package ru.codesquad.pet.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.pet.enums.FurType;
+import ru.codesquad.pet.enums.PetType;
 
 import javax.persistence.*;
 
@@ -24,6 +26,10 @@ public class Breed {
 
     @Column(name = "description", nullable = false)
     private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "fur_type", nullable = false)
+    private FurType furType;
 
     @Column(name = "photo_url")
     String photoUrl;
