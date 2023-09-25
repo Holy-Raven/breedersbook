@@ -2,6 +2,8 @@ package ru.codesquad.kennel.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.kennel.location.LocationDto;
+
 
 @Data
 @Builder
@@ -11,4 +13,12 @@ import lombok.experimental.FieldDefaults;
 public class KennelShortDto {
 
     String name;
+
+    String descriptions;
+
+    String phone;
+
+    String photo;
+
+    LocationDto locationDto;
 }
