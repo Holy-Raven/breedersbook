@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final UnionService unionService;
-    private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
+    private final UserMapper userMapper;
 
     @Override
     @Transactional
@@ -32,8 +32,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.returnUser(userNewDto);
         user = userRepository.save(user);
-
-        return MapperUser.returnUserDto(user);
+        return userMapper.returnUserDto(user);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class UserServiceImpl implements UserService {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
         //позволил себе исправить здесь метод. Выше ты уже получила юзера, зачем еще раз делать запорс в БД
-        return MapperUser.returnUserDto(user);
+        return userMapper.returnUserDto(user);
     }
 
     @Override
@@ -54,9 +53,7 @@ public class UserServiceImpl implements UserService {
     public UserShortDto getPublicUserById(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
-        UserShortDto userShortDto = userMapper.returnUserShortDto(user);
-
-        return userShortDto;
+        return userMapper.returnUserShortDto(user);
     }
 
     @Override
@@ -87,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
         user = userRepository.save(user);
 
-        return MapperUser.returnUserDto(user);
+        return userMapper.returnUserDto(user);
     }
 
     @Override
@@ -112,7 +109,7 @@ public class UserServiceImpl implements UserService {
 
         List<UserDto> result = new ArrayList<>();
         for (User user : userRepository.findAll(pageRequest)) {
-            result.add(MapperUser.returnUserDto(user));
+            result.add(userMapper.returnUserDto(user));
         }
 
         return result;
