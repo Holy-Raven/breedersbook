@@ -7,6 +7,8 @@ import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.pet.dto.PetShortDto;
 import ru.codesquad.pet.enums.*;
 import ru.codesquad.pet.service.PetService;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.PetType;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.Positive;
@@ -41,8 +43,8 @@ public class PublicPetController {
                                                 @RequestParam(defaultValue = "10") Integer size,
                                                 HttpServletRequest request) {
 
-        PetType petType = PetType.from(petTypeParam)
-                .orElseThrow(() -> new IllegalArgumentException("Unknown pet type: " + petTypeParam));
+        //PetType petType = PetType.getValue(petTypeParam);
+        PetType petType = EnumUtil.getValue(PetType.class, petTypeParam);
         FurType fur = furParam == null ? null : FurType.from(furParam)
                 .orElseThrow(() -> new IllegalArgumentException("Unknown fur type: " + sortParam));
         DogPattern dogPattern = patternParam == null || petType == PetType.CAT ? null :

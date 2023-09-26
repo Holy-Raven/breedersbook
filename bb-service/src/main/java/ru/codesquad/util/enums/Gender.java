@@ -9,7 +9,7 @@ public enum Gender {
 
     public static Gender getGenderValue(String gender) {
         try {
-            return Gender.valueOf(gender);
+            return Gender.valueOf(gender.toUpperCase());
         } catch (Exception e) {
             throw new ValidationException("Unknown Gender: " + gender);
         }

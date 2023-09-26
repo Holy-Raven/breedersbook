@@ -1,8 +1,10 @@
-package ru.codesquad.breed.dto;
+package ru.codesquad.vac;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.breed.enums.FurType;
+import ru.codesquad.vac.enums.VacType;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -10,7 +12,8 @@ import ru.codesquad.breed.enums.FurType;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BreedShortDto {
-    long id;
+public class VacPetDto {
     String name;
+    VacType type;
+    LocalDate date;
 }

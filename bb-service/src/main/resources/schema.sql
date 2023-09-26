@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS pets
     death_date    DATE,
     price         INTEGER,
     sale_status   VARCHAR(20)                             NOT NULL,
-    sale_date     DATE CHECK (birth_date < CURRENT_DATE),
+    sale_date     DATE CHECK (sale_date < CURRENT_DATE),
     passport_img  VARCHAR(2048),
     sterilization BOOLEAN DEFAULT FALSE                   NOT NULL,
 
@@ -239,9 +239,10 @@ CREATE TABLE IF NOT EXISTS pets_vacs
 
     pet_id BIGINT NOT NULL,
     vac_id BIGINT NOT NULL,
+    vac_date date NOT NULL,
 
     CONSTRAINT fk_pets_vacs_to_pets FOREIGN KEY (pet_id) REFERENCES pets (id) ON DELETE CASCADE,
     CONSTRAINT fk_pets_vacs_to_vacs FOREIGN KEY (vac_id) REFERENCES vacs (id) ON DELETE CASCADE,
 
-    PRIMARY KEY (pet_id, vac_id)
+    PRIMARY KEY (pet_id, vac_id, vac_date)
 );

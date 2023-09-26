@@ -3,7 +3,7 @@ package ru.codesquad.breed;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.breed.enums.FurType;
-import ru.codesquad.pet.enums.PetType;
+import ru.codesquad.util.enums.PetType;
 
 import javax.persistence.*;
 
@@ -19,21 +19,21 @@ public class Breed {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long id;
+    Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pet_type", nullable = false)
-    private PetType petType;
+    PetType petType;
 
     @Column(name = "name", nullable = false)
     String name;
 
     @Column(name = "description", nullable = false)
-    private String description;
+    String description;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "fur_type", nullable = false)
-    private FurType furType;
+    FurType furType;
 
     @Column(name = "photo_url")
     String photoUrl;

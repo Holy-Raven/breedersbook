@@ -3,10 +3,10 @@ package ru.codesquad.pet.enums;
 import java.util.Optional;
 
 public enum SaleStatus {
-    FREE,
+    FOR_SALE,
     BOOKED,
     SOLD,
-    FORBIDDEN;
+    NOT_FOR_SALE;
 
     public static Optional<SaleStatus> from(String stringStatus) {
         for (SaleStatus status : values()) {

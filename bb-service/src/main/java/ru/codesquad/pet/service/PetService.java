@@ -6,6 +6,7 @@ import ru.codesquad.pet.dto.PetFullDto;
 import ru.codesquad.pet.dto.PetShortDto;
 import ru.codesquad.pet.dto.UpdatePetDto;
 import ru.codesquad.pet.enums.*;
+import ru.codesquad.util.enums.PetType;
 
 import java.util.List;
 

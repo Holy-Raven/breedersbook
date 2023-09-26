@@ -1,8 +1,7 @@
-package ru.codesquad.breed.dto;
+package ru.codesquad.disease;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.breed.enums.FurType;
 
 @Getter
 @Setter
@@ -10,7 +9,5 @@ import ru.codesquad.breed.enums.FurType;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BreedShortDto {
-    long id;
-    String name;
+public class DiseasePetDto {
 }
