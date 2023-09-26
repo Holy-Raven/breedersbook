@@ -3,8 +3,6 @@ package ru.codesquad.kennel.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.kennel.location.LocationDto;
-
 import java.time.LocalDateTime;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
@@ -14,9 +12,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class KennelDto {
-
-    Long id;
+public class KennelUpdateDto {
 
     String name;
 
@@ -24,10 +20,8 @@ public class KennelDto {
 
     String phone;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-    LocalDateTime created;
-
     String photo;
 
-    LocationDto location;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    LocalDateTime created;
 }

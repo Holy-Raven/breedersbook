@@ -39,7 +39,7 @@ public class PrivateUserController {
 
     @PatchMapping("/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto updateComment(@RequestHeader(HEADER_USER) Long yourId,
+    public UserDto updateUser(@RequestHeader(HEADER_USER) Long yourId,
                                  @Valid @RequestBody UserUpdateDto userUpdateDto,
                                  @PathVariable Long userId) {
 

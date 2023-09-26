@@ -23,7 +23,7 @@ public class AdminUserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long userId) {
 
-        log.info("User {} deleted ", userId);
+        log.info("Admin deleted user {}", userId);
         userService.deleteUser(userId);
     }
 

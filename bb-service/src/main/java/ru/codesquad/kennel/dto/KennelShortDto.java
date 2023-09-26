@@ -4,7 +4,6 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.location.LocationDto;
 
-
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,5 +19,5 @@ public class KennelShortDto {
 
     String photo;
 
-    LocationDto locationDto;
+    LocationDto location;
 }
