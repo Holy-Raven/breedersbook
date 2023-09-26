@@ -3,6 +3,7 @@ package ru.codesquad.breed;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.breed.enums.FurType;
+import ru.codesquad.pet.enums.PetType;
 
 import javax.persistence.*;
 
@@ -19,6 +20,10 @@ public class Breed {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pet_type", nullable = false)
+    private PetType petType;
 
     @Column(name = "name", nullable = false)
     String name;
