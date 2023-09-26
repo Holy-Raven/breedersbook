@@ -34,6 +34,6 @@ public interface UserMapper {
     @Mapping (target = "created", expression = "java(LocalDateTime.now())")
     User returnUser(UserNewDto userNewDto);
 
-    @Mapping(target = "userInfoDto", source = "user.userInfo", defaultExpression = "java(null)")
+//    @Mapping(target = "userInfoDto", source = "user.userInfo", defaultExpression = "java(null)")
     UserShortDto returnUserShortDto(User user);
 }

@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
         if (!user.getId().equals(yourId)) {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
-
-        return MapperUser.returnUserDto(userRepository.findById(userId).get());
+        //позволил себе исправить здесь метод. Выше ты уже получила юзера, зачем еще раз делать запорс в БД
+        return MapperUser.returnUserDto(user);
     }
 
     @Override
@@ -54,8 +54,9 @@ public class UserServiceImpl implements UserService {
     public UserShortDto getPublicUserById(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
+        UserShortDto userShortDto = userMapper.returnUserShortDto(user);
 
-        return MapperUser.returnUserShortDto(user);
+        return userShortDto;
     }
 
     @Override
