@@ -2,7 +2,6 @@ package ru.codesquad.breed.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.breed.enums.FurType;
 
 @Getter
 @Setter

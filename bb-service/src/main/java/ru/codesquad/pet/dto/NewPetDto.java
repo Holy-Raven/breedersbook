@@ -5,8 +5,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +25,7 @@ public class NewPetDto {
     @Size(min = 1, max = 24)
     String pattern;
     @NotNull
-    Set<String> colors = new HashSet<>();
+    List<String> colors = new ArrayList<>();
     @NotBlank
     @Size(min = 1, max = 2000)
     String temper;

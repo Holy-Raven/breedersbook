@@ -227,11 +227,12 @@ CREATE TABLE IF NOT EXISTS pets_surgeries
 
     pet_id       BIGINT NOT NULL,
     operation_id BIGINT NOT NULL,
+    operation_date date NOT NULL,
 
     CONSTRAINT fk_pets_surgeries_to_pets FOREIGN KEY (pet_id) REFERENCES pets (id) ON DELETE CASCADE,
     CONSTRAINT fk_pets_surgeries_to_surgeries FOREIGN KEY (operation_id) REFERENCES surgeries (id) ON DELETE CASCADE,
 
-    PRIMARY KEY (pet_id, operation_id)
+    PRIMARY KEY (pet_id, operation_id, operation_date)
 );
 
 CREATE TABLE IF NOT EXISTS pets_vacs

@@ -2,20 +2,22 @@ package ru.codesquad.pet.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.award.AwardPetDto;
+import ru.codesquad.award.dto.AwardPetShortDto;
 import ru.codesquad.breed.dto.BreedShortDto;
-import ru.codesquad.disease.DiseasePetDto;
+import ru.codesquad.disease.dto.DiseasePetDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.pet.enums.Color;
-import ru.codesquad.util.enums.PetType;
 import ru.codesquad.pet.enums.SaleStatus;
-import ru.codesquad.surgery.SurgeryPetDto;
+import ru.codesquad.surgery.dto.SurgeryPetShortDto;
 import ru.codesquad.user.dto.UserShortDto;
 import ru.codesquad.util.enums.Gender;
-import ru.codesquad.vac.VacPetDto;
+import ru.codesquad.util.enums.PetType;
+import ru.codesquad.vac.VacPetShortDto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,7 +31,7 @@ public class PetFullDto {
     PetType petType;
     Gender gender;
     String pattern;
-    Set<Color> colors = new HashSet<>();
+    final List<Color> colors = new ArrayList<>();
     String temper;
     String description;
     String name;
@@ -42,8 +44,8 @@ public class PetFullDto {
     UserShortDto owner;
     KennelShortDto kennel;
 
-    Set<VacPetDto> vacs = new HashSet<>();
-    Set<AwardPetDto> awards = new HashSet<>();
-    Set<DiseasePetDto> diseases = new HashSet<>();
-    Set<SurgeryPetDto> surgeries = new HashSet<>();
+    final List<VacPetShortDto> vacs = new ArrayList<>();
+    final List<AwardPetShortDto> awards = new ArrayList<>();
+    final List<DiseasePetDto> diseases = new ArrayList<>();
+    final List<SurgeryPetShortDto> surgeries = new ArrayList<>();
 }

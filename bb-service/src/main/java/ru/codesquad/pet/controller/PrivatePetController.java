@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.pet.dto.NewPetDto;
 import ru.codesquad.pet.dto.PetFullDto;
 import ru.codesquad.pet.dto.UpdatePetDto;
+import ru.codesquad.pet.enums.PetSort;
+import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.pet.service.PetService;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.Gender;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -26,11 +30,17 @@ public class PrivatePetController {
 
     @GetMapping
     public List<PetFullDto> getByUserId(@PathVariable long userId,
+                                        @RequestParam(required = false) String genderParam,
+                                        @RequestParam(required = false) String saleStatusParam,
+                                        @RequestParam(required = false) String sortParam,
                                         @PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                         @RequestParam(defaultValue = "0") Integer from,
                                         @Positive(message = SIZE_ERROR_MESSAGE)
                                         @RequestParam(defaultValue = "10") Integer size) {
-        return service.getAllByUserId(userId, from, size);
+        Gender gender = genderParam == null ? null : EnumUtil.getValue(Gender.class, genderParam);
+        SaleStatus saleStatus = saleStatusParam == null ? null : EnumUtil.getValue(SaleStatus.class, saleStatusParam);
+        PetSort sort = sortParam == null ? null : EnumUtil.getValue(PetSort.class, sortParam);
+        return service.getAllByUserId(userId, gender, saleStatus, sort, from, size);
     }
 
     @GetMapping("/{petId}")
@@ -58,6 +68,6 @@ public class PrivatePetController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long userId,
                        @PathVariable long petId) {
-        service.delete(userId, petId);
+        service.deleteByUser(userId, petId);
     }
 }

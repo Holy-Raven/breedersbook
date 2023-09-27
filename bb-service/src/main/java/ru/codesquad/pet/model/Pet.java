@@ -6,15 +6,15 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.pet.enums.Color;
-import ru.codesquad.util.enums.PetType;
 import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.user.User;
 import ru.codesquad.util.enums.Gender;
+import ru.codesquad.util.enums.PetType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
@@ -47,7 +47,7 @@ public class Pet {
     @CollectionTable(name = "pets_color", joinColumns = @JoinColumn(name = "pet_id"))
     @Column(name = "color")
     @Enumerated(EnumType.STRING)
-    Set<Color> colors = new HashSet<>();
+    List<Color> colors = new ArrayList<>();
 
     @Column(name = "temper", nullable = false)
     String temper;

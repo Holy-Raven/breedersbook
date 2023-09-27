@@ -5,7 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.pet.dto.PetShortDto;
-import ru.codesquad.pet.enums.*;
+import ru.codesquad.pet.enums.CatPattern;
+import ru.codesquad.pet.enums.Color;
+import ru.codesquad.pet.enums.DogPattern;
+import ru.codesquad.pet.enums.PetSort;
 import ru.codesquad.pet.service.PetService;
 import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.PetType;
@@ -43,20 +46,16 @@ public class PublicPetController {
                                                 @RequestParam(defaultValue = "10") Integer size,
                                                 HttpServletRequest request) {
 
-        //PetType petType = PetType.getValue(petTypeParam);
         PetType petType = EnumUtil.getValue(PetType.class, petTypeParam);
-        FurType fur = furParam == null ? null : FurType.from(furParam)
-                .orElseThrow(() -> new IllegalArgumentException("Unknown fur type: " + sortParam));
+        FurType fur = furParam == null ? null : EnumUtil.getValue(FurType.class, furParam);
         DogPattern dogPattern = patternParam == null || petType == PetType.CAT ? null :
-                DogPattern.from(patternParam).orElseThrow(() -> new IllegalArgumentException("Unknown pattern: " + patternParam));
+                EnumUtil.getValue(DogPattern.class, patternParam);
         CatPattern catPattern = patternParam == null || petType == PetType.DOG ? null :
-                CatPattern.from(patternParam).orElseThrow(() -> new IllegalArgumentException("Unknown pattern: " + patternParam));
+                EnumUtil.getValue(CatPattern.class, patternParam);
         List<Color> colors = colorParams == null ? null : colorParams.stream()
-                .map(colorParam -> Color.from(colorParam)
-                        .orElseThrow(() -> new IllegalArgumentException("Unknown fur type: " + colorParam)))
+                .map(colorParam -> EnumUtil.getValue(Color.class, colorParam))
                 .collect(Collectors.toList());
-        PetSort sort = sortParam == null ? null : PetSort.from(sortParam)
-                .orElseThrow(() -> new IllegalArgumentException("Unknown state: " + sortParam));
+        PetSort sort = sortParam == null ? null : EnumUtil.getValue(PetSort.class, sortParam);
 
         String ip = request.getRemoteAddr();
         return service.getByFiltersPublic(petType, breedId, fur, catPattern, dogPattern, colors,

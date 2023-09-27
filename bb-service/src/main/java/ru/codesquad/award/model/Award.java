@@ -1,8 +1,7 @@
-package ru.codesquad.vac;
+package ru.codesquad.award.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.vac.enums.VacType;
 
 import javax.persistence.*;
 
@@ -11,10 +10,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "vacs", schema = "public")
+@Table(name = "awards", schema = "public")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Vac {
+public class Award {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
@@ -23,7 +22,9 @@ public class Vac {
     @Column(name = "name", nullable = false)
     String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    VacType type;
+    @Column(name = "description", nullable = false)
+    String description;
+
+    @Column(name = "photo_url", nullable = false)
+    String photoUrl;
 }

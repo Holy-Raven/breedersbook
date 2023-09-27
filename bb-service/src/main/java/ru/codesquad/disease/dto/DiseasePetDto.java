@@ -1,4 +1,4 @@
-package ru.codesquad.breed.dto;
+package ru.codesquad.disease.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -9,5 +9,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class BreedDto {
+public class DiseasePetDto {
+    String chronicDisease;
 }

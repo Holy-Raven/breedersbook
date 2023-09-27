@@ -16,6 +16,6 @@ public class AdminPetController {
     @DeleteMapping("/{petId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long petId) {
-        service.delete(petId);
+        service.deleteByAdmin(petId);
     }
 }

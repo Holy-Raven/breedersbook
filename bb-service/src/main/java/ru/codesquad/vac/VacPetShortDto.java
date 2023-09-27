@@ -1,7 +1,10 @@
-package ru.codesquad.award;
+package ru.codesquad.vac;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.vac.enums.VacType;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -9,5 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AwardPetDto {
+public class VacPetShortDto {
+    VacType type;
+    LocalDate date;
 }

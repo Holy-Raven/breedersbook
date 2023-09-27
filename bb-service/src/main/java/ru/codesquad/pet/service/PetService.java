@@ -6,12 +6,13 @@ import ru.codesquad.pet.dto.PetFullDto;
 import ru.codesquad.pet.dto.PetShortDto;
 import ru.codesquad.pet.dto.UpdatePetDto;
 import ru.codesquad.pet.enums.*;
+import ru.codesquad.util.enums.Gender;
 import ru.codesquad.util.enums.PetType;
 
 import java.util.List;
 
 public interface PetService {
-    List<PetFullDto> getAllByUserId(long userId, Integer from, Integer size);
+    List<PetFullDto> getAllByUserId(long userId, Gender gender, SaleStatus saleStatus, PetSort sort, Integer from, Integer size);
 
     PetFullDto getUsersPetById(long userId, long petId);
 
@@ -19,9 +20,9 @@ public interface PetService {
 
     PetFullDto update(long userId, long petId, UpdatePetDto updatePetDto);
 
-    void delete(long userId, long petId);
+    void deleteByUser(long userId, long petId);
 
-    void delete(long petId);
+    void deleteByAdmin(long petId);
 
     List<PetShortDto> getByFiltersPublic(PetType petType, Long breedId, FurType fur, CatPattern catPattern, DogPattern dogPattern, List<Color> colors, int priceFrom, Integer priceTo, PetSort sort, Integer from, Integer size, String ip);
 

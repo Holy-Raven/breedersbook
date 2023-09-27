@@ -1,8 +1,8 @@
-package ru.codesquad.vac;
+package ru.codesquad.surgery.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.vac.enums.VacType;
+import ru.codesquad.surgery.enums.SurgeryType;
 
 import java.time.LocalDate;
 
@@ -12,8 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class VacPetDto {
-    String name;
-    VacType type;
+public class SurgeryPetShortDto {
+    SurgeryType type;
     LocalDate date;
 }
