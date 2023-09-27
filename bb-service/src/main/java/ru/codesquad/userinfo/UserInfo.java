@@ -29,10 +29,6 @@ public class UserInfo {
     @Size(max = 5000)
     String description;
 
-    @Column(name = "address", unique = true)
-    @Size(max = 1000)
-    String address;
-
     @Column(name = "phone_number", unique = true)
     @Size(max = 20)
     String phone;

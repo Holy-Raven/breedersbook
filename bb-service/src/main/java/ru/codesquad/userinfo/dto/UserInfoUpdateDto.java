@@ -17,8 +17,6 @@ public class UserInfoUpdateDto {
 
     String description;
 
-    String address;
-
     String phone;
 
     String photo;

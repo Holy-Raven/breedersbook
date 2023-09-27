@@ -51,9 +51,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         if (userInfoUpdateDto.getDescription() != null && !userInfoUpdateDto.getDescription().isBlank()) {
             userInfo.setDescription(userInfoUpdateDto.getDescription());
         }
-        if (userInfoUpdateDto.getAddress() != null && !userInfoUpdateDto.getAddress().isBlank()) {
-            userInfo.setAddress(userInfoUpdateDto.getAddress());
-        }
         if (userInfoUpdateDto.getPhone() != null && !userInfoUpdateDto.getPhone().isBlank()) {
             userInfo.setPhone(userInfoUpdateDto.getPhone());
         }

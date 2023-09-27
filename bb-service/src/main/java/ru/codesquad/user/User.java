@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
+import ru.codesquad.kennel.location.Location;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Gender;
 
@@ -43,6 +44,10 @@ public class User {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_info_id")
     UserInfo userInfo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id", nullable = false)
+    Location location;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kennel_id")

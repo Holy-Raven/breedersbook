@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.dto.KennelDto;
+import ru.codesquad.kennel.location.LocationDto;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.util.enums.Gender;
 
@@ -32,6 +33,8 @@ public class UserDto {
     LocalDateTime created;
 
     UserInfoDto userInfo;
+
+    LocationDto location;
 
     KennelDto kennel;
 }

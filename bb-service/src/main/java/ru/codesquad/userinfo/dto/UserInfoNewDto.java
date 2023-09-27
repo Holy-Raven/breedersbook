@@ -21,9 +21,6 @@ public class UserInfoNewDto {
     @Size(max = 5000, message = "description must be less than 5000")
     String description;
 
-    @Size(max = 1000, message = "address must be less than 1000")
-    String address;
-
     @Size(min = 5, max = 20, message = "phone must be greater than 5 and less than 20")
     String phone;
 
