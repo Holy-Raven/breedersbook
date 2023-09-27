@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
+import ru.codesquad.kennel.location.Location;
+import ru.codesquad.kennel.location.LocationRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
@@ -19,6 +21,7 @@ public class UnionServiceImpl implements  UnionService {
 
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
+    private final LocationRepository locationRepository;
 
     @Override
     public User getUserOrNotFound(Long userId) {
@@ -41,6 +44,18 @@ public class UnionServiceImpl implements  UnionService {
             throw new NotFoundException(UserInfo.class, "UserInfo id " + userInfoId + " not found.");
         } else {
             return userInfo.get();
+        }
+    }
+
+    @Override
+    public Location getLocationOrNotFound(Long locationId) {
+
+        Optional<Location> location = locationRepository.findById(locationId);
+
+        if (location.isEmpty()) {
+            throw new NotFoundException(Location.class, "Location id " + locationId + " not found.");
+        } else {
+            return location.get();
         }
     }
 

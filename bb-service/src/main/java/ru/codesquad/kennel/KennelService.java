@@ -15,7 +15,7 @@ public interface KennelService {
 
     KennelDto updateKennel(Long kennelId, Long yourId, KennelUpdateDto kennelUpdateDto);
 
-    KennelDto addKennel(KennelNewDto kennelNewDto);
+    KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto);
 
     KennelShortDto getPublicKennelById(Long kennelId);
 

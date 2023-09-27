@@ -33,7 +33,7 @@ public class KennelServiceImpl implements KennelService {
     }
 
     @Override
-    public KennelDto addKennel(KennelNewDto kennelNewDto) {
+    public KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto) {
         return null;
     }
 

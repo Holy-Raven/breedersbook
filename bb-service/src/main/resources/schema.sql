@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS locations (
 	city 		VARCHAR(50)														NOT NULL,
 	street 		VARCHAR(50)														NOT NULL,
 	house 		VARCHAR(10)														NOT NULL,
-	apartment 		INTEGER														NOT NULL,
+	apartment 		INTEGER 				CHECK (apartment > 0),
 
 	CONSTRAINT pk_locations PRIMARY KEY (id)
 );

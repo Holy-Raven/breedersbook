@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelDto;
+import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
 
 import javax.validation.Valid;
@@ -19,6 +20,15 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 public class PrivateKennelController {
 
     private final KennelService kennelService;
+
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public KennelDto addKennel(@RequestHeader(HEADER_USER) Long yourId,
+                               @Valid @RequestBody KennelNewDto kennelNewDto) {
+
+        log.info("User {} add kennel {} ", yourId, kennelNewDto.getName());
+        return kennelService.addKennel(yourId, kennelNewDto);
+    }
 
     @GetMapping("/{kennelId}")
     @ResponseStatus(value = HttpStatus.OK)

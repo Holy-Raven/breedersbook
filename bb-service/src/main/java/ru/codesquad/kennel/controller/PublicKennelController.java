@@ -22,14 +22,6 @@ public class PublicKennelController {
 
     private final KennelService kennelService;
 
-    @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public KennelDto addKennel(@Valid @RequestBody KennelNewDto kennelNewDto) {
-
-        log.info("Add kennel {} ", kennelNewDto.getName());
-        return kennelService.addKennel(kennelNewDto);
-    }
-
     @GetMapping("/{kennelId}")
     @ResponseStatus(value = HttpStatus.OK)
     public KennelShortDto getKennel(@PathVariable Long kennelId) {
