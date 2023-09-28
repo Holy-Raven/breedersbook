@@ -2,16 +2,23 @@ package ru.codesquad.pet.model;
 
 import lombok.Builder;
 import lombok.Data;
+import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.PetSort;
-import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.util.enums.Gender;
+import ru.codesquad.util.enums.PetType;
+
+import java.util.List;
 
 @Data
 @Builder
 public class PublicSearchCriteria {
-    long userId;
+    PetType petType;
+    List<Long> breedIds;
+    String pattern;
+    List<Color> colors;
     Gender gender;
-    SaleStatus saleStatus;
+    int priceFrom;
+    Integer priceTo;
     PetSort petSort;
     int from;
     int size;

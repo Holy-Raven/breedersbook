@@ -53,11 +53,35 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
 
         List<Predicate> predicates = new ArrayList<>();
 
-        //<!-- Наполнение листа предикатов
-        Predicate genderPr = builder.equal(root.get("gender"), criteria.getGender());
-        predicates.add(genderPr);
+        //<!-- Filling list of predicates
+        Predicate petTypePr = builder.equal(root.get("type"), criteria.getPetType());
+        predicates.add(petTypePr);
 
-        //-->
+        if (criteria.getGender() != null) {
+            Predicate genderPr = builder.equal(root.get("gender"), criteria.getGender());
+            predicates.add(genderPr);
+        }
+
+        if (criteria.getPattern() != null) {
+            Predicate genderPr = builder.equal(root.get("pattern"), criteria.getPattern());
+            predicates.add(genderPr);
+        }
+
+        Predicate pricePr;
+        if (criteria.getPriceTo() != null) {
+             pricePr= builder.between(root.get("price"), criteria.getPriceFrom(), criteria.getPriceTo());
+        } else {
+            pricePr = builder.greaterThanOrEqualTo(root.get("price"), criteria.getPriceFrom());
+        }
+        predicates.add(pricePr);
+
+        /**TODO:
+         * добавить список id пород List<Long> breedIds
+         * добавить список цветов List<Color> colors
+         * **/
+
+        // -->
+
         Order order = getOrderBySort(criteria.getPetSort(), builder, root);
         return getPets(criteriaQuery, root, predicates, order, criteria.getFrom(), criteria.getSize());
     }

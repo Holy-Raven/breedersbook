@@ -100,14 +100,24 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<PetShortDto> getByFiltersPublic(PetType petType, Long breedId,
-                                                FurType fur, CatPattern catPattern, DogPattern dogPattern,
+    public List<PetShortDto> getByFiltersPublic(PetType petType, Gender gender,
+                                                FurType fur, String pattern,
                                                 List<Color> colors,
                                                 int priceFrom, Integer priceTo,
                                                 PetSort petSort, Integer from, Integer size,
                                                 String ip) {
-        //Sort sort = petSort == null ? sortMap.get(PetSort.DEFAULT) : sortMap.get(petSort);
+        List<Long> breedIds = breedRepo.findByFurType(fur).stream().map(Breed::getId).collect(Collectors.toList());
         PublicSearchCriteria criteria = PublicSearchCriteria.builder()
+                .petType(petType)
+                .breedIds(breedIds)
+                .gender(gender)
+                .pattern(pattern)
+                .colors(colors)
+                .priceFrom(priceFrom)
+                .priceTo(priceTo)
+                .petSort(petSort)
+                .from(from)
+                .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteria(criteria);
         return mapper.toShortDto(pets);

@@ -24,7 +24,7 @@ public interface PetService {
 
     void deleteByAdmin(long petId);
 
-    List<PetShortDto> getByFiltersPublic(PetType petType, Long breedId, FurType fur, CatPattern catPattern, DogPattern dogPattern, List<Color> colors, int priceFrom, Integer priceTo, PetSort sort, Integer from, Integer size, String ip);
+    List<PetShortDto> getByFiltersPublic(PetType petType, Gender gender, FurType fur, String pattern, List<Color> colors, int priceFrom, Integer priceTo, PetSort sort, Integer from, Integer size, String ip);
 
     PetShortDto getByIdPublic(long petId, String ip);
 }

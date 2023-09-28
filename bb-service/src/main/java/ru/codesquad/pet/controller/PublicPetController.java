@@ -11,6 +11,7 @@ import ru.codesquad.pet.enums.DogPattern;
 import ru.codesquad.pet.enums.PetSort;
 import ru.codesquad.pet.service.PetService;
 import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.Gender;
 import ru.codesquad.util.enums.PetType;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class PublicPetController {
 
     @GetMapping
     public List<PetShortDto> getByFiltersPublic(@RequestParam String petTypeParam,
-                                                @RequestParam(required = false) Long breedId,
+                                                @RequestParam(required = false) String genderParam,
                                                 @RequestParam(required = false) String furParam,
                                                 @RequestParam(required = false) String patternParam,
                                                 @RequestParam(required = false) List<String> colorParams,
@@ -47,18 +48,22 @@ public class PublicPetController {
                                                 HttpServletRequest request) {
 
         PetType petType = EnumUtil.getValue(PetType.class, petTypeParam);
+        Gender gender = genderParam == null ? null : EnumUtil.getValue(Gender.class, genderParam);
         FurType fur = furParam == null ? null : EnumUtil.getValue(FurType.class, furParam);
-        DogPattern dogPattern = patternParam == null || petType == PetType.CAT ? null :
-                EnumUtil.getValue(DogPattern.class, patternParam);
-        CatPattern catPattern = patternParam == null || petType == PetType.DOG ? null :
+        if (patternParam != null) {
+            if (petType == PetType.CAT) {
                 EnumUtil.getValue(CatPattern.class, patternParam);
+            } else {
+                EnumUtil.getValue(DogPattern.class, patternParam);
+            }
+        }
         List<Color> colors = colorParams == null ? null : colorParams.stream()
                 .map(colorParam -> EnumUtil.getValue(Color.class, colorParam))
                 .collect(Collectors.toList());
         PetSort sort = sortParam == null ? null : EnumUtil.getValue(PetSort.class, sortParam);
 
         String ip = request.getRemoteAddr();
-        return service.getByFiltersPublic(petType, breedId, fur, catPattern, dogPattern, colors,
+        return service.getByFiltersPublic(petType, gender, fur, patternParam, colors,
                 priceFrom, priceTo,
                 sort,
                 from, size,
