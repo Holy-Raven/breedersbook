@@ -41,7 +41,7 @@ public class NewPetDto {
     int price;
     boolean forSale;
     String passportImg;
-    boolean sterilization;
+    boolean sterilized;
     @NotNull
     Long breedId;
 }

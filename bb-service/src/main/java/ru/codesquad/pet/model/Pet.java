@@ -79,8 +79,8 @@ public class Pet {
     @Column(name = "passport_img")
     String passportImg;
 
-    @Column(name = "sterilization")
-    boolean sterilization;
+    @Column(name = "sterilized")
+    boolean sterilized;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kennel_id")

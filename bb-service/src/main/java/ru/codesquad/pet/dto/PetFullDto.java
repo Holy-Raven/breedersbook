@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.award.dto.AwardPetShortDto;
 import ru.codesquad.breed.dto.BreedShortDto;
 import ru.codesquad.disease.dto.DiseasePetDto;
+import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.SaleStatus;
@@ -31,7 +32,7 @@ public class PetFullDto {
     PetType petType;
     Gender gender;
     String pattern;
-    final List<Color> colors = new ArrayList<>();
+    List<Color> colors = new ArrayList<>();
     String temper;
     String description;
     String name;
@@ -39,13 +40,8 @@ public class PetFullDto {
     int price;
     SaleStatus saleStatus;
     String passportImg;
-    boolean sterilization;
+    boolean sterilized;
     BreedShortDto breed;
     UserShortDto owner;
-    KennelShortDto kennel;
-
-    final List<VacPetShortDto> vacs = new ArrayList<>();
-    final List<AwardPetShortDto> awards = new ArrayList<>();
-    final List<DiseasePetDto> diseases = new ArrayList<>();
-    final List<SurgeryPetShortDto> surgeries = new ArrayList<>();
+    KennelDto kennel;
 }

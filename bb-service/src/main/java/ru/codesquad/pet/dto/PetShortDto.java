@@ -3,6 +3,7 @@ package ru.codesquad.pet.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.breed.dto.BreedShortDto;
+import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.util.enums.Gender;
@@ -29,5 +30,5 @@ public class PetShortDto {
     LocalDate birthDate;
     int price;
     BreedShortDto breed;
-    KennelShortDto kennel;
+    KennelDto kennel;
 }

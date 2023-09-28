@@ -32,10 +32,12 @@ public class UpdatePetDto {
     String name;
     @PastOrPresent
     LocalDate birthDate;
+    @PastOrPresent
+    LocalDate deathDate;
     @PositiveOrZero
     Integer price;
-    Boolean forSale;
+    String saleStatus;
     String passportImg;
-    Boolean sterilization;
+    Boolean sterilized;
     Long breedId;
 }

@@ -6,5 +6,5 @@ public enum CatPattern {
     TABBY,
     TRI_COLOR,
     TORTOISESHELL,
-    COLOUR_POINT
+    COLOUR_POINT,
 }
