@@ -45,9 +45,15 @@ public class LocationServiceImpl implements  LocationService {
         Kennel kennel = user.getKennel();
 
         if (location != null && kennel != null) {
-            location.setId(null);
-            location = locationRepository.save(location);
-            kennel.setLocation(location);
+            Location newLocation = Location.builder()
+                    .apartment(location.getApartment())
+                    .city(location.getCity())
+                    .country(location.getCountry())
+                    .street(location.getStreet())
+                    .house(location.getHouse())
+                    .build();
+            newLocation = locationRepository.save(newLocation);
+            kennel.setLocation(newLocation);
         } else {
             throw new ConflictException("Упс, что-то пошло не так");
         }
@@ -64,25 +70,9 @@ public class LocationServiceImpl implements  LocationService {
         Location location = user.getLocation();
 
         if (location == null) {
-            throw new ConflictException("Обновлять нечего");
+            throw new ConflictException("У юзера не заполнена локация");
         }
-        if (locationDto.getCountry() != null && !locationDto.getCountry().isBlank()) {
-            location.setCountry(locationDto.getCountry());
-        }
-        if (locationDto.getCity() != null && !locationDto.getCity().isBlank()) {
-            location.setCity(locationDto.getCity());
-        }
-        if (locationDto.getStreet() != null && !locationDto.getStreet().isBlank()) {
-            location.setStreet(locationDto.getStreet());
-        }
-        if (locationDto.getHouse() != null && !locationDto.getHouse().isBlank()) {
-            location.setHouse(locationDto.getHouse());
-        }
-        if (locationDto.getApartment() != null && locationDto.getApartment() > 0) {
-            location.setApartment(locationDto.getApartment());
-        }
-
-        location = locationRepository.save(location);
+        location = locationRepository.save(updateLocation(location, locationDto));
 
         return locationMapper.returnLocationDto(location);
     }
@@ -91,33 +81,19 @@ public class LocationServiceImpl implements  LocationService {
     public LocationDto updateKennelLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-
         Kennel kennel = user.getKennel();
-        Location location = kennel.getLocation();
 
-        if (location != null) {
-            if (locationDto.getCountry() != null && !locationDto.getCountry().isBlank()) {
-                location.setCountry(locationDto.getCountry());
-            }
-            if (locationDto.getCity() != null && !locationDto.getCity().isBlank()) {
-                location.setCity(locationDto.getCity());
-            }
-            if (locationDto.getStreet() != null && !locationDto.getStreet().isBlank()) {
-                location.setStreet(locationDto.getStreet());
-            }
-            if (locationDto.getHouse() != null && !locationDto.getHouse().isBlank()) {
-                location.setHouse(locationDto.getHouse());
-            }
-            if (locationDto.getApartment() != null && locationDto.getApartment() > 0) {
-                location.setApartment(locationDto.getApartment());
+        if (kennel != null) {
+            Location location = kennel.getLocation();
+            if (location != null) {
+                location = locationRepository.save(updateLocation(location, locationDto));
+                return locationMapper.returnLocationDto(location);
+            } else {
+                throw new ConflictException("У питомника не заполнена локация");
             }
         } else {
-            throw new ConflictException("Обновлять нечего");
+            throw new ConflictException("У юзера нет питомника");
         }
-
-        location = locationRepository.save(location);
-
-        return locationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -153,5 +129,26 @@ public class LocationServiceImpl implements  LocationService {
             throw new ConflictException("У юзера нет питомника");
         }
         return true;
+    }
+
+    private Location updateLocation(Location location, LocationDto locationDto) {
+
+            if (locationDto.getCountry() != null && !locationDto.getCountry().isBlank()) {
+                location.setCountry(locationDto.getCountry());
+            }
+            if (locationDto.getCity() != null && !locationDto.getCity().isBlank()) {
+                location.setCity(locationDto.getCity());
+            }
+            if (locationDto.getStreet() != null && !locationDto.getStreet().isBlank()) {
+                location.setStreet(locationDto.getStreet());
+            }
+            if (locationDto.getHouse() != null && !locationDto.getHouse().isBlank()) {
+                location.setHouse(locationDto.getHouse());
+            }
+            if (locationDto.getApartment() != null && locationDto.getApartment() > 0) {
+                location.setApartment(locationDto.getApartment());
+            }
+
+        return location;
     }
 }
