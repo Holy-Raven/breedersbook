@@ -3,9 +3,7 @@ package ru.codesquad.userinfo.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDateTime;
-
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data

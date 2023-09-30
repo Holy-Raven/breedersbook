@@ -5,11 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.kennel.KennelService;
-import ru.codesquad.kennel.dto.KennelDto;
-import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
-
-import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;

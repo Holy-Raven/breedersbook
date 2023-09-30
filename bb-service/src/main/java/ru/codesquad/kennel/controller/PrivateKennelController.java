@@ -8,7 +8,6 @@ import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
-
 import javax.validation.Valid;
 
 import static ru.codesquad.util.Constant.HEADER_USER;

@@ -3,11 +3,9 @@ package ru.codesquad.userinfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data

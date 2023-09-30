@@ -4,7 +4,6 @@ import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.user.dto.UserNewDto;
 import ru.codesquad.user.dto.UserShortDto;
 import ru.codesquad.user.dto.UserUpdateDto;
-
 import java.util.List;
 
 public interface UserService {

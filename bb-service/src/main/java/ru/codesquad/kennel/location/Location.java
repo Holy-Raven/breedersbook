@@ -2,7 +2,6 @@ package ru.codesquad.kennel.location;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import javax.persistence.*;
 
 @Data

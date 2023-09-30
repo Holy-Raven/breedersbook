@@ -10,10 +10,8 @@ import ru.codesquad.kennel.dto.*;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.util.UnionService;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static ru.codesquad.util.Constant.CURRENT_TIME;
 
 @Slf4j

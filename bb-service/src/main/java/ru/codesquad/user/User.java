@@ -7,10 +7,8 @@ import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.location.Location;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Gender;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data

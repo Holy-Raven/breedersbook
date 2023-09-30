@@ -8,7 +8,6 @@ import ru.codesquad.user.User;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.userinfo.dto.UserInfoMapper;
 import ru.codesquad.util.enums.Gender;
-
 import java.time.LocalDateTime;
 import java.util.UUID;
 

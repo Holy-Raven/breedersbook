@@ -8,7 +8,6 @@ import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserNewDto;
 import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.user.dto.UserShortDto;
-
 import javax.validation.Valid;
 
 @Slf4j

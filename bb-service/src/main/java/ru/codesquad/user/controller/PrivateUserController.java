@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.user.dto.UserUpdateDto;
-
 import javax.validation.Valid;
-
 import static ru.codesquad.util.Constant.HEADER_USER;
 
 @Slf4j

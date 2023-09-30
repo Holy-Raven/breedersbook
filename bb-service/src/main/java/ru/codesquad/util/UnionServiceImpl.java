@@ -12,7 +12,6 @@ import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.userinfo.UserInfoRepository;
-
 import java.util.Optional;
 
 @Service

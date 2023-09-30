@@ -2,14 +2,12 @@ package ru.codesquad.userinfo;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.dto.*;
 import ru.codesquad.util.UnionService;
-
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -21,8 +19,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     private final UserInfoRepository userInfoRepository;
     private final UserRepository userRepository;
     private final UnionService unionService;
-
-    private final UserInfoMapper userInfoMapper = Mappers.getMapper(UserInfoMapper.class);
+    private final UserInfoMapper userInfoMapper;
 
 
     @Override

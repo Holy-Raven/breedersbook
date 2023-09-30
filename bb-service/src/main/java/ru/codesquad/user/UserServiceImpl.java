@@ -10,7 +10,6 @@ import ru.codesquad.user.dto.*;
 import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Gender;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.returnUser(userNewDto);
         user = userRepository.save(user);
+
         return userMapper.returnUserDto(user);
     }
 
@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         if (!user.getId().equals(yourId)) {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
+
         return userMapper.returnUserDto(user);
     }
 
@@ -51,6 +52,7 @@ public class UserServiceImpl implements UserService {
     public UserShortDto getPublicUserById(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
+
         return userMapper.returnUserShortDto(user);
     }
 
@@ -74,6 +76,7 @@ public class UserServiceImpl implements UserService {
         }
 
         user = userRepository.save(user);
+
         return userMapper.returnUserDto(user);
     }
 
