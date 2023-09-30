@@ -89,7 +89,6 @@ public class UnionServiceImpl implements  UnionService {
                 throw new ValidationException("Invalid number format");
             }
         }
-
         throw new ValidationException("Invalid number format");
     }
 }

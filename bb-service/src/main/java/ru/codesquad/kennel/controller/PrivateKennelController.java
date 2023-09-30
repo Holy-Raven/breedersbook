@@ -47,13 +47,12 @@ public class PrivateKennelController {
         kennelService.deletePrivateKennel(yourId);
     }
 
-    @PatchMapping("/{kennelId}")
+    @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
     public KennelDto updateKennel(@RequestHeader(HEADER_USER) Long yourId,
-                                 @Valid @RequestBody KennelUpdateDto kennelUpdateDto,
-                                 @PathVariable Long kennelId) {
+                                 @Valid @RequestBody KennelUpdateDto kennelUpdateDto) {
 
-        log.info("User id {} update profile his kennel", kennelId);
-        return kennelService.updateKennel(kennelId, yourId, kennelUpdateDto);
+        log.info("User id {} update profile his kennel", yourId);
+        return kennelService.updateKennel(yourId, kennelUpdateDto);
     }
 }

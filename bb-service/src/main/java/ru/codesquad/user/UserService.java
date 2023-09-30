@@ -15,7 +15,7 @@ public interface UserService {
 
     UserShortDto getPublicUserById(Long userId);
 
-    UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto);
+    UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto);
 
     boolean deleteUser(Long userId);
 

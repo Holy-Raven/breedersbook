@@ -26,11 +26,11 @@ public class Kennel {
     @EqualsAndHashCode.Include
     Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     @Size(max = 250)
     String name;
 
-    @Column(name = "description", unique = true)
+    @Column(name = "description")
     @Size(max = 5000)
     String descriptions;
 
@@ -42,7 +42,7 @@ public class Kennel {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDateTime created;
 
-    @Column(name = "photo_url", unique = true)
+    @Column(name = "photo_url")
     @Size(max = 1000)
     String photo;
 

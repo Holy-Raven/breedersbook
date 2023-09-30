@@ -83,12 +83,12 @@ public class KennelServiceImpl implements KennelService {
 
     @Override
     @Transactional
-    public KennelDto updateKennel(Long kennelId, Long yourId, KennelUpdateDto kennelUpdateDto) {
+    public KennelDto updateKennel(Long yourId, KennelUpdateDto kennelUpdateDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = unionService.getKennelOrNotFound(kennelId);
+        Kennel kennel = user.getKennel();
 
-        if (user.getKennel().equals(kennel)) {
+        if (kennel != null) {
             if (kennelUpdateDto.getName() != null && !kennelUpdateDto.getName().isBlank()) {
                 kennel.setName(kennelUpdateDto.getName());
             }
@@ -96,7 +96,7 @@ public class KennelServiceImpl implements KennelService {
                 kennel.setDescriptions(kennelUpdateDto.getDescriptions());
             }
             if (kennelUpdateDto.getPhone() != null && !kennelUpdateDto.getPhone().isBlank()) {
-                kennel.setPhone(unionService.checkPhoneNumber(kennel.getPhone()));
+                kennel.setPhone(unionService.checkPhoneNumber(kennelUpdateDto.getPhone()));
             }
             if (kennelUpdateDto.getPhoto() != null && !kennelUpdateDto.getPhoto().isBlank()) {
                 kennel.setPhoto(kennelUpdateDto.getPhoto());
@@ -104,9 +104,12 @@ public class KennelServiceImpl implements KennelService {
             if (kennelUpdateDto.getCreated() != null && !kennelUpdateDto.getCreated().isBefore(CURRENT_TIME)) {
                 kennel.setPhoto(kennelUpdateDto.getPhoto());
             }
+
+            kennel = kennelRepository.save(kennel);
+
             return kennelMapper.returnKennelDto(kennel);
         }  else {
-            throw new ConflictException("Этот питомник принадлежит другому юзепру");
+            throw new ConflictException("У юзера нет питомника");
         }
     }
 

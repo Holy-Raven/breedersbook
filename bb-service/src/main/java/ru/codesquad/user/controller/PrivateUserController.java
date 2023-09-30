@@ -37,13 +37,12 @@ public class PrivateUserController {
         userService.deleteUser(yourId);
     }
 
-    @PatchMapping("/{userId}")
+    @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
     public UserDto updateUser(@RequestHeader(HEADER_USER) Long yourId,
-                                 @Valid @RequestBody UserUpdateDto userUpdateDto,
-                                 @PathVariable Long userId) {
+                                 @Valid @RequestBody UserUpdateDto userUpdateDto) {
 
-        log.info("User id {} update profile", userId);
-        return userService.updateUser(userId, yourId, userUpdateDto);
+        log.info("User id {} update profile", yourId);
+        return userService.updateUser(yourId, userUpdateDto);
     }
 }

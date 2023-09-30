@@ -56,32 +56,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto) {
 
-        User user = unionService.getUserOrNotFound(userId);
-
-        if (!user.getId().equals(yourId)) {
-            throw new ConflictException(String.format("User %s can only update his account",userId));
-        }
+        User user = unionService.getUserOrNotFound(yourId);
 
         if (userUpdateDto.getName() != null && !userUpdateDto.getName().isBlank()) {
             user.setName(userUpdateDto.getName());
         }
-
         if (userUpdateDto.getEmail() != null && !userUpdateDto.getEmail().isBlank()) {
             user.setEmail(userUpdateDto.getEmail());
         }
-
         if (userUpdateDto.getLogin() != null && !userUpdateDto.getLogin().isBlank()) {
             user.setLogin(userUpdateDto.getLogin());
         }
-
         if (userUpdateDto.getGender() != null && !userUpdateDto.getGender().isBlank()) {
             user.setGender(Gender.getGenderValue(userUpdateDto.getGender()));
         }
 
         user = userRepository.save(user);
-
         return userMapper.returnUserDto(user);
     }
 
