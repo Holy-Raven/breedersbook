@@ -802,35 +802,19 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"users",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "1"
-								}
-							]
-						}
+						"url": "{{baseUrl}}/private/users"
 					},
 					"response": []
 				},
 				{
-					"name": "path user Jared Leto alien id",
+					"name": "path user Jared Leto bad email",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
-									"    pm.response.to.have.status(409);\r",
+									"pm.test(\"Ответ должен содержать код статус 400 и оповещать о конфликте\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
 									"}); "
@@ -850,30 +834,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"login\": \"TMomsen\"\r\n}\r\n",
+							"raw": "{\r\n  \"email\": \"coolmannyandex.ru\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"users",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								}
-							]
-						}
+						"url": "{{baseUrl}}/private/users"
 					},
 					"response": []
 				}
@@ -1288,6 +1256,94 @@
 			"name": "Kennel",
 			"item": [
 				{
+					"name": "add kennel Jared Leto bad phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"5 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel Jared Leto created in past",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2030-10-11 08:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
 					"name": "add kennel Jared Leto",
 					"event": [
 						{
@@ -1372,6 +1428,50 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel  Teylor Momson not uniq name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (986) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1827,34 +1927,18 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/private/kennels/:kennelId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"kennels",
-								":kennelId"
-							],
-							"variable": [
-								{
-									"key": "kennelId",
-									"value": "1"
-								}
-							]
-						}
+						"url": "{{baseUrl}}/private/kennels"
 					},
 					"response": []
 				},
 				{
-					"name": "path kennel Jared Leto alien id",
+					"name": "path kennel Jared Leto not uniq phone",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {\r",
 									"    pm.response.to.have.status(409);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1869,36 +1953,20 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "3",
+								"value": "1",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Kusi da Kusay 4ever\"\r\n}",
+							"raw": "{\r\n  \"phone\": \"8 (966) 566-08-12\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "{{baseUrl}}/private/kennels/:kennelId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"kennels",
-								":kennelId"
-							],
-							"variable": [
-								{
-									"key": "kennelId",
-									"value": "1"
-								}
-							]
-						}
+						"url": "{{baseUrl}}/private/kennels"
 					},
 					"response": []
 				}
