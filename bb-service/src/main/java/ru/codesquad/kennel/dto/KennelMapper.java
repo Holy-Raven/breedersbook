@@ -9,6 +9,8 @@ public interface KennelMapper {
 
     Kennel returnKennel(KennelDto kennelDto);
 
+    Kennel returnKennel(KennelNewDto kennelNewDto);
+
     KennelDto returnKennelDto(Kennel kennel);
 
     KennelShortDto returnKennelShortDto(Kennel kennel);

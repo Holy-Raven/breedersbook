@@ -4,13 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
+import ru.codesquad.kennel.Kennel;
+import ru.codesquad.kennel.KennelRepository;
 import ru.codesquad.kennel.location.Location;
 import ru.codesquad.kennel.location.LocationRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.userinfo.UserInfoRepository;
-import ru.codesquad.userinfo.UserInfoService;
 
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class UnionServiceImpl implements  UnionService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final LocationRepository locationRepository;
+    private final KennelRepository kennelRepository;
 
     @Override
     public User getUserOrNotFound(Long userId) {
@@ -56,6 +58,17 @@ public class UnionServiceImpl implements  UnionService {
             throw new NotFoundException(Location.class, "Location id " + locationId + " not found.");
         } else {
             return location.get();
+        }
+    }
+
+    @Override
+    public Kennel getKennelOrNotFound(Long kennelId) {
+        Optional<Kennel> kennel = kennelRepository.findById(kennelId);
+
+        if (kennel.isEmpty()) {
+            throw new NotFoundException(Kennel.class, "Kennel id " + kennelId + " not found.");
+        } else {
+            return kennel.get();
         }
     }
 

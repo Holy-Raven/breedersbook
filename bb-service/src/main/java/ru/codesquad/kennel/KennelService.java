@@ -13,6 +13,8 @@ public interface KennelService {
 
     Boolean deleteKennel(Long yourId);
 
+    Boolean deletePrivateKennel(Long yourId);
+
     KennelDto updateKennel(Long kennelId, Long yourId, KennelUpdateDto kennelUpdateDto);
 
     KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto);

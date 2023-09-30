@@ -44,7 +44,7 @@ public class PrivateKennelController {
     public void deleteKennel(@RequestHeader(HEADER_USER) Long yourId) {
 
         log.info("User {} deleted his kennel ", yourId);
-        kennelService.deleteKennel(yourId);
+        kennelService.deletePrivateKennel(yourId);
     }
 
     @PatchMapping("/{kennelId}")

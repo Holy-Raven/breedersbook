@@ -52,7 +52,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             userInfo.setDescription(userInfoUpdateDto.getDescription());
         }
         if (userInfoUpdateDto.getPhone() != null && !userInfoUpdateDto.getPhone().isBlank()) {
-            userInfo.setPhone(userInfoUpdateDto.getPhone());
+            userInfo.setPhone(unionService.checkPhoneNumber(userInfo.getPhone()));
         }
         if (userInfoUpdateDto.getPhoto() != null && !userInfoUpdateDto.getPhoto().isBlank()) {
             userInfo.setPhoto(userInfoUpdateDto.getPhoto());

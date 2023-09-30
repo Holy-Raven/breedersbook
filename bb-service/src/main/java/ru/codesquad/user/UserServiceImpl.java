@@ -105,11 +105,9 @@ public class UserServiceImpl implements UserService {
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
 
-        List<UserDto> result = new ArrayList<>();
-        for (User user : userRepository.findAll(pageRequest)) {
-            result.add(userMapper.returnUserDto(user));
-        }
+        List<UserDto> userDtoList = new ArrayList<>();
+        userRepository.findAll(pageRequest).forEach(user -> userDtoList.add(userMapper.returnUserDto(user)));
 
-        return result;
+        return userDtoList;
     }
 }

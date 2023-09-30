@@ -21,8 +21,8 @@ public class LocationServiceImpl implements  LocationService {
     private final KennelRepository kennelRepository;
     private final UserRepository userRepository;
     private final UnionService unionService;
-
     private final LocationMapper locationMapper;
+
     @Override
     public LocationDto addUserLocation(Long yourId, LocationDto locationDto) {
 
@@ -102,7 +102,7 @@ public class LocationServiceImpl implements  LocationService {
         User user = unionService.getUserOrNotFound(yourId);
 
         if (user.getLocation() == null) {
-            throw new ConflictException("У юзера не заполнено поле адреса");
+            throw new ConflictException("У юзера не заполнена локация");
         }
 
         Location location = unionService.getLocationOrNotFound(user.getLocation().getId());
