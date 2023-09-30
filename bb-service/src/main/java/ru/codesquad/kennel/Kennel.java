@@ -16,7 +16,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "kennel", schema = "public")
+@Table(name = "kennels", schema = "public")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Kennel {

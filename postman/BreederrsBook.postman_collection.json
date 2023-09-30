@@ -823,7 +823,7 @@
 					"response": []
 				},
 				{
-					"name": "path user Jared Leto (alien id)",
+					"name": "path user Jared Leto alien id",
 					"event": [
 						{
 							"listen": "test",
@@ -1279,6 +1279,626 @@
 							"raw": "{\n  \"description\": \"Отец всей тяжелой рок музыки, не больше не меньше\",\n  \"phone\": \"+7 919 355 07 22\",\n  \"photo\": \"https://rusvesna.su/sites/default/files/styles/orign_wm/public/ozzi_osborn.jpg\",\n  \"birthDate\": \"1948-12-03 07:00:00\"\n}"
 						},
 						"url": "{{baseUrl}}/userinfo"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Kennel",
+			"item": [
+				{
+					"name": "add kennel Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel  Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel Ozzy Osbourne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Mur-Rock pride\",\n  \"descriptions\": \"Cat's-House by Ozzy Osbourne\",\n  \"phone\": \"8 (998) 118-05-19\",\n  \"photo\": \"https://avatars.dzeninfra.ru/get-zen_brief/6271726/pub_629e5f3e9cd04c7f1ce0a54e_629e616d25adf418085d6014/scale_1200\",\n  \"created\": \"1988-02-08 07:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "get all admin kennel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/admin/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "get all public kennel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "get kennel Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleting kennel (admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleting kennel (admin) not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get kennel Teylor Momson not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel  Teylor Momson again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "deleting kennel (private)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "add kennel  Teylor Momson again again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+						},
+						"url": "{{baseUrl}}/private/kennels"
+					},
+					"response": []
+				},
+				{
+					"name": "path kennel Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Kusi da Kusay\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "path kennel Jared Leto alien id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
+									"    pm.response.to.have.status(409);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Kusi da Kusay 4ever\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels/:kennelId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels",
+								":kennelId"
+							],
+							"variable": [
+								{
+									"key": "kennelId",
+									"value": "1"
+								}
+							]
+						}
 					},
 					"response": []
 				}
