@@ -26,10 +26,19 @@ public class LocationController {
 
     @PostMapping("/kennel")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public LocationDto addKennelLocation(@RequestHeader(HEADER_USER) Long yourId) {
+    public LocationDto addKennelLocation(@RequestHeader(HEADER_USER) Long yourId,
+                                         @Valid @RequestBody LocationDto locationDto) {
 
         log.info("User {} add location in his kennel ", yourId);
-        return locationService.addKennelLocation(yourId);
+        return locationService.addKennelLocation(yourId, locationDto);
+    }
+
+    @PostMapping("/kennel/default")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public LocationDto addKennelDefaultLocation(@RequestHeader(HEADER_USER) Long yourId) {
+
+        log.info("User {} add location in his kennel ", yourId);
+        return locationService.addKennelDefaultLocation(yourId);
     }
 
     @PatchMapping("/user")

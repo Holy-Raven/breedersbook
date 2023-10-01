@@ -24,6 +24,7 @@ public class LocationServiceImpl implements  LocationService {
     private final LocationMapper locationMapper;
 
     @Override
+    @Transactional
     public LocationDto addUserLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
@@ -37,33 +38,65 @@ public class LocationServiceImpl implements  LocationService {
     }
 
     @Override
-    public LocationDto addKennelLocation(Long yourId) {
+    @Transactional
+    public LocationDto addKennelLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
 
-        Location location = user.getLocation();
         Kennel kennel = user.getKennel();
+        Location location = user.getLocation();
 
-        if (location != null && kennel != null) {
-            Location newLocation = Location.builder()
-                    .apartment(location.getApartment())
-                    .city(location.getCity())
-                    .country(location.getCountry())
-                    .street(location.getStreet())
-                    .house(location.getHouse())
-                    .build();
-            newLocation = locationRepository.save(newLocation);
-            kennel.setLocation(newLocation);
+        if (kennel != null) {
+            Location newLocation ;
+
+            if (locationDto != null) {
+                newLocation = locationMapper.returnLocation(locationDto);
+                newLocation = locationRepository.save(newLocation);
+                kennel.setLocation(newLocation);
+                kennelRepository.save(kennel);
+            }
+
         } else {
-            throw new ConflictException("Упс, что-то пошло не так");
+            throw new ConflictException("У юзера нет питомника");
         }
-
-        kennelRepository.save(kennel);
 
         return locationMapper.returnLocationDto(location);
     }
 
     @Override
+    @Transactional
+    public LocationDto addKennelDefaultLocation(Long yourId) {
+
+        User user = unionService.getUserOrNotFound(yourId);
+
+        Kennel kennel = user.getKennel();
+        Location location = user.getLocation();
+
+        if (kennel != null) {
+            Location newLocation ;
+            if (location != null) {
+                newLocation = Location.builder()
+                        .apartment(location.getApartment())
+                        .city(location.getCity())
+                        .country(location.getCountry())
+                        .street(location.getStreet())
+                        .house(location.getHouse())
+                        .build();
+                } else {
+                    throw new ConflictException("Локация по умолчанию не была добавлена, у владельца питомника не заполнена локация");
+                }
+            newLocation = locationRepository.save(newLocation);
+            kennel.setLocation(newLocation);
+            kennelRepository.save(kennel);
+        } else {
+            throw new ConflictException("У юзера нет питомника");
+        }
+
+        return locationMapper.returnLocationDto(location);
+    }
+
+    @Override
+    @Transactional
     public LocationDto updateUserLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
@@ -78,6 +111,7 @@ public class LocationServiceImpl implements  LocationService {
     }
 
     @Override
+    @Transactional
     public LocationDto updateKennelLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
@@ -96,7 +130,10 @@ public class LocationServiceImpl implements  LocationService {
         }
     }
 
+
+
     @Override
+    @Transactional
     public Boolean deleteUserLocation(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);
@@ -112,6 +149,7 @@ public class LocationServiceImpl implements  LocationService {
     }
 
     @Override
+    @Transactional
     public Boolean deleteKennelLocation(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);

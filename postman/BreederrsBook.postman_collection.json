@@ -1971,6 +1971,566 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "add location Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Penza\",\n  \"street\": \"Mira\",\n  \"house\": \"15\",\n  \"apartment\": \"145\"\n}"
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "add location Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Samara\",\n  \"street\": \"Lenina\",\n  \"house\": \"7\",\n  \"apartment\": \"231\"\n}"
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "add location Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"country\": \"Kazakhstan\",\n  \"city\": \"Nursultan\",\n  \"street\": \"Svobodi\",\n  \"house\": \"9\",\n  \"apartment\": \"15\"\n}"
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "path location Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 400 и оповещать о конфликте\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"city\": \"Almna-Ati\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "deleting location Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "add location Till Lindemann again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Sankt-Petersburg\",\n  \"street\": \"Nevski Prospekt\",\n  \"house\": \"20\",\n  \"apartment\": \"25\"\n}"
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "add location kennel Jared Leto default",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/location/kennel/default"
+					},
+					"response": []
+				},
+				{
+					"name": "add location kennel Ozzy Osbourne default error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/location/kennel/default"
+					},
+					"response": []
+				},
+				{
+					"name": "add location kennel Till Lindemann default",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/location/kennel/default"
+					},
+					"response": []
+				},
+				{
+					"name": "add location kennel Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"country\": \"Russia\",\r\n  \"city\": \"Aleksandrovka\",\r\n  \"street\": \"Kuibisheva\",\r\n  \"house\": \"12\",\r\n  \"apartment\": \"10\"\r\n}"
+						},
+						"url": "{{baseUrl}}/location/kennel"
+					},
+					"response": []
+				},
+				{
+					"name": "path location kennel Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"country\": \"Russia\",\r\n  \"city\": \"Istanbul\",\r\n  \"street\": \"Ataturk\",\r\n  \"house\": \"1\",\r\n  \"apartment\": \"9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/location/kennel"
+					},
+					"response": []
+				},
+				{
+					"name": "add location Ozzy Osbourne",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Moscow\",\n  \"street\": \"Varvarka\",\n  \"house\": \"7\",\n  \"apartment\": \"14\"\n}"
+						},
+						"url": "{{baseUrl}}/location/user"
+					},
+					"response": []
+				},
+				{
+					"name": "add location kennel Ozzy Osbourne default",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{baseUrl}}/location/kennel/default"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
