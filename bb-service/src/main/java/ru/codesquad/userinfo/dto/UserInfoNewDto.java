@@ -22,7 +22,7 @@ public class UserInfoNewDto {
     @Size(min = 5, max = 20, message = "phone must be greater than 5 and less than 20")
     String phone;
 
-    @Size(max = 250, message = "photo must be less than 250")
+    @Size(max = 2048, message = "photo must be less than 2048")
     String photo;
 
     @NotNull(message = "end cannot be empty.")

@@ -29,7 +29,7 @@ public class KennelNewDto {
     @NotBlank(message = "phone cannot be empty and consist only of spaces.")
     String phone;
 
-    @Size(max = 250, message = "photo must be less than 250")
+    @Size(max = 2048, message = "photo must be less than 2048")
     @NotBlank(message = "photo cannot be empty and consist only of spaces.")
     String photo;
 

@@ -41,7 +41,7 @@ public class Kennel {
     LocalDateTime created;
 
     @Column(name = "photo_url")
-    @Size(max = 1000)
+    @Size(max = 2048)
     String photo;
 
     @OneToOne(fetch = FetchType.LAZY)

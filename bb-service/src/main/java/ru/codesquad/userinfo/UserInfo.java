@@ -32,7 +32,7 @@ public class UserInfo {
     String phone;
 
     @Column(name = "photo_url", unique = true)
-    @Size(max = 1000)
+    @Size(max = 2048)
     String photo;
 
     @Column(name = "birth_date")

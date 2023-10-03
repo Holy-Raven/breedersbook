@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS user_info (
 	description		VARCHAR(5000),
 	phone_number		VARCHAR(20),
 	birth_date	 	TIMESTAMP 				WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE),
-	photo_url	   	VARCHAR(250),
+	photo_url	   	VARCHAR(2048),
 
 	CONSTRAINT pk_user_info PRIMARY KEY (id),
 	CONSTRAINT uq_user_info_phone_number UNIQUE (phone_number)
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS kennels (
 	description		VARCHAR(5000)														NOT NULL,
 	phone_number		VARCHAR(20)														NOT NULL,
 	created		 	TIMESTAMP 				WITHOUT TIME ZONE DEFAULT NOW() 						NOT NULL,
-	photo_url	   	VARCHAR(250),
+	photo_url	   	VARCHAR(2048),
 
 	location_id		BIGINT,
 
