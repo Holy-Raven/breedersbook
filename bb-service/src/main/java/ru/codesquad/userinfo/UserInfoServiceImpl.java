@@ -2,15 +2,12 @@ package ru.codesquad.userinfo;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.dto.*;
 import ru.codesquad.util.UnionService;
-
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -22,8 +19,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     private final UserInfoRepository userInfoRepository;
     private final UserRepository userRepository;
     private final UnionService unionService;
-
-    private final UserInfoMapper userInfoMapper = Mappers.getMapper(UserInfoMapper.class);
+    private final UserInfoMapper userInfoMapper;
 
 
     @Override
@@ -52,11 +48,8 @@ public class UserInfoServiceImpl implements UserInfoService {
         if (userInfoUpdateDto.getDescription() != null && !userInfoUpdateDto.getDescription().isBlank()) {
             userInfo.setDescription(userInfoUpdateDto.getDescription());
         }
-        if (userInfoUpdateDto.getAddress() != null && !userInfoUpdateDto.getAddress().isBlank()) {
-            userInfo.setAddress(userInfoUpdateDto.getAddress());
-        }
         if (userInfoUpdateDto.getPhone() != null && !userInfoUpdateDto.getPhone().isBlank()) {
-            userInfo.setPhone(userInfoUpdateDto.getPhone());
+            userInfo.setPhone(unionService.checkPhoneNumber(userInfo.getPhone()));
         }
         if (userInfoUpdateDto.getPhoto() != null && !userInfoUpdateDto.getPhoto().isBlank()) {
             userInfo.setPhoto(userInfoUpdateDto.getPhoto());

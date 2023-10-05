@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
-
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
@@ -23,7 +22,7 @@ public class AdminUserController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable Long userId) {
 
-        log.info("User {} deleted ", userId);
+        log.info("Admin deleted user {}", userId);
         userService.deleteUser(userId);
     }
 

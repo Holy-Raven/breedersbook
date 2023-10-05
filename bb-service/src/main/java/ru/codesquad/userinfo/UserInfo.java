@@ -3,11 +3,9 @@ package ru.codesquad.userinfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-
 import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data
@@ -29,16 +27,12 @@ public class UserInfo {
     @Size(max = 5000)
     String description;
 
-    @Column(name = "address", unique = true)
-    @Size(max = 1000)
-    String address;
-
     @Column(name = "phone_number", unique = true)
     @Size(max = 20)
     String phone;
 
     @Column(name = "photo_url", unique = true)
-    @Size(max = 1000)
+    @Size(max = 2048)
     String photo;
 
     @Column(name = "birth_date")

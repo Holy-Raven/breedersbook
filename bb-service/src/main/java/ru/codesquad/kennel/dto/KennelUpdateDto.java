@@ -1,4 +1,4 @@
-package ru.codesquad.userinfo.dto;
+package ru.codesquad.kennel.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -11,14 +11,16 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserInfoDto {
+public class KennelUpdateDto {
 
-    String description;
+    String name;
+
+    String descriptions;
 
     String phone;
 
     String photo;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
-    LocalDateTime birthDate;
+    LocalDateTime created;
 }

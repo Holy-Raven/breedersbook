@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.user.dto.UserUpdateDto;
-
 import javax.validation.Valid;
-
 import static ru.codesquad.util.Constant.HEADER_USER;
 
 @Slf4j
@@ -37,13 +35,12 @@ public class PrivateUserController {
         userService.deleteUser(yourId);
     }
 
-    @PatchMapping("/{userId}")
+    @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto updateComment(@RequestHeader(HEADER_USER) Long yourId,
-                                 @Valid @RequestBody UserUpdateDto userUpdateDto,
-                                 @PathVariable Long userId) {
+    public UserDto updateUser(@RequestHeader(HEADER_USER) Long yourId,
+                                 @Valid @RequestBody UserUpdateDto userUpdateDto) {
 
-        log.info("User id {} update profile", userId);
-        return userService.updateUser(userId, yourId, userUpdateDto);
+        log.info("User id {} update profile", yourId);
+        return userService.updateUser(yourId, userUpdateDto);
     }
 }

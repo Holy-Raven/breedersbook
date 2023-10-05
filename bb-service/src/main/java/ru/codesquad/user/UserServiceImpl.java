@@ -2,7 +2,6 @@ package ru.codesquad.user;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +10,6 @@ import ru.codesquad.user.dto.*;
 import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Gender;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.returnUser(userNewDto);
         user = userRepository.save(user);
+
         return userMapper.returnUserDto(user);
     }
 
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
         if (!user.getId().equals(yourId)) {
             throw new ConflictException(String.format("User %s can only update his account",userId));
         }
-        //позволил себе исправить здесь метод. Выше ты уже получила юзера, зачем еще раз делать запорс в БД
+
         return userMapper.returnUserDto(user);
     }
 
@@ -53,31 +52,25 @@ public class UserServiceImpl implements UserService {
     public UserShortDto getPublicUserById(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
+
         return userMapper.returnUserShortDto(user);
     }
 
     @Override
     @Transactional
-    public UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto) {
+    public UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto) {
 
-        User user = unionService.getUserOrNotFound(userId);
-
-        if (!user.getId().equals(yourId)) {
-            throw new ConflictException(String.format("User %s can only update his account",userId));
-        }
+        User user = unionService.getUserOrNotFound(yourId);
 
         if (userUpdateDto.getName() != null && !userUpdateDto.getName().isBlank()) {
             user.setName(userUpdateDto.getName());
         }
-
         if (userUpdateDto.getEmail() != null && !userUpdateDto.getEmail().isBlank()) {
             user.setEmail(userUpdateDto.getEmail());
         }
-
         if (userUpdateDto.getLogin() != null && !userUpdateDto.getLogin().isBlank()) {
             user.setLogin(userUpdateDto.getLogin());
         }
-
         if (userUpdateDto.getGender() != null && !userUpdateDto.getGender().isBlank()) {
             user.setGender(Gender.getGenderValue(userUpdateDto.getGender()));
         }
@@ -107,11 +100,9 @@ public class UserServiceImpl implements UserService {
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
 
-        List<UserDto> result = new ArrayList<>();
-        for (User user : userRepository.findAll(pageRequest)) {
-            result.add(userMapper.returnUserDto(user));
-        }
+        List<UserDto> userDtoList = new ArrayList<>();
+        userRepository.findAll(pageRequest).forEach(user -> userDtoList.add(userMapper.returnUserDto(user)));
 
-        return result;
+        return userDtoList;
     }
 }

@@ -4,13 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.userinfo.dto.UserInfoNewDto;
 import ru.codesquad.userinfo.dto.UserInfoUpdateDto;
-
 import javax.validation.Valid;
-
 import static ru.codesquad.util.Constant.HEADER_USER;
 
 @Slf4j
@@ -33,8 +30,7 @@ public class UserInfoController {
     @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
     public UserInfoDto updateUserInfo(@RequestHeader(HEADER_USER) Long yourId,
-                                      @Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto
-    ) {
+                                      @Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto) {
 
         log.info("User id {} update profile", yourId);
         return userInfoService.updateUserInfo(userInfoUpdateDto,  yourId);
@@ -55,5 +51,4 @@ public class UserInfoController {
         log.info("Get UserInfo user {} ", yourId);
         return userInfoService.getUserInfoById(yourId);
     }
-
 }

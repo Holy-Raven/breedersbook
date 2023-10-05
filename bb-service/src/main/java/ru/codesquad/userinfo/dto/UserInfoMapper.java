@@ -4,7 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import ru.codesquad.userinfo.UserInfo;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",
+        disableSubMappingMethodsGeneration = true)
 public interface UserInfoMapper {
 
     @Mapping(target = "id", ignore = true)

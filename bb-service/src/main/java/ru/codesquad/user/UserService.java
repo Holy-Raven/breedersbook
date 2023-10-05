@@ -4,7 +4,6 @@ import ru.codesquad.user.dto.UserDto;
 import ru.codesquad.user.dto.UserNewDto;
 import ru.codesquad.user.dto.UserShortDto;
 import ru.codesquad.user.dto.UserUpdateDto;
-
 import java.util.List;
 
 public interface UserService {
@@ -15,7 +14,7 @@ public interface UserService {
 
     UserShortDto getPublicUserById(Long userId);
 
-    UserDto updateUser(Long userId, Long yourId, UserUpdateDto userUpdateDto);
+    UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto);
 
     boolean deleteUser(Long userId);
 
