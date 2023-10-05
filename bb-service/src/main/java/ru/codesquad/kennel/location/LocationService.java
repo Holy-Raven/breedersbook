@@ -8,9 +8,9 @@ public interface LocationService {
 
     LocationDto addKennelDefaultLocation(Long yourId);
 
-    LocationDto updateUserLocation(Long yourId, LocationDto locationDto);
+    LocationDto updateUserLocation(Long yourId, LocationUpdateDto locationUpdateDto);
 
-    LocationDto updateKennelLocation(Long yourId, LocationDto locationDto);
+    LocationDto updateKennelLocation(Long yourId, LocationUpdateDto locationUpdateDto);
 
     Boolean deleteUserLocation(Long yourId);
 
