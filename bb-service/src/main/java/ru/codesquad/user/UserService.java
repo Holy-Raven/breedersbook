@@ -10,7 +10,7 @@ public interface UserService {
 
     UserDto addUser(UserNewDto userNewDto);
 
-    UserDto getPrivateUserById(Long userId, Long yourId);
+    UserDto getPrivateUserById(Long yourId);
 
     UserShortDto getPublicUserById(Long userId);
 

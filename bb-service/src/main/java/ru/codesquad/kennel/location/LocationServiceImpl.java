@@ -44,7 +44,6 @@ public class LocationServiceImpl implements  LocationService {
         User user = unionService.getUserOrNotFound(yourId);
 
         Kennel kennel = user.getKennel();
-        Location location = user.getLocation();
 
         if (kennel != null) {
             Location newLocation ;
@@ -54,13 +53,13 @@ public class LocationServiceImpl implements  LocationService {
                 newLocation = locationRepository.save(newLocation);
                 kennel.setLocation(newLocation);
                 kennelRepository.save(kennel);
+                return locationMapper.returnLocationDto(newLocation);
+            } else {
+                throw new ConflictException("Вы не указали адрес");
             }
-
         } else {
             throw new ConflictException("У юзера нет питомника");
         }
-
-        return locationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -129,8 +128,6 @@ public class LocationServiceImpl implements  LocationService {
             throw new ConflictException("У юзера нет питомника");
         }
     }
-
-
 
     @Override
     @Transactional
