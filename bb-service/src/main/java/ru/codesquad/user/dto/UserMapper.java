@@ -19,9 +19,9 @@ public interface UserMapper {
 
     UserDto returnUserDto(User user);
 
+    UserShortDto returnUserShortDto(User user);
+
     @Mapping(target = "gender", expression = "java(Gender.getGenderValue(userNewDto.getGender()))")
     @Mapping(target = "created", expression = "java(LocalDateTime.now())")
     User returnUser(UserNewDto userNewDto);
-
-    UserShortDto returnUserShortDto(User user);
 }

@@ -29,6 +29,7 @@ public class LocationServiceImpl implements  LocationService {
 
         User user = unionService.getUserOrNotFound(yourId);
         Location location = locationMapper.returnLocation(locationDto);
+
         location = locationRepository.save(location);
 
         user.setLocation(location);
@@ -42,25 +43,17 @@ public class LocationServiceImpl implements  LocationService {
     public LocationDto addKennelLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
+        Kennel kennel = isUserKennel(user);
 
-        Kennel kennel = user.getKennel();
-        Location location = user.getLocation();
-
-        if (kennel != null) {
-            Location newLocation ;
-
-            if (locationDto != null) {
-                newLocation = locationMapper.returnLocation(locationDto);
-                newLocation = locationRepository.save(newLocation);
-                kennel.setLocation(newLocation);
-                kennelRepository.save(kennel);
-            }
-
+        if (locationDto != null) {
+            Location location = locationMapper.returnLocation(locationDto);
+            location = locationRepository.save(location);
+            kennel.setLocation(location);
+            kennelRepository.save(kennel);
+            return locationMapper.returnLocationDto(location);
         } else {
-            throw new ConflictException("У юзера нет питомника");
+            throw new ConflictException("Вы не указали локацию");
         }
-
-        return locationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -68,81 +61,55 @@ public class LocationServiceImpl implements  LocationService {
     public LocationDto addKennelDefaultLocation(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);
+        Kennel kennel = isUserKennel(user);
 
-        Kennel kennel = user.getKennel();
-        Location location = user.getLocation();
+        Location location = isUserLocation(user);
 
-        if (kennel != null) {
-            Location newLocation ;
-            if (location != null) {
-                newLocation = Location.builder()
-                        .apartment(location.getApartment())
-                        .city(location.getCity())
-                        .country(location.getCountry())
-                        .street(location.getStreet())
-                        .house(location.getHouse())
-                        .build();
-                } else {
-                    throw new ConflictException("Локация по умолчанию не была добавлена, у владельца питомника не заполнена локация");
-                }
-            newLocation = locationRepository.save(newLocation);
-            kennel.setLocation(newLocation);
-            kennelRepository.save(kennel);
-        } else {
-            throw new ConflictException("У юзера нет питомника");
-        }
+        Location newLocation = Location.builder()
+                .apartment(location.getApartment())
+                .city(location.getCity())
+                .country(location.getCountry())
+                .street(location.getStreet())
+                .house(location.getHouse())
+                .build();
+
+        newLocation = locationRepository.save(newLocation);
+        kennel.setLocation(newLocation);
+        kennelRepository.save(kennel);
+        return locationMapper.returnLocationDto(location);
+    }
+
+    @Override
+    @Transactional
+    public LocationDto updateUserLocation(Long yourId, LocationUpdateDto locationUpdateDto) {
+
+        User user = unionService.getUserOrNotFound(yourId);
+        Location location = isUserLocation(user);
+
+        location = locationRepository.save(updateLocation(location, locationUpdateDto));
 
         return locationMapper.returnLocationDto(location);
     }
 
     @Override
     @Transactional
-    public LocationDto updateUserLocation(Long yourId, LocationDto locationDto) {
+    public LocationDto updateKennelLocation(Long yourId, LocationUpdateDto locationUpdateDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Location location = user.getLocation();
+        Kennel kennel = isUserKennel(user);
+        Location location = isKennelLocation(kennel);
 
-        if (location == null) {
-            throw new ConflictException("У юзера не заполнена локация");
-        }
-        location = locationRepository.save(updateLocation(location, locationDto));
-
+        location = locationRepository.save(updateLocation(location, locationUpdateDto));
         return locationMapper.returnLocationDto(location);
     }
-
-    @Override
-    @Transactional
-    public LocationDto updateKennelLocation(Long yourId, LocationDto locationDto) {
-
-        User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = user.getKennel();
-
-        if (kennel != null) {
-            Location location = kennel.getLocation();
-            if (location != null) {
-                location = locationRepository.save(updateLocation(location, locationDto));
-                return locationMapper.returnLocationDto(location);
-            } else {
-                throw new ConflictException("У питомника не заполнена локация");
-            }
-        } else {
-            throw new ConflictException("У юзера нет питомника");
-        }
-    }
-
-
 
     @Override
     @Transactional
     public Boolean deleteUserLocation(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);
+        Location location = isUserLocation(user);
 
-        if (user.getLocation() == null) {
-            throw new ConflictException("У юзера не заполнена локация");
-        }
-
-        Location location = unionService.getLocationOrNotFound(user.getLocation().getId());
         locationRepository.deleteById(location.getId());
 
         return true;
@@ -155,38 +122,59 @@ public class LocationServiceImpl implements  LocationService {
         User user = unionService.getUserOrNotFound(yourId);
         Kennel kennel = user.getKennel();
 
-        if (kennel != null) {
-            Location location = kennel.getLocation();
-            if (location != null) {
-                unionService.getLocationOrNotFound(kennel.getLocation().getId());
-                locationRepository.deleteById(location.getId());
-            } else {
-                throw new ConflictException("У питомника не заполнена локация");
-            }
-        } else {
-            throw new ConflictException("У юзера нет питомника");
-        }
+        isUserKennel(user);
+        Location location = kennel.getLocation();
+        isKennelLocation(kennel);
+
+        unionService.getLocationOrNotFound(kennel.getLocation().getId());
+        locationRepository.deleteById(location.getId());
+
         return true;
     }
 
-    private Location updateLocation(Location location, LocationDto locationDto) {
+    private Location updateLocation(Location location, LocationUpdateDto locationUpdateDto) {
 
-            if (locationDto.getCountry() != null && !locationDto.getCountry().isBlank()) {
-                location.setCountry(locationDto.getCountry());
+            if (locationUpdateDto.getCountry() != null && !locationUpdateDto.getCountry().isBlank()) {
+                location.setCountry(locationUpdateDto.getCountry());
             }
-            if (locationDto.getCity() != null && !locationDto.getCity().isBlank()) {
-                location.setCity(locationDto.getCity());
+            if (locationUpdateDto.getCity() != null && !locationUpdateDto.getCity().isBlank()) {
+                location.setCity(locationUpdateDto.getCity());
             }
-            if (locationDto.getStreet() != null && !locationDto.getStreet().isBlank()) {
-                location.setStreet(locationDto.getStreet());
+            if (locationUpdateDto.getStreet() != null && !locationUpdateDto.getStreet().isBlank()) {
+                location.setStreet(locationUpdateDto.getStreet());
             }
-            if (locationDto.getHouse() != null && !locationDto.getHouse().isBlank()) {
-                location.setHouse(locationDto.getHouse());
+            if (locationUpdateDto.getHouse() != null && !locationUpdateDto.getHouse().isBlank()) {
+                location.setHouse(locationUpdateDto.getHouse());
             }
-            if (locationDto.getApartment() != null && locationDto.getApartment() > 0) {
-                location.setApartment(locationDto.getApartment());
+            if (locationUpdateDto.getApartment() != null && locationUpdateDto.getApartment() > 0) {
+                location.setApartment(locationUpdateDto.getApartment());
             }
 
         return location;
+    }
+
+    private Kennel isUserKennel(User user) {
+
+        if (user.getKennel() == null) {
+            throw new ConflictException("У юзера нет питомника");
+        } else {
+            return user.getKennel();
+        }
+    }
+
+    private Location isKennelLocation(Kennel kennel) {
+        if (kennel.getLocation() == null) {
+            throw new ConflictException("У питомника не заполнена локация");
+        } else {
+            return kennel.getLocation();
+        }
+    }
+
+    private Location isUserLocation(User user) {
+        if (user.getLocation() == null) {
+            throw new ConflictException("У user не заполнена локация");
+        } else {
+            return user.getLocation();
+        }
     }
 }

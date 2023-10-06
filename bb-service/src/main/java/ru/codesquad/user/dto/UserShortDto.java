@@ -1,9 +1,11 @@
 package ru.codesquad.user.dto;
 
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.util.enums.Gender;
+
 
 @Data
 @Builder
@@ -16,5 +18,5 @@ public class UserShortDto {
 
     Gender gender;
 
-    UserInfoDto userInfoDto;
+    UserInfoDto userInfo;
 }

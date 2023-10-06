@@ -18,13 +18,12 @@ public class PrivateUserController {
 
     private final UserService userService;
 
-    @GetMapping("/{userId}")
+    @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public UserDto getUser(@RequestHeader(HEADER_USER) Long yourId,
-                           @PathVariable Long userId) {
+    public UserDto getUser(@RequestHeader(HEADER_USER) Long yourId) {
 
-        log.info("Get User {} ", userId);
-        return userService.getPrivateUserById(userId,yourId);
+        log.info("Get User {} ", yourId);
+        return userService.getPrivateUserById(yourId);
     }
 
     @DeleteMapping

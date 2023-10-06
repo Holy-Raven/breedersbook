@@ -36,13 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDto getPrivateUserById(Long userId, Long yourId) {
+    public UserDto getPrivateUserById(Long yourId) {
 
-        User user = unionService.getUserOrNotFound(userId);
-
-        if (!user.getId().equals(yourId)) {
-            throw new ConflictException(String.format("User %s can only update his account",userId));
-        }
+        User user = unionService.getUserOrNotFound(yourId);
 
         return userMapper.returnUserDto(user);
     }

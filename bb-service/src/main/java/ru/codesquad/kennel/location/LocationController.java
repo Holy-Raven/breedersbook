@@ -44,19 +44,19 @@ public class LocationController {
     @PatchMapping("/user")
     @ResponseStatus(value = HttpStatus.OK)
     public LocationDto updateUserLocation(@RequestHeader(HEADER_USER) Long yourId,
-                                          @Valid @RequestBody LocationDto locationDto) {
+                                          @Valid @RequestBody LocationUpdateDto locationUpdateDto) {
 
         log.info("User id {} update location", yourId);
-        return locationService.updateUserLocation(yourId, locationDto);
+        return locationService.updateUserLocation(yourId, locationUpdateDto);
     }
 
     @PatchMapping("/kennel")
     @ResponseStatus(value = HttpStatus.OK)
     public LocationDto updateKennelLocation(@RequestHeader(HEADER_USER) Long yourId,
-                                            @Valid @RequestBody LocationDto locationDto) {
+                                            @Valid @RequestBody LocationUpdateDto locationUpdateDto) {
 
         log.info("User id {} update kennel location", yourId);
-        return locationService.updateKennelLocation(yourId, locationDto);
+        return locationService.updateKennelLocation(yourId, locationUpdateDto);
     }
 
     @DeleteMapping("/user")
