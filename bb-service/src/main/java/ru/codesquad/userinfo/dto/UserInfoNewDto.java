@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import static ru.codesquad.util.Constant.DATE_FORMAT;
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder
@@ -27,6 +27,6 @@ public class UserInfoNewDto {
 
     @NotNull(message = "end cannot be empty.")
     @Past(message = "end may be in the past")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime birthDate;
 }

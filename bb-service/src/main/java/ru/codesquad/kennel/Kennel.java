@@ -7,7 +7,7 @@ import ru.codesquad.kennel.location.Location;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import static ru.codesquad.util.Constant.DATE_FORMAT;
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder
@@ -37,7 +37,7 @@ public class Kennel {
     String phone;
 
     @Column(name = "created")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
 
     @Column(name = "photo_url")

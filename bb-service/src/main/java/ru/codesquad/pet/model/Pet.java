@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder
@@ -74,7 +75,7 @@ public class Pet {
     SaleStatus saleStatus;
 
     @Column(name = "sale_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDate saleDate;
 
     @Column(name = "passport_img")
