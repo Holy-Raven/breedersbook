@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -21,7 +22,7 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
     private final EntityManager entityManager;
 
     @Override
-    public List<Pet> getAllByCriteria(PrivateSearchCriteria criteria) {
+    public List<Pet> getAllByCriteriaPrivate(PrivateSearchCriteria criteria) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Pet> criteriaQuery = builder.createQuery(Pet.class);
         Root<Pet> root = criteriaQuery.from(Pet.class);
@@ -29,8 +30,8 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
         List<Predicate> predicates = new ArrayList<>();
 
         //<!-- Filling list of predicates
-        Predicate ownerId = builder.equal(root.get("owner"), criteria.getOwner());
-        predicates.add(ownerId);
+        Predicate ownerPr = builder.equal(root.get("owner"), criteria.getOwner());
+        predicates.add(ownerPr);
 
         if (criteria.getGender() != null) {
             Predicate genderPr = builder.equal(root.get("gender"), criteria.getGender());
@@ -44,11 +45,18 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
         //-->
         Order order = getOrderBySort(criteria.getSort(), builder, root);
 
-        return getPets(criteriaQuery, root, predicates, order, criteria.getFrom(), criteria.getSize());
+        CriteriaQuery<Pet> select = criteriaQuery
+                .select(root)
+                .where(predicates.toArray(new Predicate[0]))
+                .orderBy(order);
+        TypedQuery<Pet> typedQuery = entityManager.createQuery(select);
+        typedQuery.setFirstResult(criteria.getFrom());
+        typedQuery.setMaxResults(criteria.getSize());
+        return typedQuery.getResultList();
     }
 
     @Override
-    public List<Pet> getAllByCriteria(PublicSearchCriteria criteria) {
+    public List<Pet> getAllByCriteriaPublic(PublicSearchCriteria criteria) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Pet> criteriaQuery = builder.createQuery(Pet.class);
         Root<Pet> root = criteriaQuery.from(Pet.class);
@@ -85,7 +93,8 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
         // -->
 
         Order order = getOrderBySort(criteria.getPetSort(), builder, root);
-        return getPets(criteriaQuery, root, predicates, order, criteria.getFrom(), criteria.getSize());
+
+        return Collections.emptyList();
     }
 
     private Order getOrderBySort(PetSort petSort, CriteriaBuilder builder, Root<Pet> root) {
@@ -109,7 +118,9 @@ public class CustomPetRepositoryImpl implements CustomPetRepository {
         return order;
     }
 
-    private List<Pet> getPets(CriteriaQuery<Pet> criteriaQuery, Root<Pet> root, List<Predicate> predicates, Order order, int from, int size) {
+    private List<Pet> getPets(CriteriaQuery<Pet> criteriaQuery,
+                              Root<Pet> root,
+                              List<Predicate> predicates, Order order, int from, int size) {
         CriteriaQuery<Pet> select = criteriaQuery
                 .select(root)
                 .where(predicates.toArray(new Predicate[0]))

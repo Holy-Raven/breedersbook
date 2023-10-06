@@ -7,7 +7,7 @@ import ru.codesquad.pet.model.PublicSearchCriteria;
 import java.util.List;
 
 public interface CustomPetRepository {
-    List<Pet> getAllByCriteria(PrivateSearchCriteria criteria);
+    List<Pet> getAllByCriteriaPrivate(PrivateSearchCriteria criteria);
 
-    List<Pet> getAllByCriteria(PublicSearchCriteria criteria);
+    List<Pet> getAllByCriteriaPublic(PublicSearchCriteria criteria);
 }

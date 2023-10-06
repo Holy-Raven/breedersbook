@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static ru.codesquad.util.Constant.DATE_FORMAT;
-import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data
 @Builder

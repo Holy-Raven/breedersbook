@@ -53,7 +53,7 @@ public class PetServiceImpl implements PetService {
                 .saleStatus(saleStatus)
                 .sort(petSort)
                 .build();
-        List<Pet> pets = customRepo.getAllByCriteria(criteria);
+        List<Pet> pets = customRepo.getAllByCriteriaPrivate(criteria);
         return mapper.toFullDtoList(pets);
     }
 
@@ -130,7 +130,7 @@ public class PetServiceImpl implements PetService {
                 .from(from)
                 .size(size)
                 .build();
-        List<Pet> pets = customRepo.getAllByCriteria(criteria);
+        List<Pet> pets = customRepo.getAllByCriteriaPublic(criteria);
         return mapper.toShortDtoList(pets);
     }
 
@@ -188,7 +188,7 @@ public class PetServiceImpl implements PetService {
             pet.setPattern(petUpdateDto.getPattern());
         }
         if (petUpdateDto.getColors() != null) {
-            //удалить старые цвета из таблиц
+            repository.clearColors(pet.getId());
             List<Color> colors = petUpdateDto.getColors().stream()
                     .map(color -> EnumUtil.getValue(Color.class, color))
                     .collect(Collectors.toList());

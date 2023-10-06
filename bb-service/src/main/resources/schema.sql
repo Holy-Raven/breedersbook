@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS breeds
     pet_type    VARCHAR(50)                             NOT NULL,
     name        VARCHAR(250)                            NOT NULL,
     description VARCHAR(5000)                           NOT NULL,
-    fur         VARCHAR(8)                              NOT NULL,
+    fur_type    VARCHAR(8)                              NOT NULL,
     photo_url   VARCHAR(2048),
 
     CONSTRAINT pk_breeds PRIMARY KEY (id)
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS pets
     CONSTRAINT fk_pets_breed_id FOREIGN KEY (breed_id) REFERENCES breeds (id)
 );
 
-CREATE TABLE IF NOT EXISTS pets_color
+CREATE TABLE IF NOT EXISTS pets_colors
 (
     pet_id BIGINT  NOT NULL,
     color  VARCHAR NOT NULL,
