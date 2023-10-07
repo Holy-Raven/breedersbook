@@ -45,7 +45,7 @@ public class Pet {
     String pattern;
 
     @ElementCollection
-    @CollectionTable(name = "pets_color", joinColumns = @JoinColumn(name = "pet_id"))
+    @CollectionTable(name = "pets_colors", joinColumns = @JoinColumn(name = "pet_id"))
     @Column(name = "color")
     @Enumerated(EnumType.STRING)
     List<Color> colors = new ArrayList<>();
@@ -68,7 +68,7 @@ public class Pet {
     LocalDate deathDate;
 
     @Column(name = "price")
-    int price;
+    Integer price;
 
     @Column(name = "sale_status")
     @Enumerated(EnumType.STRING)

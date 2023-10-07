@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class AdminBreedController {
     private final BreedService service;
 
-    @GetMapping(path = "/breedId")
+    @GetMapping(path = "/{breedId}")
     BreedFullDto getById(@PathVariable long breedId) {
         return service.getById(breedId);
     }

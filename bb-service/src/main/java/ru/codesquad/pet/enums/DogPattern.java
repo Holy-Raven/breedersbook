@@ -1,6 +1,7 @@
 package ru.codesquad.pet.enums;
 
 public enum DogPattern {
+    SOLID,
     SPOTTED,
     BLACK_WHITE,
     MERLE,

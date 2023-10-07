@@ -29,7 +29,7 @@ public class PetFullDto {
     String description;
     String name;
     LocalDate birthDate;
-    int price;
+    Integer price;
     SaleStatus saleStatus;
     String passportImg;
     boolean sterilized;

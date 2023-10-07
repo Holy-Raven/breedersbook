@@ -52,6 +52,8 @@ public class PetServiceImpl implements PetService {
                 .gender(gender)
                 .saleStatus(saleStatus)
                 .sort(petSort)
+                .from(from)
+                .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteriaPrivate(criteria);
         return mapper.toFullDtoList(pets);

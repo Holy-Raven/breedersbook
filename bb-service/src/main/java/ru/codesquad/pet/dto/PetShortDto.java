@@ -26,7 +26,7 @@ public class PetShortDto {
     String name;
     String description;
     LocalDate birthDate;
-    int price;
+    Integer price;
     BreedShortDto breed;
     KennelDto kennel;
 }

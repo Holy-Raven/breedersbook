@@ -40,7 +40,7 @@ public class PrivatePetController {
                                         @RequestParam(defaultValue = "10") Integer size) {
         Gender gender = genderParam == null ? null : EnumUtil.getValue(Gender.class, genderParam);
         SaleStatus saleStatus = saleStatusParam == null ? null : EnumUtil.getValue(SaleStatus.class, saleStatusParam);
-        PetSort sort = sortParam == null ? null : EnumUtil.getValue(PetSort.class, sortParam);
+        PetSort sort = sortParam == null ? PetSort.DEFAULT : EnumUtil.getValue(PetSort.class, sortParam);
         return service.getAllByUserId(userId, gender, saleStatus, sort, from, size);
     }
 
