@@ -2,12 +2,16 @@ package ru.codesquad.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.codesquad.breed.Breed;
+import ru.codesquad.breed.repository.BreedRepository;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.KennelRepository;
 import ru.codesquad.kennel.location.Location;
 import ru.codesquad.kennel.location.LocationRepository;
+import ru.codesquad.pet.model.Pet;
+import ru.codesquad.pet.repository.PetRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
@@ -23,6 +27,8 @@ public class UnionServiceImpl implements  UnionService {
     private final UserInfoRepository userInfoRepository;
     private final LocationRepository locationRepository;
     private final KennelRepository kennelRepository;
+    private final BreedRepository breedRepository;
+    private final PetRepository petRepository;
 
     @Override
     public User getUserOrNotFound(Long userId) {
@@ -69,6 +75,19 @@ public class UnionServiceImpl implements  UnionService {
         } else {
             return kennel.get();
         }
+    }
+
+    @Override
+    public Breed getBreedOrNotFound(Long breedId) {
+        return breedRepository.findById(breedId)
+                .orElseThrow(() -> new NotFoundException(Breed.class, String.format("Breed id %d not found.", breedId)));
+
+    }
+
+    @Override
+    public Pet getPetOrNotFound(Long petId) {
+        return petRepository.findById(petId)
+                .orElseThrow(() -> new NotFoundException(Pet.class, String.format("Pet id %d not found.", petId)));
     }
 
     @Override
