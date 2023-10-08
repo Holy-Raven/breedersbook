@@ -31,7 +31,7 @@ public class PetMapperImpl implements PetMapper {
     private final UserMapper userMapper;
 
     @Override
-    public Pet toPet(PetNewDto petNewDto, User owner, Breed breed) {
+    public Pet returnPet(PetNewDto petNewDto, User owner, Breed breed) {
         PetType type = EnumUtil.getValue(PetType.class, petNewDto.getPetType());
         if (type == PetType.CAT) {
             EnumUtil.getValue(CatPattern.class, petNewDto.getPattern());
@@ -62,7 +62,7 @@ public class PetMapperImpl implements PetMapper {
     }
 
     @Override
-    public PetFullDto toFullDto(Pet pet) {
+    public PetFullDto returnFullDto(Pet pet) {
         return PetFullDto.builder()
                 .id(pet.getId())
                 .petType(pet.getType())
@@ -70,7 +70,7 @@ public class PetMapperImpl implements PetMapper {
                 .colors(pet.getColors())
                 .sterilized(pet.isSterilized())
                 .birthDate(pet.getBirthDate())
-                .breed(breedMapper.toShortDto(pet.getBreed()))
+                .breed(breedMapper.returnShortDto(pet.getBreed()))
                 .name(pet.getName())
                 .description(pet.getDescription())
                 .gender(pet.getGender())
@@ -84,7 +84,7 @@ public class PetMapperImpl implements PetMapper {
     }
 
     @Override
-    public PetShortDto toShortDto(Pet pet) {
+    public PetShortDto returnShortDto(Pet pet) {
         return PetShortDto.builder()
                 .id(pet.getId())
                 .gender(pet.getGender())
@@ -95,25 +95,25 @@ public class PetMapperImpl implements PetMapper {
                 .description(pet.getDescription())
                 .birthDate(pet.getBirthDate())
                 .price(pet.getPrice())
-                .breed(breedMapper.toShortDto(pet.getBreed()))
+                .breed(breedMapper.returnShortDto(pet.getBreed()))
                 .kennel(kennelMapper.returnKennelDto(pet.getKennel()))
                 .build();
     }
 
     @Override
-    public List<PetShortDto> toShortDtoList(List<Pet> pets) {
+    public List<PetShortDto> returnShortDtoList(List<Pet> pets) {
         if (pets.isEmpty()) {
             return Collections.emptyList();
         }
-        return pets.stream().map(this::toShortDto).collect(Collectors.toList());
+        return pets.stream().map(this::returnShortDto).collect(Collectors.toList());
     }
 
     @Override
-    public List<PetFullDto> toFullDtoList(List<Pet> pets) {
+    public List<PetFullDto> returnFullDtoList(List<Pet> pets) {
         if (pets.isEmpty()) {
             return Collections.emptyList();
         }
-        return pets.stream().map(this::toFullDto).collect(Collectors.toList());
+        return pets.stream().map(this::returnFullDto).collect(Collectors.toList());
     }
 
 }

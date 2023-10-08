@@ -11,13 +11,13 @@ import java.util.List;
 
 
 public interface PetMapper {
-    Pet toPet(PetNewDto petNewDto, User owner, Breed breed);
+    Pet returnPet(PetNewDto petNewDto, User owner, Breed breed);
 
-    PetFullDto toFullDto(Pet pet);
+    PetFullDto returnFullDto(Pet pet);
 
-    PetShortDto toShortDto(Pet pet);
+    PetShortDto returnShortDto(Pet pet);
 
-    List<PetShortDto> toShortDtoList(List<Pet> pets);
+    List<PetShortDto> returnShortDtoList(List<Pet> pets);
 
-    List<PetFullDto> toFullDtoList(List<Pet> pets);
+    List<PetFullDto> returnFullDtoList(List<Pet> pets);
 }

@@ -2,15 +2,11 @@ package ru.codesquad.breed.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.breed.enums.FurType;
-import ru.codesquad.util.enums.PetType;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor

@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.dto.BreedShortDto;
-import ru.codesquad.breed.repository.BreedRepository;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.kennel.Kennel;
@@ -37,7 +36,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -53,9 +51,6 @@ class PetServiceTest {
 
     @Mock
     private PetMapper mapper;
-
-    @Mock
-    private BreedRepository breedRepo;
 
     @Mock
     private UnionService unionService;
@@ -180,9 +175,11 @@ class PetServiceTest {
                 .gender(Gender.MALE)
                 .saleStatus(SaleStatus.NOT_FOR_SALE)
                 .sort(PetSort.PRICE_ASC)
+                .from(0)
+                .size(10)
                 .build();
         when(customRepo.getAllByCriteriaPrivate(criteria)).thenReturn(Collections.emptyList());
-        when(mapper.toFullDtoList(anyList())).thenReturn(Collections.emptyList());
+        when(mapper.returnFullDtoList(anyList())).thenReturn(Collections.emptyList());
 
         List<PetFullDto> pets = service
                 .getAllByUserId(ownerId, Gender.MALE, SaleStatus.NOT_FOR_SALE, PetSort.PRICE_ASC, 0, 10);
@@ -199,7 +196,7 @@ class PetServiceTest {
         long userId = user.getId();
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(userId)).thenReturn(user);
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
+        when(unionService.getPetOrNotFound(petId)).thenReturn(pet);
         String error = String.format("User with id %d is not owner of pet with id %d", userId, petId);
         ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -218,7 +215,7 @@ class PetServiceTest {
 
         //Fail NotFound Pet
         long petIdNotFound = 3L;
-        when(repository.findById(petIdNotFound)).thenReturn(Optional.empty());
+        when(unionService.getPetOrNotFound(petIdNotFound)).thenThrow(new NotFoundException(Pet.class, "Pet Not Found"));
         assertThrows(
                 NotFoundException.class,
                 () -> service.getUsersPetById(userId, petIdNotFound)
@@ -233,8 +230,8 @@ class PetServiceTest {
         long ownerId = owner.getId();
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(ownerId)).thenReturn(owner);
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
-        when(mapper.toFullDto(pet)).thenReturn(petFullDto);
+        when(unionService.getPetOrNotFound(petId)).thenReturn(pet);
+        when(mapper.returnFullDto(pet)).thenReturn(petFullDto);
 
         PetFullDto petFromService = service.getUsersPetById(ownerId, petId);
         assertNotNull(petFromService);
@@ -256,13 +253,12 @@ class PetServiceTest {
     void shouldAdd() {
         //Regular Case
         petNewDto = newDtoBuilder.build();
-        //pet = petBuilder.build();
         petFullDto = fullDtoBuilder.build();
         when(unionService.getUserOrNotFound(anyLong())).thenReturn(owner);
-        when(breedRepo.findById(anyLong())).thenReturn(Optional.of(breed));
+        when(unionService.getBreedOrNotFound(anyLong())).thenReturn(breed);
         when(repository.save(any())).thenReturn(pet);
-        when(mapper.toPet(petNewDto, owner, breed)).thenReturn(pet);
-        when(mapper.toFullDto(pet)).thenReturn(petFullDto);
+        when(mapper.returnPet(petNewDto, owner, breed)).thenReturn(pet);
+        when(mapper.returnFullDto(pet)).thenReturn(petFullDto);
 
         PetFullDto petAdded = service.add(anyLong(), petNewDto);
 
@@ -278,7 +274,7 @@ class PetServiceTest {
         long userId = user.getId();
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(userId)).thenReturn(user);
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
+        when(unionService.getPetOrNotFound(petId)).thenReturn(pet);
         String error = String.format("User with id %d is not owner of pet with id %d", userId, petId);
         ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -297,7 +293,7 @@ class PetServiceTest {
 
         //Fail NotFound Pet
         long petIdNotFound = 3L;
-        when(repository.findById(petIdNotFound)).thenReturn(Optional.empty());
+        when(unionService.getPetOrNotFound(petIdNotFound)).thenThrow(new NotFoundException(Pet.class, "Pet Not Found"));
         assertThrows(
                 NotFoundException.class,
                 () -> service.update(userId, petIdNotFound, petUpdateDto)
@@ -316,14 +312,14 @@ class PetServiceTest {
                 .build();
 
         when(unionService.getUserOrNotFound(anyLong())).thenReturn(owner);
-        when(repository.findById(anyLong())).thenReturn(Optional.ofNullable(pet));
+        when(unionService.getPetOrNotFound(anyLong())).thenReturn(pet);
         Pet petUpdated = pet;
         petUpdated.setDescription("DescriptionUpdate");
         petUpdated.setSaleStatus(SaleStatus.FOR_SALE);
         petUpdated.setColors(List.of(Color.BLACK, Color.WHITE));
 
         when(repository.save(any())).thenReturn(petUpdated);
-        when(mapper.toFullDto(petUpdated)).thenReturn(petFullDto);
+        when(mapper.returnFullDto(petUpdated)).thenReturn(petFullDto);
 
         PetFullDto petFullDtoUpdated = service.update(owner.getId(), pet.getId(), petUpdateDto);
         assertNotNull(petFullDtoUpdated);
@@ -338,7 +334,7 @@ class PetServiceTest {
         long userId = user.getId();
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(userId)).thenReturn(user);
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
+        when(unionService.getPetOrNotFound(anyLong())).thenReturn(pet);
         String error = String.format("User with id %d is not owner of pet with id %d", userId, petId);
         ValidationException exception = assertThrows(
                 ValidationException.class,
@@ -357,7 +353,7 @@ class PetServiceTest {
 
         //Fail NotFound Pet
         long petIdNotFound = 3L;
-        when(repository.findById(petIdNotFound)).thenReturn(Optional.empty());
+        when(unionService.getPetOrNotFound(petIdNotFound)).thenThrow(new NotFoundException(Pet.class, "Pet Not Found"));
         assertThrows(
                 NotFoundException.class,
                 () -> service.deleteByUser(userId, petIdNotFound)
@@ -371,7 +367,7 @@ class PetServiceTest {
         long ownerId = owner.getId();
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(ownerId)).thenReturn(owner);
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
+        when(unionService.getPetOrNotFound(anyLong())).thenReturn(pet);
         doNothing().when(repository).deleteById(anyLong());
         service.deleteByUser(ownerId, petId);
 
@@ -382,7 +378,7 @@ class PetServiceTest {
     void shouldFailDeleteByAdmin() {
         //NotFound
         long petId = pet.getId();
-        when(repository.findById(petId)).thenReturn(Optional.empty());
+        when(unionService.getPetOrNotFound(petId)).thenThrow(new NotFoundException(Pet.class, "Pet with id 1 not found."));
 
         NotFoundException exception = assertThrows(
                 NotFoundException.class,
@@ -396,7 +392,7 @@ class PetServiceTest {
     void shouldDeleteByAdmin() {
         //Regular Case
         long petId = pet.getId();
-        when(repository.findById(petId)).thenReturn(Optional.of(pet));
+        when(unionService.getPetOrNotFound(anyLong())).thenReturn(pet);
         doNothing().when(repository).deleteById(anyLong());
         service.deleteByAdmin(petId);
 

@@ -19,15 +19,15 @@ public class BreedServiceImpl implements BreedService {
 
     @Override
     public BreedFullDto add(BreedNewDto breedNewDto) {
-        Breed breed = mapper.toBreed(breedNewDto);
+        Breed breed = mapper.returnBreed(breedNewDto);
         breed = repository.save(breed);
-        return mapper.toFullDto(breed);
+        return mapper.returnFullDto(breed);
     }
 
     @Override
     public BreedFullDto getById(long breedId) {
         Breed breed = repository.findById(breedId)
                 .orElseThrow(() -> new NotFoundException(Breed.class, String.format("Breed with id %d not found", breedId)));
-        return mapper.toFullDto(breed);
+        return mapper.returnFullDto(breed);
     }
 }

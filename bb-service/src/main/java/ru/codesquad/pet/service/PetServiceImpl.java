@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.breed.repository.BreedRepository;
-import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.pet.dto.PetFullDto;
 import ru.codesquad.pet.dto.PetNewDto;
@@ -56,39 +55,39 @@ public class PetServiceImpl implements PetService {
                 .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteriaPrivate(criteria);
-        return mapper.toFullDtoList(pets);
+        return mapper.returnFullDtoList(pets);
     }
 
     @Override
     public PetFullDto getUsersPetById(long userId, long petId) {
         unionService.getUserOrNotFound(userId);
-        Pet pet = getPetOrNotFound(petId);
+        Pet pet = unionService.getPetOrNotFound(petId);
         checkOwner(userId, pet);
         log.info("Get Pet by id {} for registered User with id {}", petId, userId);
-        return mapper.toFullDto(pet);
+        return mapper.returnFullDto(pet);
     }
 
     @Override
     @Transactional
     public PetFullDto add(long userId, PetNewDto petNewDto) {
         User owner = unionService.getUserOrNotFound(userId);
-        Breed breed = getBreedOrNotFount(petNewDto.getBreedId());
-        Pet pet = mapper.toPet(petNewDto, owner, breed);
+        Breed breed = unionService.getBreedOrNotFound(petNewDto.getBreedId());
+        Pet pet = mapper.returnPet(petNewDto, owner, breed);
         pet = repository.save(pet);
         log.info("Pet with id {} was added to DB", pet.getId());
-        return mapper.toFullDto(pet);
+        return mapper.returnFullDto(pet);
     }
 
     @Override
     @Transactional
     public PetFullDto update(long userId, long petId, PetUpdateDto petUpdateDto) {
         unionService.getUserOrNotFound(userId);
-        Pet pet = getPetOrNotFound(petId);
+        Pet pet = unionService.getPetOrNotFound(petId);
         checkOwner(userId, pet);
         updatePet(pet, petUpdateDto);
         pet = repository.save(pet);
         log.info("Pet with id {} was updated", pet.getId());
-        return mapper.toFullDto(pet);
+        return mapper.returnFullDto(pet);
     }
 
     @Override
@@ -107,7 +106,7 @@ public class PetServiceImpl implements PetService {
     @Override
     @Transactional
     public void deleteByAdmin(long petId) {
-        getPetOrNotFound(petId);
+        unionService.getPetOrNotFound(petId);
         log.info("Pet with id {} was deleted by admin", petId);
         repository.deleteById(petId);
     }
@@ -133,19 +132,19 @@ public class PetServiceImpl implements PetService {
                 .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteriaPublic(criteria);
-        return mapper.toShortDtoList(pets);
+        return mapper.returnShortDtoList(pets);
     }
 
     @Override
     public PetShortDto getByIdPublic(long petId, String ip) {
-        Pet pet = getPetOrNotFound(petId);
+        Pet pet = unionService.getPetOrNotFound(petId);
         log.info("Pet with id {} was asked by unregistered user", petId);
-        return mapper.toShortDto(pet);
+        return mapper.returnShortDto(pet);
     }
 
     private boolean isOwner(long userId, long petId) {
         unionService.getUserOrNotFound(userId);
-        Pet pet = getPetOrNotFound(petId);
+        Pet pet = unionService.getPetOrNotFound(petId);
         return pet.getOwner().getId() == userId;
     }
 
@@ -155,17 +154,6 @@ public class PetServiceImpl implements PetService {
             throw new ValidationException(
                     String.format("User with id %d is not owner of pet with id %d", userId, pet.getId()));
         }
-    }
-
-    private Pet getPetOrNotFound(long petId) {
-        return repository.findById(petId)
-                .orElseThrow(() -> new NotFoundException(Pet.class, "Pet with id " + petId + " not found."));
-    }
-
-    private Breed getBreedOrNotFount(long breedId) {
-        return breedRepo.findById(breedId)
-                .orElseThrow(() -> new NotFoundException(Pet.class, "Breed with id " + breedId + " not found."));
-
     }
 
     private void updatePet(Pet pet, PetUpdateDto petUpdateDto) {
@@ -212,7 +200,7 @@ public class PetServiceImpl implements PetService {
             pet.setSaleStatus(EnumUtil.getValue(SaleStatus.class, petUpdateDto.getSaleStatus()));
         }
         if (petUpdateDto.getBreedId() != null) {
-            Breed breed = getBreedOrNotFount(petUpdateDto.getBreedId());
+            Breed breed = unionService.getBreedOrNotFound(petUpdateDto.getBreedId());
             pet.setBreed(breed);
         }
         if (petUpdateDto.getSterilized() != null) {
