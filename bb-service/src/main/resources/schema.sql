@@ -71,7 +71,8 @@ CREATE TABLE IF NOT EXISTS breeds
     fur_type    VARCHAR(8)                              NOT NULL,
     photo_url   VARCHAR(2048),
 
-    CONSTRAINT pk_breeds PRIMARY KEY (id)
+    CONSTRAINT pk_breeds PRIMARY KEY (id),
+    CONSTRAINT uq_breeds_name UNIQUE (name)
 );
 
 CREATE TABLE IF NOT EXISTS pets

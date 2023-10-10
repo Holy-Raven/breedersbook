@@ -1,5 +1,7 @@
 package ru.codesquad.pet.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,10 @@ public class AdminPetController {
 
     @DeleteMapping("/{petId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long petId) {
+    @Operation(summary = "Удаление питомца по id",
+            description = "Если питомец не найден, возвращается статус NOT_FOUND и сообщение об ошибке."
+    )
+    public void delete(@PathVariable @Parameter(description = "Идентификатор питомца") long petId) {
         service.deleteByAdmin(petId);
     }
 }

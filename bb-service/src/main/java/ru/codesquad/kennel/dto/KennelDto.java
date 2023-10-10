@@ -1,6 +1,7 @@
 package ru.codesquad.kennel.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.location.LocationDto;
@@ -12,6 +13,7 @@ import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Schema(description = "Питомник")
 public class KennelDto {
 
     Long id;

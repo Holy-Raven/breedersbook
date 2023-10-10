@@ -1,5 +1,6 @@
 package ru.codesquad.kennel.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,9 @@ public class PrivateKennelController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавление питомника",
+            description = "Добавлять питомники могут только авторизованные пользователи"
+    )
     public KennelDto addKennel(@RequestHeader(HEADER_USER) Long yourId,
                                @Valid @RequestBody KennelNewDto kennelNewDto) {
 
@@ -33,6 +37,9 @@ public class PrivateKennelController {
 
     @GetMapping("/{kennelId}")
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Получение питомника по id",
+            description = "Полное описание питомника. Если питомник не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
     public KennelDto getKennel(@RequestHeader(HEADER_USER) Long yourId,
                                @PathVariable Long kennelId) {
 
@@ -42,6 +49,9 @@ public class PrivateKennelController {
 
     @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление питомника по id",
+            description = "Если питомник не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
     public void deleteKennel(@RequestHeader(HEADER_USER) Long yourId) {
 
         log.info("User {} deleted his kennel ", yourId);
@@ -50,6 +60,9 @@ public class PrivateKennelController {
 
     @PatchMapping
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление питомника по id",
+            description = " Если питомник не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
     public KennelDto updateKennel(@RequestHeader(HEADER_USER) Long yourId,
                                  @Valid @RequestBody KennelUpdateDto kennelUpdateDto) {
 

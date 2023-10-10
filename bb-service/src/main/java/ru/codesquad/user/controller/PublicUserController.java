@@ -1,5 +1,6 @@
 package ru.codesquad.user.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,9 @@ public class PublicUserController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Регистрация пользователя",
+            description = "Публичный метод регистрации нового пользователя"
+    )
     public UserDto addUser(@Valid @RequestBody UserNewDto newUserDto) {
 
         log.info("Add User {} ", newUserDto.getName());
@@ -29,6 +33,9 @@ public class PublicUserController {
     }
 
     @GetMapping("/{userId}")
+    @Operation(summary = "Получение пользователя по id",
+            description = "Краткая информация о пользователе"
+    )
     @ResponseStatus(value = HttpStatus.OK)
     public UserShortDto getUser(@PathVariable Long userId) {
 
