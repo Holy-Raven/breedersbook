@@ -1,5 +1,6 @@
 package ru.codesquad.breed.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/breeds")
+@Tag(name="Admin: породы кошек и собак", description="API для работы с породами")
 public class AdminBreedController {
     private final BreedService service;
 

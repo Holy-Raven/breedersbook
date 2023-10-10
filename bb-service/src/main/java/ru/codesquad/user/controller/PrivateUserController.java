@@ -1,5 +1,6 @@
 package ru.codesquad.user.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/private/users")
+@Tag(name="Private: пользователи", description="Закрытый API для работы с пользователями")
 public class PrivateUserController {
 
     private final UserService userService;

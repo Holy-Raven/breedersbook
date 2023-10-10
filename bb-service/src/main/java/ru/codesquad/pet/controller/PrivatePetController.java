@@ -1,5 +1,6 @@
 package ru.codesquad.pet.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/private/pets")
+@Tag(name="Private: питомцы", description="Закрытый API для работы с питомцами")
 public class PrivatePetController {
     private final PetService service;
 

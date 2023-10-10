@@ -1,5 +1,6 @@
 package ru.codesquad.pet.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ import static ru.codesquad.exception.util.ErrorMessages.SIZE_ERROR_MESSAGE;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/pets")
+@Tag(name="Public: питомцы", description="Публичный API для работы с питомцами")
 public class PublicPetController {
     private final PetService service;
 

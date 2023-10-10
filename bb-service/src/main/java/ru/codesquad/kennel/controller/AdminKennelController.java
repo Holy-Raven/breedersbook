@@ -1,5 +1,6 @@
 package ru.codesquad.kennel.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/kennels")
+@Tag(name="Admin: питомники", description="API для работы с питомниками")
 public class AdminKennelController {
 
     private final KennelService kennelService;

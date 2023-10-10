@@ -1,5 +1,6 @@
 package ru.codesquad.kennel.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/private/kennels")
+@Tag(name="Private: питомники", description="Закрытый API для работы с питомниками")
 public class PrivateKennelController {
 
     private final KennelService kennelService;

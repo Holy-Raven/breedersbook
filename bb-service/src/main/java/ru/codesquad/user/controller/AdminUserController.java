@@ -1,5 +1,6 @@
 package ru.codesquad.user.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/users")
+@Tag(name="Admin: пользователи", description="API для работы с пользователями")
 public class AdminUserController {
 
     private final UserService userService;
