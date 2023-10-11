@@ -1,5 +1,6 @@
 package ru.codesquad.user.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.Email;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Schema(description = "Данные для обновления пользователя")
 public class UserUpdateDto {
 
     @Size(min = 4, max = 250, message = "name must be greater than 4 and less than 250")

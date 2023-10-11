@@ -1,6 +1,7 @@
 package ru.codesquad.pet.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,6 +17,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Schema(description = "Данные для добавления новой питомца")
 public class PetNewDto {
     @NotBlank(message = "Pet Type can't be blank")
     @Size(min = 3, max = 3, message = "Pet Type size should be exact 3-chars-length")

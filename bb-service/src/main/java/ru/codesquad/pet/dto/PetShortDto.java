@@ -1,5 +1,6 @@
 package ru.codesquad.pet.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.breed.dto.BreedShortDto;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Schema(description = "Питомец (краткая информация)")
 public class PetShortDto {
     long id;
     PetType petType;
