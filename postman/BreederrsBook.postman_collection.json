@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dc341b5c-f3c4-49bc-8168-2daeaaa28321",
+		"_postman_id": "71e81342-c4c2-4317-bd10-1ea4fb65f5c4",
 		"name": "BreederrsBook",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "26331321"
@@ -43,7 +43,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Jared Leto\",\n  \"email\": \"j.leto@yandex.ru\",\n  \"login\": \"Jared\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Jared Leto\",\n  \"email\": \"j.leto@yandex.ru\",\n  \"login\": \"Jared\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -83,7 +83,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Teylor Momson\",\n  \"email\": \"t.momson@yandex.ru\",\n  \"login\": \"Momson\",\n  \"gender\": \"FEMALE\"\n}"
+							"raw": "{\n  \"name\": \"Teylor Momson\",\n  \"email\": \"t.momson@yandex.ru\",\n  \"login\": \"Momson\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/users",
@@ -143,7 +143,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Till Lindemann\",\n  \"email\": \"t.lindemann@yandex.ru\",\n  \"login\": \"Lindemann\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Till Lindemann\",\n  \"email\": \"t.lindemann@yandex.ru\",\n  \"login\": \"Lindemann\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -183,7 +183,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Ozzy Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"login\": \"Osbourne\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Ozzy Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"login\": \"Osbourne\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -223,7 +223,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -302,7 +302,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\"\n  }"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -341,7 +341,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Lu\",\n  \"email\": \"lu.chin@yandex.ru\",\n  \"login\": \"luchin\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Lu\",\n  \"email\": \"lu.chin@yandex.ru\",\n  \"login\": \"luchin\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -380,7 +380,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"email\": \"s.asafev@yandex.ru\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"email\": \"s.asafev@yandex.ru\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -419,7 +419,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"login\": \"McCartney\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"login\": \"McCartney\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -458,46 +458,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney_yandex.ru\",\n  \"login\": \"Cartney\",\n  \"gender\": \"MALE\"\n}"
-						},
-						"url": "{{baseUrl}}/users"
-					},
-					"response": []
-				},
-				{
-					"name": "add user Elton Jhon unknow gender",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {",
-									"    pm.response.to.have.status(400);",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"}); "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Accept",
-								"value": "*/*",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"name\": \"Elton Jone\",\n  \"email\": \"e.jone@yandex.ru\",\n  \"login\": \"EltonJone\",\n  \"gender\": \"GAY\"\n}"
+							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney_yandex.ru\",\n  \"login\": \"Cartney\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -673,69 +634,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"users",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "6"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get user Paul McCartney (alien id)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и оповещать о конфликте\", function() {\r",
-									"    pm.response.to.have.status(409);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"}); "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "B-B-User-Id",
-								"value": "6",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "{{baseUrl}}/private/users/:userId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"private",
-								"users",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "2"
-								}
-							]
-						}
+						"url": "{{baseUrl}}/private/users"
 					},
 					"response": []
 				},
@@ -889,9 +788,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -934,9 +833,53 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Сперва популярная актрисса, а потом уже и рок герл.\",\n  \"phone\": \"8 987 564 77 51\",\n  \"photo\": \"https://w.forfun.com/fetch/e4/e452d3b29d9483b0c49eb1d4a7f4b054.jpeg\",\n  \"birthDate\": \"1971-12-06 08:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Сперва популярная актрисса, а потом уже и рок герл.\",\n  \"phone\": \"8 987 564 77 51\",\n  \"photo\": \"https://w.forfun.com/fetch/e4/e452d3b29d9483b0c49eb1d4a7f4b054.jpeg\",\n  \"birthDate\": \"1971-12-06 08:00:00\",\n  \"gender\": \"FEMALE\"\n}"
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
+					},
+					"response": []
+				},
+				{
+					"name": "add user User Info Till Lindemann unknow gender",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(400);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\",\n  \"gender\": \"GAY\"\n}"
+						},
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -967,7 +910,7 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -995,7 +938,7 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -1027,11 +970,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/userinfo/:userinfoId",
+							"raw": "{{baseUrl}}/private/userinfo/:userinfoId",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
+								"private",
 								"userinfo",
 								":userinfoId"
 							],
@@ -1080,7 +1024,7 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -1111,7 +1055,7 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -1154,9 +1098,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -1199,9 +1143,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				},
@@ -1244,9 +1188,9 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"description\": \"Отец всей тяжелой рок музыки, не больше не меньше\",\n  \"phone\": \"+7 919 355 07 22\",\n  \"photo\": \"https://rusvesna.su/sites/default/files/styles/orign_wm/public/ozzi_osborn.jpg\",\n  \"birthDate\": \"1948-12-03 07:00:00\"\n}"
+							"raw": "{\n  \"description\": \"Отец всей тяжелой рок музыки, не больше не меньше\",\n  \"phone\": \"+7 919 355 07 22\",\n  \"photo\": \"https://rusvesna.su/sites/default/files/styles/orign_wm/public/ozzi_osborn.jpg\",\n  \"birthDate\": \"1948-12-03 07:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/userinfo"
+						"url": "{{baseUrl}}/private/userinfo"
 					},
 					"response": []
 				}
@@ -2117,8 +2061,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 400 и оповещать о конфликте\", function() {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
 									"}); "
@@ -2531,6 +2475,414 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Breed",
+			"item": [
+				{
+					"name": "addCatBreed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"cat\",\n    \"name\": \"British\",\n    \"description\": \"The British Shorthair has a broad chest, muscular neck, strong jaws and a well developed muzzle. The legs are thick and strong. The breed looks like what she originally was, a cat that was to keep rodents out of the barn and the house. The coat of the British is thick and dense.\",\n    \"furType\": \"short\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/admin/breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "addDogBreed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"dog\",\n    \"name\": \"Brussels Griffon\",\n    \"description\": \"Brussels griffons are small-sized dogs weighing eight to 12 pounds (four to six kilograms). A Brussels griffon's height is about 10 inches at the shoulder. Their body is square and their head is large and round with a very short nose.\",\n    \"furType\": \"short\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/admin/breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "getBreedById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/admin/breeds/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pet",
+			"item": [
+				{
+					"name": "addCat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"cat\",\n    \"gender\": \"male\",\n    \"pattern\": \"solid\",\n    \"colors\": [\n        \"grey\"\n    ],\n    \"temper\": \"Calm as a sofa cushion\",\n    \"name\": \"Ozzy\",\n    \"description\": \"Soft sofa cushion. Gets along great with children. He doesn’t let himself be chewed. Doesn't sit on hands.\",\n    \"birthDate\": \"2011-12-10\",\n    \"forSale\": false,\n    \"sterilized\": false,\n    \"breedId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/pets"
+					},
+					"response": []
+				},
+				{
+					"name": "addDog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"dog\",\n    \"gender\": \"female\",\n    \"pattern\": \"solid\",\n    \"colors\": [\n        \"black\",\n        \"brown\"\n    ],\n    \"temper\": \"Is highly affectionate and forms strong bonds with their owners. They thrive on human companionship and are always eager to be by their side.\",\n    \"name\": \"Ozzy\",\n    \"description\": \"Can also be a bit stubborn at times, so a consistent, kind, and patient hand is essential.\",\n    \"birthDate\": \"2021-12-10\",\n    \"forSale\": true,\n    \"price\": 5000,\n    \"sterilized\": false,\n    \"breedId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/pets"
+					},
+					"response": []
+				},
+				{
+					"name": "getUsersPetById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/private/pets/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getUsersPetById2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/private/pets/2"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPetsByUserId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});",
+									"",
+									"pm.test(\"Test list events response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"    var jsonData = pm.response.json()",
+									"    pm.expect(jsonData).is.an('array'); ",
+									"    pm.expect(jsonData.length, 'List length must be not 0').to.be.greaterThan(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": "{{baseUrl}}/private/pets"
+					},
+					"response": []
+				},
+				{
+					"name": "patchPet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"saleStatus\": \"for_sale\",\n    \"price\": 5000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/pets/1"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -2558,6 +2910,10 @@
 			"key": "baseUrl",
 			"value": "http://localhost:8080",
 			"type": "string"
+		},
+		{
+			"key": "id1",
+			"value": "1"
 		}
 	]
 }
