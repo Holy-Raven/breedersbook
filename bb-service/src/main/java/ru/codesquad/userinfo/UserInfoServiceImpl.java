@@ -8,6 +8,7 @@ import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.dto.*;
 import ru.codesquad.util.UnionService;
+import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.Gender;
 
 import java.time.LocalDateTime;
@@ -60,7 +61,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             userInfo.setBirthDate(userInfoUpdateDto.getBirthDate());
         }
         if (userInfoUpdateDto.getGender() != null && !userInfoUpdateDto.getGender().isBlank()) {
-            userInfo.setGender(Gender.getGenderValue(userInfoUpdateDto.getGender()));
+            userInfo.setGender(EnumUtil.getValue(Gender.class, userInfoUpdateDto.getGender()));
         }
 
         userInfo = userInfoRepository.save(userInfo);
