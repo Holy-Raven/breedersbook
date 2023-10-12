@@ -35,10 +35,6 @@ public class User {
     @Column(name = "login", unique = true)
     String login;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
-    Gender gender;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_info_id")
     UserInfo userInfo;

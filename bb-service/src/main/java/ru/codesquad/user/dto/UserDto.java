@@ -27,8 +27,6 @@ public class UserDto {
 
     String login;
 
-    Gender gender;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
 

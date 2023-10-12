@@ -67,9 +67,7 @@ public class UserServiceImpl implements UserService {
         if (userUpdateDto.getLogin() != null && !userUpdateDto.getLogin().isBlank()) {
             user.setLogin(userUpdateDto.getLogin());
         }
-        if (userUpdateDto.getGender() != null && !userUpdateDto.getGender().isBlank()) {
-            user.setGender(Gender.getGenderValue(userUpdateDto.getGender()));
-        }
+
 
         user = userRepository.save(user);
 

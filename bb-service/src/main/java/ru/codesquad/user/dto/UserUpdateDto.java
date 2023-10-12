@@ -23,6 +23,4 @@ public class UserUpdateDto {
 
     @Size(min = 4, max = 250, message = "Login must be greater than 4 and less than 250")
     String login;
-
-    String gender;
 }

@@ -27,7 +27,4 @@ public class UserNewDto {
     @Size(min = 4, max = 250, message = "Login must be greater than 4 and less than 250")
     @NotBlank(message = "Login cannot be empty and consist only of spaces.")
     String login;
-
-    @NotBlank(message = "Genger cannot be empty and consist only of spaces.")
-    String gender;
 }

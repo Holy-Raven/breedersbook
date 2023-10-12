@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS user_info
     phone_number VARCHAR(20),
     birth_date   TIMESTAMP WITHOUT TIME ZONE CHECK (birth_date < CURRENT_DATE),
     photo_url    VARCHAR(2048),
+    gender       VARCHAR(6)                                NOT NULL,
 
     CONSTRAINT pk_user_info PRIMARY KEY (id),
     CONSTRAINT uq_user_info_phone_number UNIQUE (phone_number)
@@ -46,7 +47,6 @@ CREATE TABLE IF NOT EXISTS users
     name         VARCHAR(250)                              NOT NULL,
     login        VARCHAR(250)                              NOT NULL,
     email        VARCHAR(40) CHECK (email <> '')           NOT NULL,
-    gender       VARCHAR(6)                                NOT NULL,
     created      TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
 
     user_info_id BIGINT,

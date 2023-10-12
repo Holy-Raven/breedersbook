@@ -29,4 +29,6 @@ public class UserInfoUpdateDto {
     @Past(message = "birthDate must be in the past")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime birthDate;
+
+    String gender;
 }
