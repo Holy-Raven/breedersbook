@@ -14,13 +14,13 @@ import javax.validation.constraints.Size;
 @Schema(description = "Данные для обновления пользователя")
 public class UserUpdateDto {
 
-    @Size(min = 4, max = 250, message = "name must be greater than 4 and less than 250")
-    String name;
+    @Size(min = 4, max = 250, message = "firstName must be greater than 4 and less than 250")
+    String firstName;
+
+    @Size(min = 4, max = 250, message = "lastName must be greater than 4 and less than 250")
+    String lastName;
 
     @Email
     @Size(min = 6, max = 40, message = "Email must be greater than 6 and less than 40")
     String email;
-
-    @Size(min = 4, max = 250, message = "Login must be greater than 4 and less than 250")
-    String login;
 }

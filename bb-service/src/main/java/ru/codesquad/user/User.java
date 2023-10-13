@@ -6,7 +6,8 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.location.Location;
 import ru.codesquad.userinfo.UserInfo;
-import ru.codesquad.util.enums.Gender;
+import ru.codesquad.util.enums.Status;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
@@ -26,14 +27,20 @@ public class User {
     @EqualsAndHashCode.Include
     Long id;
 
-    @Column(name = "name", nullable = false)
-    String name;
+    @Column(name = "first_name", nullable = false)
+    String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    String lastName;
 
     @Column(name = "email", unique = true)
     String email;
 
-    @Column(name = "login", unique = true)
-    String login;
+    @Column(name = "username", unique = true)
+    String username;
+
+    @Column(name = "password")
+    String password;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_info_id")
@@ -50,4 +57,8 @@ public class User {
     @Column(name = "created")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    Status status;
 }

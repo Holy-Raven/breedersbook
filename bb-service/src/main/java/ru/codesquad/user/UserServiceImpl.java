@@ -5,11 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.codesquad.exception.ConflictException;
 import ru.codesquad.user.dto.*;
 import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
-import ru.codesquad.util.enums.Gender;
+import ru.codesquad.util.enums.Status;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +29,12 @@ public class UserServiceImpl implements UserService {
     public UserDto addUser(UserNewDto userNewDto) {
 
         User user = userMapper.returnUser(userNewDto);
+
+        System.out.println();
+        System.out.println(user);
+        System.out.println();
+
+        user.setStatus(Status.ACTIVE);
         user = userRepository.save(user);
 
         return userMapper.returnUserDto(user);
@@ -58,16 +64,15 @@ public class UserServiceImpl implements UserService {
 
         User user = unionService.getUserOrNotFound(yourId);
 
-        if (userUpdateDto.getName() != null && !userUpdateDto.getName().isBlank()) {
-            user.setName(userUpdateDto.getName());
+        if (userUpdateDto.getFirstName() != null && !userUpdateDto.getFirstName().isBlank()) {
+            user.setFirstName(userUpdateDto.getFirstName());
+        }
+        if (userUpdateDto.getLastName() != null && !userUpdateDto.getLastName().isBlank()) {
+            user.setLastName(userUpdateDto.getLastName());
         }
         if (userUpdateDto.getEmail() != null && !userUpdateDto.getEmail().isBlank()) {
             user.setEmail(userUpdateDto.getEmail());
         }
-        if (userUpdateDto.getLogin() != null && !userUpdateDto.getLogin().isBlank()) {
-            user.setLogin(userUpdateDto.getLogin());
-        }
-
 
         user = userRepository.save(user);
 

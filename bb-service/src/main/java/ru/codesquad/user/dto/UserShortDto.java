@@ -15,7 +15,9 @@ import ru.codesquad.userinfo.dto.UserInfoDto;
 @Schema(description = "Пользователь (краткая информация)")
 public class UserShortDto {
 
-    String name;
+    String firstName;
+
+    String lastName;
 
     UserInfoDto userInfo;
 }

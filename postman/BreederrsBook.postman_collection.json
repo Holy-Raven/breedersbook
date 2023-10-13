@@ -43,7 +43,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Jared Leto\",\n  \"email\": \"j.leto@yandex.ru\",\n  \"login\": \"Jared\"\n}"
+							"raw": "{\n  \"firstName\": \"Jared\",\n  \"lastName\": \"Leto\",\n  \"email\": \"j.leto@yandex.ru\",\n  \"username\": \"jared\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -83,7 +83,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Teylor Momson\",\n  \"email\": \"t.momson@yandex.ru\",\n  \"login\": \"Momson\"\n}"
+							"raw": "{\n  \"firstName\": \"Teylor\",\n  \"lastName\": \"Momson\",\n  \"email\": \"t.momson@yandex.ru\",\n  \"username\": \"momson\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/users",
@@ -143,7 +143,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Till Lindemann\",\n  \"email\": \"t.lindemann@yandex.ru\",\n  \"login\": \"Lindemann\"\n}"
+							"raw": "{\n  \"firstName\": \"Till\",\n  \"lastName\": \"Lindemann\",\n  \"email\": \"t.lindemann@yandex.ru\",\n  \"username\": \"lindemann\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -183,7 +183,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Ozzy Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"login\": \"Osbourne\"\n}"
+							"raw": "{\n  \"firstName\": \"Ozzy\",\n  \"lastName\": \"Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"username\": \"osbourne\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -223,7 +223,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\"\n}"
+							"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"username\": \"mccartney\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -270,7 +270,7 @@
 					"response": []
 				},
 				{
-					"name": "add user empty name",
+					"name": "add user empty firstname",
 					"event": [
 						{
 							"listen": "test",
@@ -302,14 +302,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\"\n  }"
+							"raw": "{\n  \"lastName\": \"Spears\",\n  \"email\": \"b.spears@yandex.ru\",\n  \"username\": \"bspears\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
 					"response": []
 				},
 				{
-					"name": "add user size name < 4",
+					"name": "add user size firstname < 4",
 					"event": [
 						{
 							"listen": "test",
@@ -341,14 +341,14 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Lu\",\n  \"email\": \"lu.chin@yandex.ru\",\n  \"login\": \"luchin\"\n}"
+							"raw": "{\n  \"firstName\": \"Lu\",\n  \"lastName\": \"Kahn\",\n  \"email\": \"lu.chin@yandex.ru\",\n  \"username\": \"luchin\",\n  \"password\": \"123456789\"\n}\n\n\n"
 						},
 						"url": "{{baseUrl}}/users"
 					},
 					"response": []
 				},
 				{
-					"name": "add user empty login",
+					"name": "add user empty username",
 					"event": [
 						{
 							"listen": "test",
@@ -380,7 +380,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"email\": \"s.asafev@yandex.ru\"\n}"
+							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"email\": \"s.asafev@yandex.ru\",\n  \"password\": \"123456789\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -419,7 +419,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Stas Asafev\",\n  \"login\": \"McCartney\"\n}"
+							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"username\": \"asafev\",\n  \"password\": \"123456789\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -458,7 +458,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney_yandex.ru\",\n  \"login\": \"Cartney\"\n}"
+							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"username\": \"asafev\",\n  \"email\": \"s.asafevyandex.ru\",\n  \"password\": \"123456789\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -601,7 +601,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Paul McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"login\": \"McCartney\",\n  \"gender\": \"MALE\"\n}"
+							"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"username\": \"mccartney\",\n  \"password\": \"1234567890\"\n}"
 						},
 						"url": "{{baseUrl}}/users"
 					},
@@ -694,7 +694,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"login\": \"JDLeto\"\r\n}",
+							"raw": "{\r\n  \"firstName\": \"Jaredeto\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -28,7 +28,7 @@ public class PublicUserController {
     )
     public UserDto addUser(@Valid @RequestBody UserNewDto newUserDto) {
 
-        log.info("Add User {} ", newUserDto.getName());
+        log.info("Add User {} {} ", newUserDto.getFirstName(), newUserDto.getLastName());
         return userService.addUser(newUserDto);
     }
 

@@ -7,7 +7,6 @@ import ru.codesquad.kennel.location.LocationMapper;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.userinfo.dto.UserInfoMapper;
-import ru.codesquad.util.enums.Gender;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -20,7 +19,6 @@ public interface UserMapper {
     UserDto returnUserDto(User user);
 
     UserShortDto returnUserShortDto(User user);
-
 
     @Mapping(target = "created", expression = "java(LocalDateTime.now())")
     User returnUser(UserNewDto userNewDto);
