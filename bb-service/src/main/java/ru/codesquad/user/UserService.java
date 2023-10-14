@@ -18,5 +18,7 @@ public interface UserService {
 
     boolean deleteUser(Long userId);
 
+    boolean deleteUserByAdmin(Long userId, String typeDelete);
+
     List<UserDto> getAllUsers(Integer from, Integer size);
 }

@@ -27,10 +27,11 @@ public class AdminUserController {
     @Operation(summary = "Удаление пользователя по id",
             description = "Если пользователь не найден, возвращается статус NOT_FOUND и сообщение об ошибке."
     )
-    public void deleteUser(@PathVariable Long userId) {
+    public void deleteUserByAdmin(@PathVariable Long userId,
+                                  @RequestParam (name = "delete") String typeDelete) {
 
         log.info("Admin deleted user {}", userId);
-        userService.deleteUser(userId);
+        userService.deleteUserByAdmin(userId, typeDelete);
     }
 
     @GetMapping

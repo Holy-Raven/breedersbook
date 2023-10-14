@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.codesquad.exception.ValidationException;
 import ru.codesquad.user.dto.*;
 import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
@@ -90,6 +91,29 @@ public class UserServiceImpl implements UserService {
 
         return true;
     }
+
+    @Override
+    @Transactional
+    public boolean deleteUserByAdmin(Long userId, String typeDelete) {
+
+        User user = unionService.getUserOrNotFoundByAdmin(userId);
+
+        if (user.getUserInfo() != null) {
+            userInfoRepository.deleteById(user.getUserInfo().getId());
+        }
+
+        if (typeDelete.equals("none")) {
+            user.setStatus(Status.DELETE);
+            userRepository.save(user);
+        } else if (typeDelete.equals("full")) {
+            userRepository.delete(user);
+        } else {
+            throw new ValidationException("Проверьте ваш запрос на удаление");
+        }
+
+        return true;
+    }
+
 
     @Override
     @Transactional(readOnly = true)
