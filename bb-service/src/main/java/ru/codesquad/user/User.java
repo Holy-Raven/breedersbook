@@ -39,7 +39,7 @@ public class User {
     @Column(name = "username", unique = true)
     String username;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     String password;
 
     @OneToOne(fetch = FetchType.LAZY)

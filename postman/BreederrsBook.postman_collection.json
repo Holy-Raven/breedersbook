@@ -706,7 +706,7 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users"
+						"url": "{{baseUrl}}/private/users/profile"
 					},
 					"response": []
 				},
@@ -745,7 +745,85 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users"
+						"url": "{{baseUrl}}/private/users/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "path user Jared Leto update pass",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 200 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"jared\",\r\n  \"password\": \"1234567890\",\r\n  \"newPassword\": \"987654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/users/pass"
+					},
+					"response": []
+				},
+				{
+					"name": "path user Jared Leto update wrong pass",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 400 и оповещать о конфликте\", function() {\r",
+									"    pm.response.to.have.status(400);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"jared\",\r\n  \"password\": \"987654321\",\r\n  \"newPassword\": \"987654321\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/users/pass"
 					},
 					"response": []
 				},
@@ -814,7 +892,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/users/:userId",
+							"raw": "{{baseUrl}}/admin/users/:userId?delete=full",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -822,6 +900,12 @@
 								"admin",
 								"users",
 								":userId"
+							],
+							"query": [
+								{
+									"key": "delete",
+									"value": "full"
+								}
 							],
 							"variable": [
 								{

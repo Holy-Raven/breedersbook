@@ -1,9 +1,7 @@
 package ru.codesquad.user;
 
-import ru.codesquad.user.dto.UserDto;
-import ru.codesquad.user.dto.UserNewDto;
-import ru.codesquad.user.dto.UserShortDto;
-import ru.codesquad.user.dto.UserUpdateDto;
+import ru.codesquad.user.dto.*;
+
 import java.util.List;
 
 public interface UserService {
@@ -15,6 +13,8 @@ public interface UserService {
     UserShortDto getPublicUserById(Long userId);
 
     UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto);
+
+    boolean updateUserPassword(Long yourId, UserDtoUpdatePass userDtoUpdatePass);
 
     boolean deleteUser(Long userId);
 

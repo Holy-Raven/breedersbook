@@ -78,6 +78,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public boolean updateUserPassword(Long yourId, UserDtoUpdatePass userDtoUpdatePass) {
+
+        User user = unionService.getUserOrNotFound(yourId);
+
+        if (user.getPassword().equals(userDtoUpdatePass.getNewPassword())) {
+            throw new ValidationException("Придуймате новый пароль");
+        }
+
+        if (user.getUsername().equals(userDtoUpdatePass.getUsername()) && user.getPassword().equals(userDtoUpdatePass.getPassword())) {
+            user.setPassword(userDtoUpdatePass.getNewPassword());
+            userRepository.save(user);
+        } else {
+            throw new ValidationException("Введенный вами логин или пароль не верны");
+        }
+
+        return true;
+    }
+
+    @Override
+    @Transactional
     public boolean deleteUser(Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
