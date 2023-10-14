@@ -483,7 +483,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/users/:userId",
+							"raw": "{{baseUrl}}/admin/users/:userId?delete=none",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -492,45 +492,11 @@
 								"users",
 								":userId"
 							],
-							"variable": [
+							"query": [
 								{
-									"key": "userId",
-									"value": "5"
+									"key": "delete",
+									"value": "none"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleting user (admin) not found",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 404\", function() {\r",
-									"    pm.response.to.have.status(404);\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"}); "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/admin/users/:userId",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"admin",
-								"users",
-								":userId"
 							],
 							"variable": [
 								{
@@ -780,6 +746,90 @@
 							}
 						},
 						"url": "{{baseUrl}}/private/users"
+					},
+					"response": []
+				},
+				{
+					"name": "deleting user (admin) full",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/users/:userId?delete=full",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								":userId"
+							],
+							"query": [
+								{
+									"key": "delete",
+									"value": "full"
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleting user (admin) not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 404\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/admin/users/:userId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "5"
+								}
+							]
+						}
 					},
 					"response": []
 				}
