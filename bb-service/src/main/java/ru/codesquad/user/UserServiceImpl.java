@@ -30,10 +30,6 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.returnUser(userNewDto);
 
-        System.out.println();
-        System.out.println(user);
-        System.out.println();
-
         user.setStatus(Status.ACTIVE);
         user = userRepository.save(user);
 
@@ -88,7 +84,9 @@ public class UserServiceImpl implements UserService {
         if (user.getUserInfo() != null) {
             userInfoRepository.deleteById(user.getUserInfo().getId());
         }
-        userRepository.deleteById(userId);
+
+        user.setStatus(Status.DELETE);
+        userRepository.save(user);
 
         return true;
     }

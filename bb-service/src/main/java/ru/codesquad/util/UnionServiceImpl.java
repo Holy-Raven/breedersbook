@@ -16,6 +16,8 @@ import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.userinfo.UserInfoRepository;
+import ru.codesquad.util.enums.Status;
+
 import java.util.Optional;
 
 @Service
@@ -32,6 +34,21 @@ public class UnionServiceImpl implements  UnionService {
 
     @Override
     public User getUserOrNotFound(Long userId) {
+
+        Optional<User> user = userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            throw new NotFoundException(User.class, "User id " + userId + " not found.");
+        } else {
+            if (user.get().getStatus().equals(Status.DELETE)) {
+                throw new NotFoundException(User.class, "User id " + userId + " not found.");
+            }
+            return user.get();
+        }
+    }
+
+    @Override
+    public User getUserOrNotFoundByAdmin(Long userId) {
 
         Optional<User> user = userRepository.findById(userId);
 
