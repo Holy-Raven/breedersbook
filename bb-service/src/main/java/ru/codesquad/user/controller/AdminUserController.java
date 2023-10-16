@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.codesquad.exception.ValidationException;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
 import javax.validation.constraints.Positive;
@@ -27,11 +26,11 @@ public class AdminUserController {
     @Operation(summary = "Удаление пользователя по id",
             description = "Если пользователь не найден, возвращается статус NOT_FOUND и сообщение об ошибке."
     )
-    public void deleteUserByAdmin(@PathVariable Long userId,
+    public boolean deleteUserByAdmin(@PathVariable Long userId,
                                   @RequestParam (name = "delete") String typeDelete) {
 
         log.info("Admin deleted user {}", userId);
-        userService.deleteUserByAdmin(userId, typeDelete);
+       return userService.deleteUserByAdmin(userId, typeDelete);
     }
 
     @GetMapping

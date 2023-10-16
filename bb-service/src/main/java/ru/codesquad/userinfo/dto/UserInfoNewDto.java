@@ -30,7 +30,7 @@ public class UserInfoNewDto {
     String photo;
 
     @NotNull(message = "birthDate cannot be empty.")
-    @Past(message = "birthDate may be in the past")
+    @Past(message = "birthDate should be in the past")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime birthDate;
 

@@ -15,11 +15,11 @@ import javax.validation.constraints.Size;
 @Schema(description = "Данные для добавления нового пользователя")
 public class UserNewDto {
 
-    @Size(min = 4, max = 250, message = "firstName must be greater than 4 and less than 250")
+    @Size(max = 250, message = "firstName must be less than 250")
     @NotBlank(message = "firstName cannot be empty and consist only of spaces.")
     String firstName;
 
-    @Size(min = 4, max = 250, message = "lastName must be greater than 4 and less than 250")
+    @Size(max = 250, message = "lastName must be less than 250")
     @NotBlank(message = "lastName cannot be empty and consist only of spaces.")
     String lastName;
 

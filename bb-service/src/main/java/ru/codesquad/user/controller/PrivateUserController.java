@@ -40,9 +40,9 @@ public class PrivateUserController {
     @Operation(summary = "Удаление профиля пользователя",
             description = "Удалить профиль может только сам пользователь"
     )
-    public void deleteUser(@RequestHeader(HEADER_USER) Long yourId) {
+    public boolean deleteUser(@RequestHeader(HEADER_USER) Long yourId) {
         log.info("User {} deleted his profile ", yourId);
-        userService.deleteUser(yourId);
+        return userService.deleteUser(yourId);
     }
 
     @PatchMapping("/profile")
