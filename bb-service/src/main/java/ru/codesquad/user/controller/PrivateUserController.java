@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
+import ru.codesquad.user.dto.UserDtoUpdatePass;
 import ru.codesquad.user.dto.UserUpdateDto;
 
 import javax.validation.Valid;
@@ -39,12 +40,12 @@ public class PrivateUserController {
     @Operation(summary = "Удаление профиля пользователя",
             description = "Удалить профиль может только сам пользователь"
     )
-    public void deleteUser(@RequestHeader(HEADER_USER) Long yourId) {
+    public boolean deleteUser(@RequestHeader(HEADER_USER) Long yourId) {
         log.info("User {} deleted his profile ", yourId);
-        userService.deleteUser(yourId);
+        return userService.deleteUser(yourId);
     }
 
-    @PatchMapping
+    @PatchMapping("/profile")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Обновление данных пользователя",
             description = "Обновить данные может только сам пользователь"
@@ -54,5 +55,17 @@ public class PrivateUserController {
 
         log.info("User id {} update profile", yourId);
         return userService.updateUser(yourId, userUpdateDto);
+    }
+
+    @PatchMapping("/pass")
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление пароля пользователя",
+            description = "Обновить пароль может только сам пользователь"
+    )
+    public boolean updateUserPassword(@RequestHeader(HEADER_USER) Long yourId,
+                                      @Valid @RequestBody UserDtoUpdatePass userDtoUpdatePass) {
+
+        log.info("User id {} update password profile", yourId);
+        return userService.updateUserPassword(yourId, userDtoUpdatePass);
     }
 }

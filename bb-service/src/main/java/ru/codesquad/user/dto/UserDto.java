@@ -7,7 +7,8 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.location.LocationDto;
 import ru.codesquad.userinfo.dto.UserInfoDto;
-import ru.codesquad.util.enums.Gender;
+import ru.codesquad.util.enums.Status;
+
 import java.time.LocalDateTime;
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
@@ -21,13 +22,13 @@ public class UserDto {
 
     Long id;
 
-    String name;
+    String firstName;
+
+    String lastName;
 
     String email;
 
-    String login;
-
-    Gender gender;
+    String username;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
@@ -37,4 +38,6 @@ public class UserDto {
     LocationDto location;
 
     KennelDto kennel;
+
+    Status status;
 }

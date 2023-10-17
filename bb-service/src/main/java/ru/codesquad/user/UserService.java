@@ -1,9 +1,7 @@
 package ru.codesquad.user;
 
-import ru.codesquad.user.dto.UserDto;
-import ru.codesquad.user.dto.UserNewDto;
-import ru.codesquad.user.dto.UserShortDto;
-import ru.codesquad.user.dto.UserUpdateDto;
+import ru.codesquad.user.dto.*;
+
 import java.util.List;
 
 public interface UserService {
@@ -16,7 +14,11 @@ public interface UserService {
 
     UserDto updateUser(Long yourId, UserUpdateDto userUpdateDto);
 
+    boolean updateUserPassword(Long yourId, UserDtoUpdatePass userDtoUpdatePass);
+
     boolean deleteUser(Long userId);
+
+    boolean deleteUserByAdmin(Long userId, String typeDelete);
 
     List<UserDto> getAllUsers(Integer from, Integer size);
 }

@@ -3,6 +3,8 @@ package ru.codesquad.userinfo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.util.enums.Gender;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
@@ -38,4 +40,8 @@ public class UserInfo {
     @Column(name = "birth_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime birthDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = false)
+    Gender gender;
 }

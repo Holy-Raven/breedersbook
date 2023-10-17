@@ -15,7 +15,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/userinfo")
+@RequestMapping(path = "/private/userinfo")
 @Tag(name="Private: информация о пользователе", description="Закрытый API для работы с информацией о пользователе")
 public class UserInfoController {
 

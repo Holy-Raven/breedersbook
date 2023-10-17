@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.userinfo.dto.UserInfoDto;
-import ru.codesquad.util.enums.Gender;
 
 
 @Data
@@ -16,9 +15,9 @@ import ru.codesquad.util.enums.Gender;
 @Schema(description = "Пользователь (краткая информация)")
 public class UserShortDto {
 
-    String name;
+    String firstName;
 
-    Gender gender;
+    String lastName;
 
     UserInfoDto userInfo;
 }

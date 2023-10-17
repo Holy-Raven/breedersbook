@@ -10,6 +10,8 @@ import ru.codesquad.userinfo.UserInfo;
 public interface UnionService {
     User getUserOrNotFound(Long userId);
 
+    User getUserOrNotFoundByAdmin(Long userId);
+
     UserInfo getUserInfoOrNotFound(Long userInfoId);
 
     Location getLocationOrNotFound(Long locationId);
