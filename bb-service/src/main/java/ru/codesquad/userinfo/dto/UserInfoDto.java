@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.util.enums.Gender;
 
 import java.time.LocalDateTime;
+
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data

@@ -2,7 +2,7 @@ package ru.codesquad.util;
 
 import ru.codesquad.breed.Breed;
 import ru.codesquad.kennel.Kennel;
-import ru.codesquad.kennel.location.Location;
+import ru.codesquad.location.Location;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.UserInfo;

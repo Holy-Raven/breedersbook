@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.kennel.location.LocationDto;
+import ru.codesquad.location.LocationDto;
+
 import java.time.LocalDateTime;
+
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data

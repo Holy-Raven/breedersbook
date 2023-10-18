@@ -3,10 +3,12 @@ package ru.codesquad.kennel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.kennel.location.Location;
+import ru.codesquad.location.Location;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data

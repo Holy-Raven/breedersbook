@@ -1,7 +1,8 @@
-package ru.codesquad.kennel.location;
+package ru.codesquad.location;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;

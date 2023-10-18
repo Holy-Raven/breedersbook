@@ -1,4 +1,4 @@
-package ru.codesquad.kennel.location;
+package ru.codesquad.location;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,27 +15,26 @@ import ru.codesquad.util.UnionService;
 @Service
 @Transactional(readOnly = true)
 @AllArgsConstructor
-public class LocationServiceImpl implements  LocationService {
+public class LocationServiceImpl implements LocationService {
 
     private final LocationRepository locationRepository;
     private final KennelRepository kennelRepository;
     private final UserRepository userRepository;
     private final UnionService unionService;
-    private final LocationMapper locationMapper;
 
     @Override
     @Transactional
     public LocationDto addUserLocation(Long yourId, LocationDto locationDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Location location = locationMapper.returnLocation(locationDto);
+        Location location = LocationMapper.returnLocation(locationDto);
 
         location = locationRepository.save(location);
 
         user.setLocation(location);
         userRepository.save(user);
 
-        return locationMapper.returnLocationDto(location);
+        return LocationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -46,11 +45,11 @@ public class LocationServiceImpl implements  LocationService {
         Kennel kennel = isUserKennel(user);
 
         if (locationDto != null) {
-            Location location = locationMapper.returnLocation(locationDto);
+            Location location = LocationMapper.returnLocation(locationDto);
             location = locationRepository.save(location);
             kennel.setLocation(location);
             kennelRepository.save(kennel);
-            return locationMapper.returnLocationDto(location);
+            return LocationMapper.returnLocationDto(location);
         } else {
             throw new ConflictException("Вы не указали локацию");
         }
@@ -76,7 +75,7 @@ public class LocationServiceImpl implements  LocationService {
         newLocation = locationRepository.save(newLocation);
         kennel.setLocation(newLocation);
         kennelRepository.save(kennel);
-        return locationMapper.returnLocationDto(location);
+        return LocationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -88,7 +87,7 @@ public class LocationServiceImpl implements  LocationService {
 
         location = locationRepository.save(updateLocation(location, locationUpdateDto));
 
-        return locationMapper.returnLocationDto(location);
+        return LocationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -100,7 +99,7 @@ public class LocationServiceImpl implements  LocationService {
         Location location = isKennelLocation(kennel);
 
         location = locationRepository.save(updateLocation(location, locationUpdateDto));
-        return locationMapper.returnLocationDto(location);
+        return LocationMapper.returnLocationDto(location);
     }
 
     @Override
@@ -134,21 +133,21 @@ public class LocationServiceImpl implements  LocationService {
 
     private Location updateLocation(Location location, LocationUpdateDto locationUpdateDto) {
 
-            if (locationUpdateDto.getCountry() != null && !locationUpdateDto.getCountry().isBlank()) {
-                location.setCountry(locationUpdateDto.getCountry());
-            }
-            if (locationUpdateDto.getCity() != null && !locationUpdateDto.getCity().isBlank()) {
-                location.setCity(locationUpdateDto.getCity());
-            }
-            if (locationUpdateDto.getStreet() != null && !locationUpdateDto.getStreet().isBlank()) {
-                location.setStreet(locationUpdateDto.getStreet());
-            }
-            if (locationUpdateDto.getHouse() != null && !locationUpdateDto.getHouse().isBlank()) {
-                location.setHouse(locationUpdateDto.getHouse());
-            }
-            if (locationUpdateDto.getApartment() != null && locationUpdateDto.getApartment() > 0) {
-                location.setApartment(locationUpdateDto.getApartment());
-            }
+        if (locationUpdateDto.getCountry() != null && !locationUpdateDto.getCountry().isBlank()) {
+            location.setCountry(locationUpdateDto.getCountry());
+        }
+        if (locationUpdateDto.getCity() != null && !locationUpdateDto.getCity().isBlank()) {
+            location.setCity(locationUpdateDto.getCity());
+        }
+        if (locationUpdateDto.getStreet() != null && !locationUpdateDto.getStreet().isBlank()) {
+            location.setStreet(locationUpdateDto.getStreet());
+        }
+        if (locationUpdateDto.getHouse() != null && !locationUpdateDto.getHouse().isBlank()) {
+            location.setHouse(locationUpdateDto.getHouse());
+        }
+        if (locationUpdateDto.getApartment() != null && locationUpdateDto.getApartment() > 0) {
+            location.setApartment(locationUpdateDto.getApartment());
+        }
 
         return location;
     }

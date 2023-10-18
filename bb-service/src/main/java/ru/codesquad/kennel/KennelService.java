@@ -4,6 +4,7 @@ import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
+
 import java.util.List;
 
 public interface KennelService {

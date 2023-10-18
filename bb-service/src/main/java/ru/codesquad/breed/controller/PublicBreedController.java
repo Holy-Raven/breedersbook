@@ -11,7 +11,7 @@ import ru.codesquad.breed.service.BreedService;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/breeds")
-@Tag(name="Public: породы кошек и собак", description="Публичный API для работы с породами")
+@Tag(name = "Public: породы кошек и собак", description = "Публичный API для работы с породами")
 public class PublicBreedController {
     private final BreedService service;
 }

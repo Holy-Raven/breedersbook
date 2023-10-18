@@ -3,7 +3,7 @@ package ru.codesquad.kennel.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.kennel.location.LocationDto;
+import ru.codesquad.location.LocationDto;
 
 @Data
 @Builder

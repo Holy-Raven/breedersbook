@@ -1,25 +1,40 @@
 package ru.codesquad.breed.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.dto.BreedFullDto;
 import ru.codesquad.breed.dto.BreedNewDto;
 import ru.codesquad.breed.dto.BreedShortDto;
 import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.Gender;
 import ru.codesquad.util.enums.PetType;
 
-@Mapper(componentModel = "spring",
-        imports = {PetType.class, FurType.class, EnumUtil.class},
-        disableSubMappingMethodsGeneration = true)
-public interface BreedMapper {
+public class BreedMapper {
+    public static BreedShortDto returnShortDto(Breed breed) {
+        return BreedShortDto.builder()
+                .id(breed.getId())
+                .name(breed.getName())
+                .build();
+    }
 
-    BreedShortDto returnShortDto(Breed breed);
+    public static BreedFullDto returnFullDto(Breed breed) {
+        return BreedFullDto.builder()
+                .id(breed.getId())
+                .petType(breed.getPetType())
+                .name(breed.getName())
+                .description(breed.getDescription())
+                .furType(breed.getFurType())
+                .photoUrl(breed.getPhotoUrl())
+                .build();
+    }
 
-    BreedFullDto returnFullDto(Breed breed);
-
-    @Mapping(target = "petType", expression = "java(EnumUtil.getValue(PetType.class, dto.getPetType()))")
-    @Mapping(target = "furType", expression = "java(EnumUtil.getValue(FurType.class, dto.getFurType()))")
-    Breed returnBreed(BreedNewDto dto);
+    public static Breed returnBreed(BreedNewDto breedNewDto) {
+        return Breed.builder()
+                .petType(EnumUtil.getValue(PetType.class, breedNewDto.getPetType()))
+                .name(breedNewDto.getName())
+                .description(breedNewDto.getDescription())
+                .furType(EnumUtil.getValue(FurType.class, breedNewDto.getFurType()))
+                .photoUrl(breedNewDto.getPhotoUrl())
+                .build();
+    }
 }

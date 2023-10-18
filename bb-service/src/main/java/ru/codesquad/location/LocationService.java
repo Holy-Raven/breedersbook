@@ -1,4 +1,4 @@
-package ru.codesquad.kennel.location;
+package ru.codesquad.location;
 
 public interface LocationService {
 

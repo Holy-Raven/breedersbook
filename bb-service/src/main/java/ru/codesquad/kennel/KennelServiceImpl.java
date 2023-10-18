@@ -6,12 +6,18 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ConflictException;
-import ru.codesquad.kennel.dto.*;
+import ru.codesquad.kennel.dto.KennelDto;
+import ru.codesquad.kennel.dto.KennelNewDto;
+import ru.codesquad.kennel.dto.KennelShortDto;
+import ru.codesquad.kennel.dto.KennelUpdateDto;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.util.UnionService;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static ru.codesquad.kennel.dto.KennelMapper.*;
 import static ru.codesquad.util.Constant.CURRENT_TIME;
 
 @Slf4j
@@ -21,7 +27,6 @@ import static ru.codesquad.util.Constant.CURRENT_TIME;
 public class KennelServiceImpl implements KennelService {
 
     private final UnionService unionService;
-    private final KennelMapper kennelMapper;
     private final KennelRepository kennelRepository;
     private final UserRepository userRepository;
 
@@ -30,14 +35,14 @@ public class KennelServiceImpl implements KennelService {
     public KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = kennelMapper.returnKennel(kennelNewDto);
+        Kennel kennel = returnKennel(kennelNewDto);
 
         kennel.setPhone(unionService.checkPhoneNumber(kennel.getPhone()));
         kennel = kennelRepository.save(kennel);
         user.setKennel(kennel);
         userRepository.save(user);
 
-        return kennelMapper.returnKennelDto(kennel);
+        return returnKennelDto(kennel);
     }
 
     @Override
@@ -48,7 +53,7 @@ public class KennelServiceImpl implements KennelService {
         Kennel kennel = unionService.getKennelOrNotFound(kennelId);
 
         if (user.getKennel().equals(kennel)) {
-            return kennelMapper.returnKennelDto(kennel);
+            return returnKennelDto(kennel);
         } else {
             throw new ConflictException("Этот питомник принадлежит другому юзепру");
         }
@@ -105,8 +110,8 @@ public class KennelServiceImpl implements KennelService {
 
             kennel = kennelRepository.save(kennel);
 
-            return kennelMapper.returnKennelDto(kennel);
-        }  else {
+            return returnKennelDto(kennel);
+        } else {
             throw new ConflictException("У юзера нет питомника");
         }
     }
@@ -117,7 +122,7 @@ public class KennelServiceImpl implements KennelService {
 
         Kennel kennel = unionService.getKennelOrNotFound(kennelId);
 
-        return kennelMapper.returnKennelShortDto(kennel);
+        return returnKennelShortDto(kennel);
     }
 
     @Override
@@ -127,7 +132,7 @@ public class KennelServiceImpl implements KennelService {
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<KennelDto> kennelDtoList = new ArrayList<>();
 
-        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelDtoList.add(kennelMapper.returnKennelDto(kennel)));
+        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelDtoList.add(returnKennelDto(kennel)));
 
         return kennelDtoList;
     }
@@ -139,7 +144,7 @@ public class KennelServiceImpl implements KennelService {
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<KennelShortDto> kennelShortDto = new ArrayList<>();
 
-        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelShortDto.add(kennelMapper.returnKennelShortDto(kennel)));
+        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelShortDto.add(returnKennelShortDto(kennel)));
 
         return kennelShortDto;
     }

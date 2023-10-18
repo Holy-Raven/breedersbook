@@ -13,7 +13,7 @@ import ru.codesquad.pet.service.PetService;
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/pets")
-@Tag(name="Admin: питомцы", description="API для работы с питомцами")
+@Tag(name = "Admin: питомцы", description = "API для работы с питомцами")
 public class AdminPetController {
     private final PetService service;
 

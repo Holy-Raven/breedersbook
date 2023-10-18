@@ -39,8 +39,6 @@ public class PetServiceImpl implements PetService {
     private final CustomPetRepository customRepo;
     private final BreedRepository breedRepo;
 
-    private final PetMapper mapper;
-
     @Override
     public List<PetFullDto> getAllByUserId(long userId,
                                            Gender gender, SaleStatus saleStatus,
@@ -55,7 +53,7 @@ public class PetServiceImpl implements PetService {
                 .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteriaPrivate(criteria);
-        return mapper.returnFullDtoList(pets);
+        return PetMapper.returnFullDtoList(pets);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class PetServiceImpl implements PetService {
         Pet pet = unionService.getPetOrNotFound(petId);
         checkOwner(userId, pet);
         log.info("Get Pet by id {} for registered User with id {}", petId, userId);
-        return mapper.returnFullDto(pet);
+        return PetMapper.returnFullDto(pet);
     }
 
     @Override
@@ -72,10 +70,10 @@ public class PetServiceImpl implements PetService {
     public PetFullDto add(long userId, PetNewDto petNewDto) {
         User owner = unionService.getUserOrNotFound(userId);
         Breed breed = unionService.getBreedOrNotFound(petNewDto.getBreedId());
-        Pet pet = mapper.returnPet(petNewDto, owner, breed);
+        Pet pet = PetMapper.returnPet(petNewDto, owner, breed);
         pet = repository.save(pet);
         log.info("Pet with id {} was added to DB", pet.getId());
-        return mapper.returnFullDto(pet);
+        return PetMapper.returnFullDto(pet);
     }
 
     @Override
@@ -87,7 +85,7 @@ public class PetServiceImpl implements PetService {
         updatePet(pet, petUpdateDto);
         pet = repository.save(pet);
         log.info("Pet with id {} was updated", pet.getId());
-        return mapper.returnFullDto(pet);
+        return PetMapper.returnFullDto(pet);
     }
 
     @Override
@@ -132,14 +130,14 @@ public class PetServiceImpl implements PetService {
                 .size(size)
                 .build();
         List<Pet> pets = customRepo.getAllByCriteriaPublic(criteria);
-        return mapper.returnShortDtoList(pets);
+        return PetMapper.returnShortDtoList(pets);
     }
 
     @Override
     public PetShortDto getByIdPublic(long petId, String ip) {
         Pet pet = unionService.getPetOrNotFound(petId);
         log.info("Pet with id {} was asked by unregistered user", petId);
-        return mapper.returnShortDto(pet);
+        return PetMapper.returnShortDto(pet);
     }
 
     private boolean isOwner(long userId, long petId) {

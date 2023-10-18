@@ -1,18 +1,20 @@
-package ru.codesquad.kennel.location;
+package ru.codesquad.location;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
+
 import static ru.codesquad.util.Constant.HEADER_USER;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/location")
-@Tag(name="Private: адреса", description="Закрытый API для работы с адресами")
+@Tag(name = "Private: адреса", description = "Закрытый API для работы с адресами")
 public class LocationController {
 
     private final LocationService locationService;

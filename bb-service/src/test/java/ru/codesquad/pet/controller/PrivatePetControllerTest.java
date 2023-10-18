@@ -79,8 +79,7 @@ class PrivatePetControllerTest {
                 .photo("https://photo-url.com")
                 .build();
         owner = UserShortDto.builder()
-                .name("Name")
-                .gender(Gender.FEMALE)
+                .firstName("Name")
                 .userInfo(userInfo)
                 .build();
         breed = BreedShortDto.builder()
