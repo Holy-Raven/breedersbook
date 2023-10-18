@@ -4,12 +4,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
-import ru.codesquad.kennel.location.Location;
+import ru.codesquad.location.Location;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Status;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
 @Data

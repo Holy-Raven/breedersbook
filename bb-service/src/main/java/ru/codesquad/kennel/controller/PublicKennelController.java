@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelShortDto;
+
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/kennels")
-@Tag(name="Public: питомники", description="Публичный API для работы с питомниками")
+@Tag(name = "Public: питомники", description = "Публичный API для работы с питомниками")
 public class PublicKennelController {
 
     private final KennelService kennelService;

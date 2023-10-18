@@ -6,7 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
-import ru.codesquad.userinfo.dto.*;
+import ru.codesquad.userinfo.dto.UserInfoDto;
+import ru.codesquad.userinfo.dto.UserInfoMapper;
+import ru.codesquad.userinfo.dto.UserInfoNewDto;
+import ru.codesquad.userinfo.dto.UserInfoUpdateDto;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.Gender;
@@ -22,15 +25,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     private final UserInfoRepository userInfoRepository;
     private final UserRepository userRepository;
     private final UnionService unionService;
-    private final UserInfoMapper userInfoMapper;
-
 
     @Override
     @Transactional
     public UserInfoDto addUserInfo(UserInfoNewDto userInfoNewDto, Long userId) {
 
         User user = unionService.getUserOrNotFound(userId);
-        UserInfo userInfo = userInfoMapper.returnUserInfo(userInfoNewDto);
+        UserInfo userInfo = UserInfoMapper.returnUserInfo(userInfoNewDto);
 
         userInfo.setPhone(unionService.checkPhoneNumber(userInfo.getPhone()));
         userInfo = userInfoRepository.save(userInfo);
@@ -38,7 +39,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         user.setUserInfo(userInfo);
         userRepository.save(user);
 
-        return userInfoMapper.returnUserInfoDto(userInfo);
+        return UserInfoMapper.returnUserInfoDto(userInfo);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         userInfo = userInfoRepository.save(userInfo);
 
-        return userInfoMapper.returnUserInfoDto(userInfo);
+        return UserInfoMapper.returnUserInfoDto(userInfo);
     }
 
     @Override
@@ -88,6 +89,6 @@ public class UserInfoServiceImpl implements UserInfoService {
         User user = unionService.getUserOrNotFound(yourId);
         UserInfo userInfo = unionService.getUserInfoOrNotFound(user.getUserInfo().getId());
 
-        return userInfoMapper.returnUserInfoDto(userInfo);
+        return UserInfoMapper.returnUserInfoDto(userInfo);
     }
 }

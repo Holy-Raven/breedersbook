@@ -1,21 +1,27 @@
 package ru.codesquad.userinfo.dto;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import ru.codesquad.userinfo.UserInfo;
-import ru.codesquad.util.enums.Gender;
 import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.Gender;
 
-import java.util.UUID;
+public class UserInfoMapper {
+    public static UserInfo returnUserInfo(UserInfoNewDto userInfonewDto) {
+        return UserInfo.builder()
+                .description(userInfonewDto.getDescription())
+                .phone(userInfonewDto.getPhone())
+                .photo(userInfonewDto.getPhoto())
+                .birthDate(userInfonewDto.getBirthDate())
+                .gender(EnumUtil.getValue(Gender.class, userInfonewDto.getGender()))
+                .build();
+    }
 
-@Mapper(componentModel = "spring",
-        imports = {UUID.class, Gender.class, EnumUtil.class},
-        disableSubMappingMethodsGeneration = true)
-public interface UserInfoMapper {
-
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "gender", expression = "java(EnumUtil.getValue(Gender.class, userInfonewDto.getGender()))")
-    UserInfo returnUserInfo(UserInfoNewDto userInfonewDto);
-
-    UserInfoDto returnUserInfoDto(UserInfo userInfo);
+    public static UserInfoDto returnUserInfoDto(UserInfo userInfo) {
+        return UserInfoDto.builder()
+                .description(userInfo.getDescription())
+                .phone(userInfo.getPhone())
+                .photo(userInfo.getPhoto())
+                .birthDate(userInfo.getBirthDate())
+                .gender(userInfo.getGender())
+                .build();
+    }
 }

@@ -11,6 +11,7 @@ import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Status;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,18 +24,18 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final UnionService unionService;
-    private final UserMapper userMapper;
 
     @Override
     @Transactional
     public UserDto addUser(UserNewDto userNewDto) {
 
-        User user = userMapper.returnUser(userNewDto);
+        User user = UserMapper.returnUser(userNewDto);
 
+        user.setCreated(LocalDateTime.now());
         user.setStatus(Status.ACTIVE);
         user = userRepository.save(user);
 
-        return userMapper.returnUserDto(user);
+        return UserMapper.returnUserDto(user);
     }
 
     @Override
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         User user = unionService.getUserOrNotFound(yourId);
 
-        return userMapper.returnUserDto(user);
+        return UserMapper.returnUserDto(user);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
         User user = unionService.getUserOrNotFound(userId);
 
-        return userMapper.returnUserShortDto(user);
+        return UserMapper.returnUserShortDto(user);
     }
 
     @Override
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
         user = userRepository.save(user);
 
-        return userMapper.returnUserDto(user);
+        return UserMapper.returnUserDto(user);
     }
 
     @Override
@@ -142,7 +143,7 @@ public class UserServiceImpl implements UserService {
         PageRequest pageRequest = PageRequest.of(from / size, size);
 
         List<UserDto> userDtoList = new ArrayList<>();
-        userRepository.findAll(pageRequest).forEach(user -> userDtoList.add(userMapper.returnUserDto(user)));
+        userRepository.findAll(pageRequest).forEach(user -> userDtoList.add(UserMapper.returnUserDto(user)));
 
         return userDtoList;
     }

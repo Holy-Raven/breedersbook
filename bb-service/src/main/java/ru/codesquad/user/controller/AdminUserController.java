@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.user.UserService;
 import ru.codesquad.user.dto.UserDto;
+
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/users")
-@Tag(name="Admin: пользователи", description="API для работы с пользователями")
+@Tag(name = "Admin: пользователи", description = "API для работы с пользователями")
 public class AdminUserController {
 
     private final UserService userService;
@@ -27,10 +28,10 @@ public class AdminUserController {
             description = "Если пользователь не найден, возвращается статус NOT_FOUND и сообщение об ошибке."
     )
     public boolean deleteUserByAdmin(@PathVariable Long userId,
-                                  @RequestParam (name = "delete") String typeDelete) {
+                                     @RequestParam(name = "delete") String typeDelete) {
 
         log.info("Admin deleted user {}", userId);
-       return userService.deleteUserByAdmin(userId, typeDelete);
+        return userService.deleteUserByAdmin(userId, typeDelete);
     }
 
     @GetMapping

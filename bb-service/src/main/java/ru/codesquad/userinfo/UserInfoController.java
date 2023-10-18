@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.userinfo.dto.UserInfoNewDto;
 import ru.codesquad.userinfo.dto.UserInfoUpdateDto;
+
 import javax.validation.Valid;
+
 import static ru.codesquad.util.Constant.HEADER_USER;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/private/userinfo")
-@Tag(name="Private: информация о пользователе", description="Закрытый API для работы с информацией о пользователе")
+@Tag(name = "Private: информация о пользователе", description = "Закрытый API для работы с информацией о пользователе")
 public class UserInfoController {
 
     private final UserInfoService userInfoService;
@@ -42,7 +44,7 @@ public class UserInfoController {
                                       @Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto) {
 
         log.info("User id {} update profile", yourId);
-        return userInfoService.updateUserInfo(userInfoUpdateDto,  yourId);
+        return userInfoService.updateUserInfo(userInfoUpdateDto, yourId);
     }
 
     @DeleteMapping

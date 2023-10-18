@@ -3,6 +3,7 @@ package ru.codesquad.pet.util;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.kennel.Kennel;
+import ru.codesquad.location.Location;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.pet.model.Pet;
@@ -19,13 +20,12 @@ public class TestFactory {
 
     public static User makeNewUser(UserInfo userInfo, Kennel kennel, int number) {
         return User.builder()
-                .name("Name" + number)
-                .gender(Gender.FEMALE)
+                .firstName("Name" + number)
                 .userInfo(userInfo)
                 .kennel(kennel)
                 .created(LocalDateTime.now())
                 .email("e" + number + "@mail.com")
-                .login("login" + number)
+                .username("login" + number)
                 .build();
     }
 
@@ -73,6 +73,16 @@ public class TestFactory {
                 .descriptions("Description" + number)
                 .phone("+7900123456" + number)
                 .created(LocalDateTime.now())
+                .build();
+    }
+
+    public static Location makeNewLocation(Integer number) {
+        return Location.builder()
+                .country("Russia" + number)
+                .city("Moscow" + number)
+                .street("Arbat" + number)
+                .house(String.valueOf(number))
+                .apartment(number)
                 .build();
     }
 }

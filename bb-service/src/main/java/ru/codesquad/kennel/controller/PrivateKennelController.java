@@ -10,6 +10,7 @@ import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
+
 import javax.validation.Valid;
 
 import static ru.codesquad.util.Constant.HEADER_USER;
@@ -18,7 +19,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/private/kennels")
-@Tag(name="Private: питомники", description="Закрытый API для работы с питомниками")
+@Tag(name = "Private: питомники", description = "Закрытый API для работы с питомниками")
 public class PrivateKennelController {
 
     private final KennelService kennelService;
@@ -44,7 +45,7 @@ public class PrivateKennelController {
                                @PathVariable Long kennelId) {
 
         log.info("Get Kennel {} ", kennelId);
-        return kennelService.getPrivateKennelById(kennelId,yourId);
+        return kennelService.getPrivateKennelById(kennelId, yourId);
     }
 
     @DeleteMapping
@@ -64,7 +65,7 @@ public class PrivateKennelController {
             description = " Если питомник не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
     )
     public KennelDto updateKennel(@RequestHeader(HEADER_USER) Long yourId,
-                                 @Valid @RequestBody KennelUpdateDto kennelUpdateDto) {
+                                  @Valid @RequestBody KennelUpdateDto kennelUpdateDto) {
 
         log.info("User id {} update profile his kennel", yourId);
         return kennelService.updateKennel(yourId, kennelUpdateDto);

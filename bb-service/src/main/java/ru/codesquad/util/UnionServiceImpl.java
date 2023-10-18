@@ -8,8 +8,8 @@ import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.KennelRepository;
-import ru.codesquad.kennel.location.Location;
-import ru.codesquad.kennel.location.LocationRepository;
+import ru.codesquad.location.Location;
+import ru.codesquad.location.LocationRepository;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
 import ru.codesquad.user.User;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UnionServiceImpl implements  UnionService {
+public class UnionServiceImpl implements UnionService {
 
 
     private final UserRepository userRepository;

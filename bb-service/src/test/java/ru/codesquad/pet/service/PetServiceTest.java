@@ -13,13 +13,14 @@ import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.dto.KennelDto;
+import ru.codesquad.kennel.dto.KennelMapper;
+import ru.codesquad.location.Location;
 import ru.codesquad.pet.dto.PetFullDto;
 import ru.codesquad.pet.dto.PetNewDto;
 import ru.codesquad.pet.dto.PetUpdateDto;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.PetSort;
 import ru.codesquad.pet.enums.SaleStatus;
-import ru.codesquad.pet.mapper.PetMapper;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.model.PrivateSearchCriteria;
 import ru.codesquad.pet.repository.CustomPetRepository;
@@ -50,9 +51,6 @@ class PetServiceTest {
     private PetRepository repository;
 
     @Mock
-    private PetMapper mapper;
-
-    @Mock
     private UnionService unionService;
 
     @Mock
@@ -73,6 +71,7 @@ class PetServiceTest {
     UserInfoDto ownerInfoDto;
     BreedShortDto breedDto;
     KennelDto kennelDto;
+    Location location;
 
     PetFullDto.PetFullDtoBuilder fullDtoBuilder;
     PetNewDto.PetNewDtoBuilder newDtoBuilder;
@@ -92,8 +91,7 @@ class PetServiceTest {
         UserInfo userInfo = makeNewUserInfo(2);
         userInfo.setId(2L);
         ownerDto = UserShortDto.builder()
-                .name("Name")
-                .gender(Gender.FEMALE)
+                .firstName("Name1")
                 .userInfo(ownerInfoDto)
                 .build();
         breedDto = BreedShortDto.builder()
@@ -102,12 +100,11 @@ class PetServiceTest {
                 .build();
         breed = makeNewBreed();
         breed.setId(1L);
+        location = makeNewLocation(1);
         Kennel kennel = makeNewKennel(1);
         kennel.setId(1L);
-        kennelDto = KennelDto.builder()
-                .id(1L)
-                .name("Name")
-                .build();
+        kennel.setLocation(location);
+        kennelDto = KennelMapper.returnKennelDto(kennel);
         fullDtoBuilder = PetFullDto.builder()
                 .id(1L)
                 .owner(ownerDto)
@@ -115,9 +112,9 @@ class PetServiceTest {
                 .temper("Angry small evil")
                 .petType(PetType.CAT)
                 .colors(List.of(Color.BLACK))
-                .pattern("SOLID")
+                .pattern("solid")
                 .breed(breedDto)
-                .name("Name1")
+                .name("Name")
                 .description("Description1")
                 .sterilized(false)
                 .passportImg("https://passport-url1.com")
@@ -179,7 +176,6 @@ class PetServiceTest {
                 .size(10)
                 .build();
         when(customRepo.getAllByCriteriaPrivate(criteria)).thenReturn(Collections.emptyList());
-        when(mapper.returnFullDtoList(anyList())).thenReturn(Collections.emptyList());
 
         List<PetFullDto> pets = service
                 .getAllByUserId(ownerId, Gender.MALE, SaleStatus.NOT_FOR_SALE, PetSort.PRICE_ASC, 0, 10);
@@ -231,7 +227,6 @@ class PetServiceTest {
         long petId = pet.getId();
         when(unionService.getUserOrNotFound(ownerId)).thenReturn(owner);
         when(unionService.getPetOrNotFound(petId)).thenReturn(pet);
-        when(mapper.returnFullDto(pet)).thenReturn(petFullDto);
 
         PetFullDto petFromService = service.getUsersPetById(ownerId, petId);
         assertNotNull(petFromService);
@@ -257,8 +252,6 @@ class PetServiceTest {
         when(unionService.getUserOrNotFound(anyLong())).thenReturn(owner);
         when(unionService.getBreedOrNotFound(anyLong())).thenReturn(breed);
         when(repository.save(any())).thenReturn(pet);
-        when(mapper.returnPet(petNewDto, owner, breed)).thenReturn(pet);
-        when(mapper.returnFullDto(pet)).thenReturn(petFullDto);
 
         PetFullDto petAdded = service.add(anyLong(), petNewDto);
 
@@ -319,7 +312,6 @@ class PetServiceTest {
         petUpdated.setColors(List.of(Color.BLACK, Color.WHITE));
 
         when(repository.save(any())).thenReturn(petUpdated);
-        when(mapper.returnFullDto(petUpdated)).thenReturn(petFullDto);
 
         PetFullDto petFullDtoUpdated = service.update(owner.getId(), pet.getId(), petUpdateDto);
         assertNotNull(petFullDtoUpdated);

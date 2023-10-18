@@ -10,7 +10,7 @@ public interface UserInfoService {
 
     UserInfoDto updateUserInfo(UserInfoUpdateDto userInfoUpdateDto, Long userId);
 
-    boolean  deleteUserInfo(Long yourId);
+    boolean deleteUserInfo(Long yourId);
 
     UserInfoDto getUserInfoById(Long yourId);
 }
