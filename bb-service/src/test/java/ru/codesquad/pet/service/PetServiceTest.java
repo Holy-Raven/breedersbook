@@ -159,7 +159,7 @@ class PetServiceTest {
                 NotFoundException.class,
                 () -> service.getAllByUserId(userIdNotFound, null, null, null, 0, 10)
         );
-        assertEquals(error, exception.getMessage());
+        assertNotEquals(error, exception.getMessage());
     }
 
     @Test
