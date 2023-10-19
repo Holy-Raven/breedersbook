@@ -1,6 +1,7 @@
 package ru.codesquad.util;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.repository.BreedRepository;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UnionServiceImpl implements UnionService {
 
 
@@ -125,5 +127,16 @@ public class UnionServiceImpl implements UnionService {
             }
         }
         throw new ValidationException("Invalid number format");
+    }
+
+    @Override
+    public void checkOwner(Long userId, Long petId) {
+        getUserOrNotFound(userId);
+        Pet pet = getPetOrNotFound(petId);
+        if (!pet.getOwner().getId().equals(userId)) {
+            log.warn("User with id {} is not owner of pet with id {}", userId, pet.getId());
+            throw new ValidationException(
+                    String.format("User with id %d is not owner of pet with id %d", userId, pet.getId()));
+        }
     }
 }

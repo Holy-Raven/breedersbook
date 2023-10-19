@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.show.dto.ShowFullDto;
-import ru.codesquad.show.dto.ShowNewDto;
 import ru.codesquad.show.service.ShowService;
-
-import javax.validation.Valid;
 
 @RestController
 @Slf4j

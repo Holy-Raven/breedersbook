@@ -5,6 +5,7 @@ import ru.codesquad.show.dto.ShowNewDto;
 import ru.codesquad.show.dto.ShowShortDto;
 import ru.codesquad.show.model.Show;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,11 +34,21 @@ public class ShowMapper {
                 .build();
     }
 
-    public static Show returnShow(ShowNewDto dto) {
-        return null;
+    public static Show returnShow(ShowNewDto dto, long petId) {
+        return Show.builder()
+                .petId(petId)
+                .showRank(dto.getShowRank())
+                .club(dto.getClub())
+                .ageClass(dto.getAgeClass())
+                .mark(dto.getMark())
+                .title(dto.getTitle())
+                .date(dto.getDate())
+                .build();
     }
 
     public static List<ShowFullDto> returnFullDto(List<Show> shows) {
-        return shows.stream().map(ShowMapper::returnFullDto).collect(Collectors.toList());
+
+        return shows.isEmpty() ? Collections.emptyList()
+                : shows.stream().map(ShowMapper::returnFullDto).collect(Collectors.toList());
     }
 }
