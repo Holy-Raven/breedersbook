@@ -11,9 +11,9 @@ services:
     depends_on:
       - bb-db
     environment:
-      - spring.datasource.url=jdbc:postgresql://bb-db:5432/breedersbook
-      - spring.datasource.user=root
-      - spring.datasource.password=root
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://bb-db:5432/breedersbook
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
       - TZ=Europe/Moscow
 
   bb-db:
