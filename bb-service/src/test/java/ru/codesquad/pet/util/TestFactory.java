@@ -21,6 +21,9 @@ public class TestFactory {
     public static User makeNewUser(UserInfo userInfo, Kennel kennel, int number) {
         return User.builder()
                 .firstName("Name" + number)
+                .lastName("LastName" + number)
+                .username("Login" + number)
+                .password("Password" + number)
                 .userInfo(userInfo)
                 .kennel(kennel)
                 .created(LocalDateTime.now())
@@ -61,6 +64,7 @@ public class TestFactory {
     public static UserInfo makeNewUserInfo(int number) {
         return UserInfo.builder()
                 .birthDate(LocalDateTime.now().minusYears(31))
+                .gender(Gender.FEMALE)
                 .description("Description" + number)
                 .phone("+7900123456" + number)
                 .photo("https://photo-url" + number + ".com")

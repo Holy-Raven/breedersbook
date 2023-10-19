@@ -6,7 +6,6 @@ import ru.codesquad.breed.dto.BreedNewDto;
 import ru.codesquad.breed.dto.BreedShortDto;
 import ru.codesquad.breed.enums.FurType;
 import ru.codesquad.util.enums.EnumUtil;
-import ru.codesquad.util.enums.Gender;
 import ru.codesquad.util.enums.PetType;
 
 public class BreedMapper {
