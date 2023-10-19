@@ -21,6 +21,7 @@ public class Breed {
     @EqualsAndHashCode.Include
     Long id;
 
+
     @Enumerated(EnumType.STRING)
     @Column(name = "pet_type", nullable = false)
     PetType petType;
