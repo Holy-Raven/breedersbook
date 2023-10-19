@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+
+  bb-service:
+    build: bb-service
+    image: bb-service-image
+    container_name: bb-service-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - bb-db
+    environment:
+      - spring.datasource.url=jdbc:postgresql://bb-db:5432/breedersbook
+      - spring.datasource.user=root
+      - spring.datasource.password=root
+      - TZ=Europe/Moscow
+
+  bb-db:
+    image: postgres:14.3-alpine
+    container_name: bb-db-container
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=breedersbook
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - TZ=Europe/Moscow
