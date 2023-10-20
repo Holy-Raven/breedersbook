@@ -14,6 +14,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Schema(description = "Участие в выставке (краткая информация)")
 public class ShowShortDto {
     Long id;

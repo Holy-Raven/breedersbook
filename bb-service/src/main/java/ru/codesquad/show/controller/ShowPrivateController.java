@@ -29,7 +29,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 public class ShowPrivateController {
     private final ShowService service;
 
-    @GetMapping(path = "/{petId}")
+    @GetMapping(path = "/pets/{petId}")
     @Operation(summary = "Получение списка участия в выставках по id питомца с постраничным выводом",
             description = "Полное описание участия в выставке."
     )
@@ -53,7 +53,7 @@ public class ShowPrivateController {
         return service.getByUserById(userId, showId);
     }
 
-    @PostMapping("/{petId}")
+    @PostMapping("/pets/{petId}")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Добавление участия в выставке")
     ShowFullDto add(@RequestHeader(HEADER_USER) Long userId,
@@ -63,11 +63,10 @@ public class ShowPrivateController {
     }
 
     @PatchMapping("/{showId}")
-    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Обновление участия в выставке")
-    ShowFullDto add(@RequestHeader(HEADER_USER) Long userId,
-                    @PathVariable Long showId,
-                    @RequestBody @Valid ShowUpdateDto showUpdateDto) {
+    ShowFullDto update(@RequestHeader(HEADER_USER) Long userId,
+                       @PathVariable Long showId,
+                       @RequestBody @Valid ShowUpdateDto showUpdateDto) {
         return service.update(userId, showId, showUpdateDto);
     }
 

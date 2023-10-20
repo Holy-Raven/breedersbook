@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.show.dto.ShowFullDto;
@@ -22,6 +23,7 @@ import static ru.codesquad.show.mapper.ShowMapper.returnShow;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ShowServiceImpl implements ShowService {
     private static final Sort SORT_DESC = Sort.by(Sort.Direction.DESC, "date");
     private static final Sort SORT_ASC = Sort.by(Sort.Direction.ASC, "date");
@@ -36,6 +38,7 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
+    @Transactional
     public ShowFullDto add(Long userId, Long petId, ShowNewDto showNewDto) {
         unionService.checkOwner(userId, petId);
         Show show = returnShow(showNewDto, petId);
@@ -45,6 +48,7 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
+    @Transactional
     public void delete(long showId) {
         log.info("Show with id {} was deleted by admin", showId);
         repository.deleteById(showId);
@@ -58,6 +62,7 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
+    @Transactional
     public void deleteByUser(Long userId, long showId) {
         Show show = getOrNotFound(showId);
         unionService.checkOwner(userId, show.getPetId());
@@ -75,6 +80,7 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
+    @Transactional
     public ShowFullDto update(Long userId, Long showId, ShowUpdateDto showUpdateDto) {
         Show show = getOrNotFound(showId);
         unionService.checkOwner(userId, show.getPetId());

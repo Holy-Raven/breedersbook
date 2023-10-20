@@ -20,6 +20,7 @@ public class ShowMapper {
                 .ageClass(show.getAgeClass())
                 .mark(show.getMark())
                 .title(show.getTitle())
+                .date(show.getDate())
                 .photoUrl(show.getPhotoUrl())
                 .build();
     }
@@ -43,6 +44,7 @@ public class ShowMapper {
                 .mark(dto.getMark())
                 .title(dto.getTitle())
                 .date(dto.getDate())
+                .photoUrl(dto.getPhotoUrl())
                 .build();
     }
 
