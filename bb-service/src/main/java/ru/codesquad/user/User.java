@@ -5,11 +5,14 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.location.Location;
+import ru.codesquad.role.Role;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Status;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Set;
 
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
@@ -62,4 +65,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     Status status;
+
+    @ManyToMany
+    @JoinTable (name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }

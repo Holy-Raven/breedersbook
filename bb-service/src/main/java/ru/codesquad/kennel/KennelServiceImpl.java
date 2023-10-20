@@ -10,12 +10,15 @@ import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
+import ru.codesquad.role.Role;
+import ru.codesquad.role.RoleService;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.util.UnionService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static ru.codesquad.kennel.dto.KennelMapper.*;
 import static ru.codesquad.util.Constant.CURRENT_TIME;
@@ -26,9 +29,10 @@ import static ru.codesquad.util.Constant.CURRENT_TIME;
 @AllArgsConstructor
 public class KennelServiceImpl implements KennelService {
 
-    private final UnionService unionService;
     private final KennelRepository kennelRepository;
     private final UserRepository userRepository;
+    private final RoleService roleService;
+    private final UnionService unionService;
 
     @Override
     @Transactional
@@ -40,6 +44,11 @@ public class KennelServiceImpl implements KennelService {
         kennel.setPhone(unionService.checkPhoneNumber(kennel.getPhone()));
         kennel = kennelRepository.save(kennel);
         user.setKennel(kennel);
+
+        Set<Role> roles = user.getRoles();
+        roles.add(roleService.getBreederRole());
+        user.setRoles(roles);
+
         userRepository.save(user);
 
         return returnKennelDto(kennel);
