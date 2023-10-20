@@ -73,7 +73,13 @@ public class KennelServiceImpl implements KennelService {
     public Boolean deleteKennel(Long kennelId) {
 
         unionService.getKennelOrNotFound(kennelId);
+        User user = userRepository.findByKennelId(kennelId).get();
         kennelRepository.deleteById(kennelId);
+
+        Set<Role> roles = user.getRoles();
+        roles.remove(roleService.getBreederRole());
+        user.setRoles(roles);
+        userRepository.save(user);
 
         return true;
     }
@@ -87,6 +93,12 @@ public class KennelServiceImpl implements KennelService {
 
         if (kennel != null) {
             kennelRepository.deleteById(kennel.getId());
+
+            Set<Role> roles = user.getRoles();
+            roles.remove(roleService.getBreederRole());
+            user.setRoles(roles);
+            userRepository.save(user);
+
             return true;
         } else {
             throw new ConflictException("У юзера нет притомника");

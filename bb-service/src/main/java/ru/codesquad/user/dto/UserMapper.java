@@ -1,5 +1,6 @@
 package ru.codesquad.user.dto;
 
+import ru.codesquad.kennel.dto.KennelMapper;
 import ru.codesquad.location.LocationMapper;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.dto.UserInfoMapper;
@@ -15,6 +16,7 @@ public class UserMapper {
                 .username(user.getUsername())
                 .created(user.getCreated())
                 .roles(user.getRoles())
+                .status(user.getStatus())
                 .build();
 
         if (user.getUserInfo() != null) {
@@ -23,6 +25,10 @@ public class UserMapper {
 
         if (user.getLocation() != null) {
             userDto.setLocation(LocationMapper.returnLocationDto(user.getLocation()));
+        }
+
+        if (user.getKennel() != null) {
+            userDto.setKennel(KennelMapper.returnKennelDto(user.getKennel()));
         }
 
         return userDto;
