@@ -6,14 +6,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ValidationException;
+import ru.codesquad.role.Role;
+import ru.codesquad.role.RoleService;
 import ru.codesquad.user.dto.*;
 import ru.codesquad.userinfo.UserInfoRepository;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
+    private final RoleService roleService;
     private final UnionService unionService;
 
     @Override
@@ -33,6 +35,11 @@ public class UserServiceImpl implements UserService {
 
         user.setCreated(LocalDateTime.now());
         user.setStatus(Status.ACTIVE);
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleService.getUserRole());
+        user.setRoles(roles);
+
         user = userRepository.save(user);
 
         return UserMapper.returnUserDto(user);

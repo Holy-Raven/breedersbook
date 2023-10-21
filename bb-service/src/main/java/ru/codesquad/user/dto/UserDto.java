@@ -6,10 +6,12 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.location.LocationDto;
+import ru.codesquad.role.Role;
 import ru.codesquad.userinfo.dto.UserInfoDto;
 import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 
@@ -41,4 +43,6 @@ public class UserDto {
     KennelDto kennel;
 
     Status status;
+
+    Collection<Role> roles;
 }
