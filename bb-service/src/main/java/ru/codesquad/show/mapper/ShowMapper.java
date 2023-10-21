@@ -15,6 +15,7 @@ public class ShowMapper {
     public static ShowFullDto returnFullDto(Show show) {
         return ShowFullDto.builder()
                 .id(show.getId())
+                .petId(show.getPetId())
                 .showRank(show.getShowRank())
                 .club(show.getClub())
                 .ageClass(show.getAgeClass())
@@ -28,6 +29,7 @@ public class ShowMapper {
     public static ShowShortDto returnShortDto(Show show) {
         return ShowShortDto.builder()
                 .id(show.getId())
+                .petId(show.getPetId())
                 .showRank(show.getShowRank())
                 .mark(show.getMark())
                 .title(show.getTitle())

@@ -18,6 +18,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @Schema(description = "Участие в выставке")
 public class ShowFullDto {
     Long id;
+    Long petId;
     String showRank;
     String club;
     String ageClass;

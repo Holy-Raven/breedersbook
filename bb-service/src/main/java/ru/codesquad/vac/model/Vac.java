@@ -2,7 +2,6 @@ package ru.codesquad.vac.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.surgery.enums.SurgeryType;
 import ru.codesquad.vac.enums.VacType;
 
 import javax.persistence.*;

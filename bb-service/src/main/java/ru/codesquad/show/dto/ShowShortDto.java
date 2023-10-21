@@ -18,6 +18,7 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @Schema(description = "Участие в выставке (краткая информация)")
 public class ShowShortDto {
     Long id;
+    Long petId;
     String showRank;
     String mark;
     String title;

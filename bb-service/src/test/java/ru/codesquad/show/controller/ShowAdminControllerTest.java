@@ -20,8 +20,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.codesquad.util.TestFactory.makeFilledShow;
 import static ru.codesquad.show.mapper.ShowMapper.returnFullDto;
+import static ru.codesquad.util.TestFactory.makeFilledShow;
 
 @WebMvcTest(controllers = ShowAdminController.class)
 class ShowAdminControllerTest {
