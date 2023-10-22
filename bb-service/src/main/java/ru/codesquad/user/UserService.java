@@ -1,10 +1,11 @@
 package ru.codesquad.user;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.codesquad.user.dto.*;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     UserDto addUser(UserNewDto userNewDto);
 
