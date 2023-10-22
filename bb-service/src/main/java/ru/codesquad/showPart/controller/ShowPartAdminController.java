@@ -31,7 +31,7 @@ public class ShowPartAdminController {
     @Operation(summary = "Удаление участия в выставке",
             description = "Если не найдено, возвращается статус NOT_FOUND"
     )
-    void delete(@PathVariable @Parameter(description = "Идентификатор") long showId) {
-        service.delete(showId);
+    boolean delete(@PathVariable @Parameter(description = "Идентификатор") long showId) {
+        return service.delete(showId);
     }
 }

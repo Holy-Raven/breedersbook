@@ -75,8 +75,8 @@ public class ShowPartPrivateController {
     @Operation(summary = "Удаление участия в выставке",
             description = "Если не найдено, возвращается статус NOT_FOUND"
     )
-    void delete(@RequestHeader(HEADER_USER) Long userId,
+    boolean delete(@RequestHeader(HEADER_USER) Long userId,
                 @PathVariable @Parameter(description = "Идентификатор") long showId) {
-        service.deleteByUser(userId, showId);
+        return service.deleteByUser(userId, showId);
     }
 }
