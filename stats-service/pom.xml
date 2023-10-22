@@ -11,6 +11,12 @@
 
     <artifactId>stats-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>client</module>
+        <module>dto</module>
+        <module>server</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -18,7 +18,7 @@
 
     <modules>
         <module>bb-service</module>
-<!--		<module>stats-service</module>-->
+		<module>stats-service</module>
 	</modules>
 
 	<properties>

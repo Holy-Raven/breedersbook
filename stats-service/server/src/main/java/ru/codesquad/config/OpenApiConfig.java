@@ -6,8 +6,8 @@ import io.swagger.v3.oas.annotations.info.Info;
 
 @OpenAPIDefinition(
         info = @Info(
-                title = "Breeders Book Api",
-                description = "Convenient and effective platform for managing breeders business and communicating with customers.",
+                title = "Statistics Api",
+                description = "View statistics service for the BreedersBook application.",
                 version = "1.0.0",
                 contact = @Contact(
                         name = "Holy-Raven",
