@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.codesquad.user.UserService;
 
 @RequiredArgsConstructor
@@ -23,11 +24,13 @@ import ru.codesquad.user.UserService;
 public class SecurityConfig {
 
     private final UserService userService;
+    private final JwtRequestFilter jwtRequestFilter;
 
     //настраивает аутентификацию:
     //- получаем имя с фронта
     //- ищем по имени юзера в базе
     //- получаем пароль с фронта
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -44,7 +47,10 @@ public class SecurityConfig {
                 .and()
                 //выдаем ошибку если токен не предоставлен или устарел
                     .exceptionHandling()
-                    .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                    .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
+                //c помощью этого фильтра перекладываем пользователя из токена в контекст
+                .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.codesquad.exception.ErrorResponse;
 import ru.codesquad.security.token.JwtTokenUtils;
+import ru.codesquad.user.User;
 import ru.codesquad.user.UserService;
 
 @Service
@@ -32,8 +33,10 @@ public class AuthService {
             return new ResponseEntity<>(new ErrorResponse(e.getMessage()), HttpStatus.UNAUTHORIZED);
         }
 
+        User user = userService.findByUsername(authRequest.getUsername());
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getUsername());
         String token = jwtTokenUtils.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token));
+
+        return ResponseEntity.ok(new JwtResponse(token, user.getId()));
     }
 }

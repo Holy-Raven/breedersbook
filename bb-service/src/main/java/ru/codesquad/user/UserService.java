@@ -22,4 +22,6 @@ public interface UserService extends UserDetailsService {
     boolean deleteUserByAdmin(Long userId, String typeDelete);
 
     List<UserDto> getAllUsers(Integer from, Integer size);
+
+    User findByUsername(String username);
 }

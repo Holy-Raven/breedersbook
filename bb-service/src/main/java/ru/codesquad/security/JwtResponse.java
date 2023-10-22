@@ -1,11 +1,16 @@
 package ru.codesquad.security;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class JwtResponse {
 
-    private String token;
+    String token;
+
+    Long userId;
 }
