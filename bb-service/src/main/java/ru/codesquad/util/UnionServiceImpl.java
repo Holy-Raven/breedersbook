@@ -139,4 +139,14 @@ public class UnionServiceImpl implements UnionService {
                     String.format("User with id %d is not owner of pet with id %d", userId, pet.getId()));
         }
     }
+
+    @Override
+    public void checkOwner(Long userId, Pet pet) {
+        getUserOrNotFound(userId);
+        if (!pet.getOwner().getId().equals(userId)) {
+            log.warn("User with id {} is not owner of pet with id {}", userId, pet.getId());
+            throw new ValidationException(
+                    String.format("User with id %d is not owner of pet with id %d", userId, pet.getId()));
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package ru.codesquad.show.controller;
+package ru.codesquad.showPart.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -7,22 +7,22 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.codesquad.show.dto.ShowFullDto;
-import ru.codesquad.show.service.ShowService;
+import ru.codesquad.showPart.dto.ShowPartFullDto;
+import ru.codesquad.showPart.service.ShowPartService;
 
 @RestController
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping(path = "/admin/shows")
 @Tag(name = "Admin: участие в выставках", description = "API для работы с участием питомцев в выставках")
-public class ShowAdminController {
-    private final ShowService service;
+public class ShowPartAdminController {
+    private final ShowPartService service;
 
     @GetMapping(path = "/{showId}")
     @Operation(summary = "Получение информации об участии в выставке по id",
             description = "Полное описание участия в выставке. Если не найдено, возвращается статус NOT_FOUND."
     )
-    ShowFullDto getById(@PathVariable @Parameter(description = "Идентификатор участия в выставке") long showId) {
+    ShowPartFullDto getById(@PathVariable @Parameter(description = "Идентификатор участия в выставке") long showId) {
         return service.getById(showId);
     }
 

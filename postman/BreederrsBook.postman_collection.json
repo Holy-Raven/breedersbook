@@ -3631,7 +3631,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"class1\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-21\"\n}",
+							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"Open\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-21\",\n  \"photoUrl\": \"http://www.photo-url.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3694,7 +3694,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"class1\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-01\"\n}",
+							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"open\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-01\",\n  \"photoUrl\": \"http://www.photo-url2.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3717,7 +3717,7 @@
 					"response": []
 				},
 				{
-					"name": "AddPhotoUrl",
+					"name": "PatchPhotoUrl",
 					"event": [
 						{
 							"listen": "test",

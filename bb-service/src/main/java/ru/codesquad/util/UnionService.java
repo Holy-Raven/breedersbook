@@ -25,4 +25,6 @@ public interface UnionService {
     String checkPhoneNumber(String number);
 
     void checkOwner(Long userId, Long petId);
+
+    void checkOwner(Long userId, Pet pet);
 }

@@ -1,4 +1,4 @@
-package ru.codesquad.show.service;
+package ru.codesquad.showPart.service;
 
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,11 +9,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import ru.codesquad.show.dto.ShowFullDto;
-import ru.codesquad.show.dto.ShowNewDto;
-import ru.codesquad.show.dto.ShowUpdateDto;
-import ru.codesquad.show.model.Show;
-import ru.codesquad.show.repository.ShowRepository;
+import ru.codesquad.pet.model.Pet;
+import ru.codesquad.showPart.dto.ShowPartFullDto;
+import ru.codesquad.showPart.dto.ShowPartNewDto;
+import ru.codesquad.showPart.dto.ShowPartUpdateDto;
+import ru.codesquad.showPart.model.ShowPart;
+import ru.codesquad.showPart.repository.ShowPartRepository;
 import ru.codesquad.util.UnionService;
 
 import java.util.List;
@@ -24,45 +25,47 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
-import static ru.codesquad.show.mapper.ShowMapper.returnFullDto;
+import static ru.codesquad.showPart.mapper.ShowPartMapper.returnFullDto;
 import static ru.codesquad.util.TestFactory.*;
 
 @ExtendWith(MockitoExtension.class)
 @RequiredArgsConstructor
-class ShowServiceTest {
+class ShowPartServiceTest {
 
     @Mock
-    private ShowRepository repository;
+    private ShowPartRepository repository;
 
     @Mock
     private UnionService unionService;
 
     @InjectMocks
-    private ShowServiceImpl service;
+    private ShowPartServiceImpl service;
 
-    private ShowFullDto fullDto;
-    private Show show;
+    private ShowPartFullDto fullDto;
+    private ShowPart showPart;
 
     @BeforeEach
     void setup() {
-        show = makeFilledShow(1, 1);
-        fullDto = returnFullDto(show);
+        showPart = makeFilledShow(1, 1);
+        fullDto = returnFullDto(showPart);
     }
 
     @Test
     void shouldGetById() {
-        when(repository.findById(anyLong())).thenReturn(Optional.of(show));
-        ShowFullDto showGot = service.getById(1L);
+        when(repository.findById(anyLong())).thenReturn(Optional.of(showPart));
+        ShowPartFullDto showGot = service.getById(1L);
         assertNotNull(showGot);
         assertEquals(fullDto, showGot);
     }
 
     @Test
     void shouldAdd() {
-        ShowNewDto newDto = makeNewShowDto(1);
+        ShowPartNewDto newDto = makeNewShowDto(1);
+        Pet pet = makeFilledCat(1);
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
-        when(repository.save(any())).thenReturn(show);
-        ShowFullDto addedShow = service.add(1L, 1L, newDto);
+        when(unionService.getPetOrNotFound(anyLong())).thenReturn(pet);
+        when(repository.save(any())).thenReturn(showPart);
+        ShowPartFullDto addedShow = service.add(1L, 1L, newDto);
         assertNotNull(addedShow);
         assertEquals(fullDto, addedShow);
     }
@@ -77,8 +80,8 @@ class ShowServiceTest {
     @Test
     void shouldGetByUserById() {
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
-        when(repository.findById(anyLong())).thenReturn(Optional.of(show));
-        ShowFullDto showGot = service.getByUserById(1L, 1L);
+        when(repository.findById(anyLong())).thenReturn(Optional.of(showPart));
+        ShowPartFullDto showGot = service.getByUserById(1L, 1L);
         assertNotNull(showGot);
         assertEquals(fullDto, showGot);
     }
@@ -86,7 +89,7 @@ class ShowServiceTest {
     @Test
     void shouldDeleteByUser() {
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
-        when(repository.findById(anyLong())).thenReturn(Optional.of(show));
+        when(repository.findById(anyLong())).thenReturn(Optional.of(showPart));
         doNothing().when(repository).deleteById(anyLong());
         service.deleteByUser(1L, 1);
     }
@@ -96,7 +99,7 @@ class ShowServiceTest {
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
         //EmptyList
         when(repository.findShowsByPetId(anyLong(), any())).thenReturn(Page.empty());
-        List<ShowFullDto> dtos = service.getByPetId(1L, 1, false, 0, 10);
+        List<ShowPartFullDto> dtos = service.getByPetId(1L, 1, false, 0, 10);
         assertNotNull(dtos);
         assertEquals(0, dtos.size());
     }
@@ -105,8 +108,8 @@ class ShowServiceTest {
     void shouldGetSingleListByPetId() {
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
         //EmptyList
-        when(repository.findShowsByPetId(anyLong(), any())).thenReturn(new PageImpl<>(List.of(show)));
-        List<ShowFullDto> dtos = service.getByPetId(1L, 1, false, 0, 10);
+        when(repository.findShowsByPetId(anyLong(), any())).thenReturn(new PageImpl<>(List.of(showPart)));
+        List<ShowPartFullDto> dtos = service.getByPetId(1L, 1, false, 0, 10);
         assertNotNull(dtos);
         assertEquals(1, dtos.size());
         assertEquals(fullDto, dtos.get(0));
@@ -114,11 +117,11 @@ class ShowServiceTest {
 
     @Test
     void shouldUpdate() {
-        ShowUpdateDto updateDto = makeUpdateDto(1);
+        ShowPartUpdateDto updateDto = makeUpdateDto(1);
         doNothing().when(unionService).checkOwner(anyLong(), anyLong());
-        when(repository.findById(anyLong())).thenReturn(Optional.of(show));
-        when(repository.save(any())).thenReturn(show);
-        ShowFullDto updatedShow = service.update(1L, 1L, updateDto);
+        when(repository.findById(anyLong())).thenReturn(Optional.of(showPart));
+        when(repository.save(any())).thenReturn(showPart);
+        ShowPartFullDto updatedShow = service.update(1L, 1L, updateDto);
         assertNotNull(updatedShow);
         assertEquals(fullDto, updatedShow);
     }

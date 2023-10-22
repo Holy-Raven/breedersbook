@@ -1,4 +1,4 @@
-package ru.codesquad.show.dto;
+package ru.codesquad.showPart.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -15,16 +15,13 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Schema(description = "Участие в выставке")
-public class ShowFullDto {
+@Schema(description = "Участие в выставке (краткая информация)")
+public class ShowPartShortDto {
     Long id;
     Long petId;
     String showRank;
-    String club;
-    String ageClass;
     String mark;
     String title;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     LocalDate date;
-    String photoUrl;
 }

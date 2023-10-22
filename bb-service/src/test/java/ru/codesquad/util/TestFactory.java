@@ -7,9 +7,9 @@ import ru.codesquad.location.Location;
 import ru.codesquad.pet.enums.Color;
 import ru.codesquad.pet.enums.SaleStatus;
 import ru.codesquad.pet.model.Pet;
-import ru.codesquad.show.dto.ShowNewDto;
-import ru.codesquad.show.dto.ShowUpdateDto;
-import ru.codesquad.show.model.Show;
+import ru.codesquad.showPart.dto.ShowPartNewDto;
+import ru.codesquad.showPart.dto.ShowPartUpdateDto;
+import ru.codesquad.showPart.model.ShowPart;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.enums.Gender;
@@ -19,29 +19,31 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static ru.codesquad.show.mapper.ShowMapper.returnShow;
+import static ru.codesquad.showPart.mapper.ShowPartMapper.returnShow;
 
 public class TestFactory {
 
-    public static Show makeFilledShow(int number, long petId) {
-        Show show = returnShow(makeNewShowDto(number), petId);
-        show.setId((long) number);
-        return show;
+    public static ShowPart makeFilledShow(int number, long petId) {
+        Pet pet = makeFilledCat(number);
+        pet.setId(petId);
+        ShowPart showPart = returnShow(makeNewShowDto(number), pet);
+        showPart.setId((long) number);
+        return showPart;
     }
 
-    public static ShowUpdateDto makeUpdateDto(int number) {
-        return ShowUpdateDto.builder()
-                .mark("mark" + number)
+    public static ShowPartUpdateDto makeUpdateDto(int number) {
+        return ShowPartUpdateDto.builder()
+                .mark("EXCELLENT")
                 .title("title" + number)
                 .build();
     }
 
-    public static ShowNewDto makeNewShowDto(int number) {
-        return ShowNewDto.builder()
+    public static ShowPartNewDto makeNewShowDto(int number) {
+        return ShowPartNewDto.builder()
                 .showRank("rank" + number)
                 .club("club" + number)
-                .ageClass("age class" + number)
-                .mark("mark" + number)
+                .ageClass("HOMEMADE")
+                .mark("GOOD")
                 .title("title" + number)
                 .date(LocalDate.now().minusDays(number))
                 .photoUrl("https://photo-url" + number + ".com")

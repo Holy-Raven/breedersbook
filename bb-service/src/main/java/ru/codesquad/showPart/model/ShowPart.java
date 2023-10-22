@@ -1,4 +1,4 @@
-package ru.codesquad.show.model;
+package ru.codesquad.showPart.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -14,10 +14,10 @@ import static ru.codesquad.util.Constant.DATE_FORMAT;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "shows", schema = "public")
+@Table(name = "show_parts", schema = "public")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Show {
+public class ShowPart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
