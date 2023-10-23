@@ -1,6 +1,5 @@
 package ru.codesquad.user;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,11 @@ import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDateTime;
-import java.util.*;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     private final UserInfoRepository userInfoRepository;
     private final RoleService roleService;
     private final UnionService unionService;
+
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
