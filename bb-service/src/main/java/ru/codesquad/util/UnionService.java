@@ -23,4 +23,8 @@ public interface UnionService {
     Pet getPetOrNotFound(Long petId);
 
     String checkPhoneNumber(String number);
+
+    void checkOwner(Long userId, Long petId);
+
+    void checkOwner(Long userId, Pet pet);
 }

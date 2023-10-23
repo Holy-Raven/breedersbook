@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "71e81342-c4c2-4317-bd10-1ea4fb65f5c4",
+		"_postman_id": "5216c96d-33e2-46f6-adb2-e01d5882e697",
 		"name": "BreederrsBook",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "26331321"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29102934",
+		"_collection_link": "https://warped-moon-790013.postman.co/workspace/Team-Workspace~c024e03c-62e6-43d8-817a-66e4611229e5/collection/29102934-5216c96d-33e2-46f6-adb2-e01d5882e697?action=share&source=collection_link&creator=29102934"
 	},
 	"item": [
 		{
@@ -309,7 +310,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Jared\",\n  \"lastName\": \"Leto\",\n  \"email\": \"j.leto@yandex.ru\",\n  \"username\": \"jared\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -409,7 +418,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Till\",\n  \"lastName\": \"Lindemann\",\n  \"email\": \"t.lindemann@yandex.ru\",\n  \"username\": \"lindemann\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -449,7 +466,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Ozzy\",\n  \"lastName\": \"Osbourne\",\n  \"email\": \"o.osbourne@yandex.ru\",\n  \"username\": \"osbourne\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -489,7 +514,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"username\": \"mccartney\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -568,7 +601,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"lastName\": \"Spears\",\n  \"email\": \"b.spears@yandex.ru\",\n  \"username\": \"bspears\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -607,7 +648,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"email\": \"s.asafev@yandex.ru\",\n  \"password\": \"123456789\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -646,7 +695,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"username\": \"asafev\",\n  \"password\": \"123456789\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -685,7 +742,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Stas\",\n  \"lastName\": \"Asafev\",\n  \"username\": \"asafev\",\n  \"email\": \"s.asafevyandex.ru\",\n  \"password\": \"123456789\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -754,7 +819,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/admin/users"
+						"url": {
+							"raw": "{{baseUrl}}/admin/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -793,7 +867,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"McCartney\",\n  \"email\": \"p.mccartney@yandex.ru\",\n  \"username\": \"mccartney\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -833,7 +915,15 @@
 							"mode": "raw",
 							"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"McCartney\",\n  \"email\": \"newp.mccartney@yandex.ru\",\n  \"username\": \"newmccartney\",\n  \"password\": \"1234567890\"\n}"
 						},
-						"url": "{{baseUrl}}/users"
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -864,7 +954,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/users"
+						"url": {
+							"raw": "{{baseUrl}}/private/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -892,7 +991,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/users"
+						"url": {
+							"raw": "{{baseUrl}}/private/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users"
+							]
+						}
 					},
 					"response": []
 				},
@@ -931,7 +1039,17 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users/profile"
+						"url": {
+							"raw": "{{baseUrl}}/private/users/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users",
+								"profile"
+							]
+						}
 					},
 					"response": []
 				},
@@ -970,7 +1088,17 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users/profile"
+						"url": {
+							"raw": "{{baseUrl}}/private/users/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users",
+								"profile"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1009,7 +1137,17 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users/pass"
+						"url": {
+							"raw": "{{baseUrl}}/private/users/pass",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users",
+								"pass"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1048,7 +1186,17 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/users/pass"
+						"url": {
+							"raw": "{{baseUrl}}/private/users/pass",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"users",
+								"pass"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1188,7 +1336,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1233,7 +1390,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Сперва популярная актрисса, а потом уже и рок герл.\",\n  \"phone\": \"8 987 564 77 51\",\n  \"photo\": \"https://w.forfun.com/fetch/e4/e452d3b29d9483b0c49eb1d4a7f4b054.jpeg\",\n  \"birthDate\": \"1971-12-06 08:00:00\",\n  \"gender\": \"FEMALE\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1277,7 +1443,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\",\n  \"gender\": \"GAY\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1308,7 +1483,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1336,7 +1520,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1422,7 +1615,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1453,7 +1655,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1498,7 +1709,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Актер, музыкант и просто хороший человек.\",\n  \"phone\": \"+7 915 023 15 87\",\n  \"photo\": \"https://w-dog.ru/wallpapers/4/14/436411029196487/dzhared-leto-ot-30-sekund-do-marsa.jpg\",\n  \"birthDate\": \"1971-12-26 11:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1543,7 +1763,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Человек зановао открывший миру немецкий язык.\",\n  \"phone\": \"+7 908 666 14 88\",\n  \"photo\": \"https://image.atsw.de/atsw/production/2019-10/Till-Lindemann-video.jpg?h=&amp;rect=center%2Cmiddle%2C3355%2C2516&amp;w=800\",\n  \"birthDate\": \"1963-01-04 15:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1588,7 +1817,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"description\": \"Отец всей тяжелой рок музыки, не больше не меньше\",\n  \"phone\": \"+7 919 355 07 22\",\n  \"photo\": \"https://rusvesna.su/sites/default/files/styles/orign_wm/public/ozzi_osborn.jpg\",\n  \"birthDate\": \"1948-12-03 07:00:00\",\n  \"gender\": \"MALE\"\n}"
 						},
-						"url": "{{baseUrl}}/private/userinfo"
+						"url": {
+							"raw": "{{baseUrl}}/private/userinfo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"userinfo"
+							]
+						}
 					},
 					"response": []
 				}
@@ -1637,7 +1875,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"5 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1681,7 +1928,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2030-10-11 08:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1726,7 +1982,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1771,7 +2036,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1815,7 +2089,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (986) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1860,7 +2143,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1905,7 +2197,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Mur-Rock pride\",\n  \"descriptions\": \"Cat's-House by Ozzy Osbourne\",\n  \"phone\": \"8 (998) 118-05-19\",\n  \"photo\": \"https://avatars.dzeninfra.ru/get-zen_brief/6271726/pub_629e5f3e9cd04c7f1ce0a54e_629e616d25adf418085d6014/scale_1200\",\n  \"created\": \"1988-02-08 07:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1930,7 +2231,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/admin/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/admin/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1955,7 +2265,15 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2157,7 +2475,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2185,7 +2512,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2230,7 +2566,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2269,7 +2614,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2308,7 +2662,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/kennels"
+						"url": {
+							"raw": "{{baseUrl}}/private/kennels",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"kennels"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2358,7 +2721,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Penza\",\n  \"street\": \"Mira\",\n  \"house\": \"15\",\n  \"apartment\": \"145\"\n}"
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2403,7 +2775,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Samara\",\n  \"street\": \"Lenina\",\n  \"house\": \"7\",\n  \"apartment\": \"231\"\n}"
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2448,7 +2829,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"country\": \"Kazakhstan\",\n  \"city\": \"Nursultan\",\n  \"street\": \"Svobodi\",\n  \"house\": \"9\",\n  \"apartment\": \"15\"\n}"
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2487,7 +2877,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2515,7 +2914,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2560,7 +2968,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Sankt-Petersburg\",\n  \"street\": \"Nevski Prospekt\",\n  \"house\": \"20\",\n  \"apartment\": \"25\"\n}"
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2605,7 +3022,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "{{baseUrl}}/location/kennel/default"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel/default",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel",
+								"default"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2649,7 +3076,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "{{baseUrl}}/location/kennel/default"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel/default",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel",
+								"default"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2694,7 +3131,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "{{baseUrl}}/location/kennel/default"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel/default",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel",
+								"default"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2739,7 +3186,16 @@
 							"mode": "raw",
 							"raw": "{\r\n  \"country\": \"Russia\",\r\n  \"city\": \"Aleksandrovka\",\r\n  \"street\": \"Kuibisheva\",\r\n  \"house\": \"12\",\r\n  \"apartment\": \"10\"\r\n}"
 						},
-						"url": "{{baseUrl}}/location/kennel"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2778,7 +3234,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/location/kennel"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2823,7 +3288,16 @@
 							"mode": "raw",
 							"raw": "{\n  \"country\": \"Russia\",\n  \"city\": \"Moscow\",\n  \"street\": \"Varvarka\",\n  \"house\": \"7\",\n  \"apartment\": \"14\"\n}"
 						},
-						"url": "{{baseUrl}}/location/user"
+						"url": {
+							"raw": "{{baseUrl}}/location/user",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"user"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2868,7 +3342,17 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": "{{baseUrl}}/location/kennel/default"
+						"url": {
+							"raw": "{{baseUrl}}/location/kennel/default",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"location",
+								"kennel",
+								"default"
+							]
+						}
 					},
 					"response": []
 				}
@@ -2916,7 +3400,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/admin/breeds"
+						"url": {
+							"raw": "{{baseUrl}}/admin/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"breeds"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2959,7 +3452,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/admin/breeds"
+						"url": {
+							"raw": "{{baseUrl}}/admin/breeds",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"breeds"
+							]
+						}
 					},
 					"response": []
 				},
@@ -2993,7 +3495,17 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{baseUrl}}/admin/breeds/1"
+						"url": {
+							"raw": "{{baseUrl}}/admin/breeds/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"breeds",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -3050,7 +3562,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/pets"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3102,7 +3623,16 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/pets"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3145,7 +3675,17 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/pets/1"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3188,7 +3728,17 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/pets/2"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3224,7 +3774,16 @@
 								"type": "text"
 							}
 						],
-						"url": "{{baseUrl}}/private/pets"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3276,7 +3835,310 @@
 								}
 							}
 						},
-						"url": "{{baseUrl}}/private/pets/1"
+						"url": {
+							"raw": "{{baseUrl}}/private/pets/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"pets",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Show",
+			"item": [
+				{
+					"name": "AddShow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('showRank');",
+									"    pm.expect(jsonData).to.have.property('club');",
+									"    pm.expect(jsonData).to.have.property('ageClass');",
+									"    pm.expect(jsonData).to.have.property('mark');",
+									"    pm.expect(jsonData).to.have.property('title');",
+									"    pm.expect(jsonData).to.have.property('date');",
+									"    pm.expect(jsonData).to.have.property('photoUrl');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"Open\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-21\",\n  \"photoUrl\": \"http://www.photo-url.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/shows/pets/{{id1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"shows",
+								"pets",
+								"{{id1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddShowEarlier",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('showRank');",
+									"    pm.expect(jsonData).to.have.property('club');",
+									"    pm.expect(jsonData).to.have.property('ageClass');",
+									"    pm.expect(jsonData).to.have.property('mark');",
+									"    pm.expect(jsonData).to.have.property('title');",
+									"    pm.expect(jsonData).to.have.property('date');",
+									"    pm.expect(jsonData).to.have.property('photoUrl');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"showRank\": \"rank1\",\n  \"club\": \"club1\",\n  \"ageClass\": \"open\",\n  \"mark\": \"excellent\",\n  \"title\": \"best of the best\",\n  \"date\": \"2023-10-01\",\n  \"photoUrl\": \"http://www.photo-url2.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/shows/pets/{{id1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"shows",
+								"pets",
+								"{{id1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PatchPhotoUrl",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('showRank');",
+									"    pm.expect(jsonData).to.have.property('club');",
+									"    pm.expect(jsonData).to.have.property('ageClass');",
+									"    pm.expect(jsonData).to.have.property('mark');",
+									"    pm.expect(jsonData).to.have.property('title');",
+									"    pm.expect(jsonData).to.have.property('date');",
+									"    pm.expect(jsonData).to.have.property('photoUrl');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"photoUrl\": \"http://www.photo-url1.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/shows/{{id1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"shows",
+								"{{id1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetShow",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('showRank');",
+									"    pm.expect(jsonData).to.have.property('club');",
+									"    pm.expect(jsonData).to.have.property('ageClass');",
+									"    pm.expect(jsonData).to.have.property('mark');",
+									"    pm.expect(jsonData).to.have.property('title');",
+									"    pm.expect(jsonData).to.have.property('date');",
+									"    pm.expect(jsonData).to.have.property('photoUrl');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/private/shows/{{id1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"shows",
+								"{{id1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetShowsByPetId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.be.ok;",
+									"});",
+									"",
+									"pm.test(\"Test list events response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"    var jsonData = pm.response.json()",
+									"    pm.expect(jsonData).is.an('array'); ",
+									"    pm.expect(jsonData.length, 'List length must be not 0').to.be.greaterThan(0);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/private/shows/pets/{{id1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"shows",
+								"pets",
+								"{{id1}}"
+							]
+						}
 					},
 					"response": []
 				}
