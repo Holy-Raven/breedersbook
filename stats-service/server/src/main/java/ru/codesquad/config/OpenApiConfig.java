@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.Info;
                 version = "1.0.0",
                 contact = @Contact(
                         name = "Holy-Raven",
-                        email = "ek@mail.ru",
+                        email = "breedersbook@yandex.ru",
                         url = "https://github.com/Holy-Raven/breedersbook"
                 )
         )

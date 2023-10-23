@@ -1,16 +1,17 @@
 package ru.codesquad.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.codesquad.DateTimeConstant;
 import ru.codesquad.dto.HitDto;
 import ru.codesquad.dto.StatsDto;
 import ru.codesquad.service.PetStatsService;
+import ru.codesquad.util.Constant;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -41,12 +42,14 @@ public class PetStatsController {
             description = "Позволяет получить статистику просмотров питомца(ев) при указании конкретных эндроинтов " +
                     "либо статистику по всем питомцам в порядке убывания просмотров"
     )
-    public List<StatsDto> getStats(@RequestParam @DateTimeFormat(pattern = DateTimeConstant.dtPattern)
-                                   LocalDateTime start,
-                                   @RequestParam @DateTimeFormat(pattern = DateTimeConstant.dtPattern)
-                                   LocalDateTime end,
-                                   @RequestParam(required = false) String[] uris,
-                                   @RequestParam(defaultValue = "false") boolean unique) {
+    public List<StatsDto> getStats(@RequestParam @DateTimeFormat(pattern = Constant.DATE_TIME_FORMAT)
+                                   @Parameter(description = "Дата начала периода просмотров") LocalDateTime start,
+                                   @RequestParam @DateTimeFormat(pattern = Constant.DATE_TIME_FORMAT)
+                                   @Parameter(description = "Дата окончания периода просмотров") LocalDateTime end,
+                                   @RequestParam(required = false)
+                                   @Parameter(description = "Эндпоинты питомцев") String[] uris,
+                                   @RequestParam(defaultValue = "false")
+                                   @Parameter(description = "Уникальность ip-адреса") boolean unique) {
         log.info("Getting stats");
         if (uris == null) {
             return statsService.getStatsWithoutUris(start, end, unique);

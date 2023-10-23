@@ -8,18 +8,16 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 import ru.codesquad.dto.HitDto;
+import ru.codesquad.util.Constant;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Service
 public class StatsClient extends BaseClient {
     @Value("${bb-server.url}")
     public String nameApp;
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_PATTERN);
 
     @Autowired
     public StatsClient(@Value("${bb-server.url}") String serverUrl,
@@ -37,7 +35,7 @@ public class StatsClient extends BaseClient {
                 .app(nameApp)
                 .uri(httpServletRequest.getRequestURI())
                 .ip(httpServletRequest.getRemoteAddr())
-                .timestamp(LocalDateTime.now().format(DATE_TIME_FORMATTER))
+                .timestamp(LocalDateTime.now().format(Constant.FORMATTER))
                 .build();
         return post("/pets/hit", hitDto);
     }
@@ -47,7 +45,7 @@ public class StatsClient extends BaseClient {
                 .app(nameApp)
                 .uri(httpServletRequest.getRequestURI())
                 .ip(httpServletRequest.getRemoteAddr())
-                .timestamp(LocalDateTime.now().format(DATE_TIME_FORMATTER))
+                .timestamp(LocalDateTime.now().format(Constant.FORMATTER))
                 .build();
         return post("/kennels/hit", hitDto);
     }
@@ -57,8 +55,8 @@ public class StatsClient extends BaseClient {
                                                       String[] uris,
                                                       boolean unique) {
         Map<String, Object> parameters = Map.of(
-                "start", start.format(DATE_TIME_FORMATTER),
-                "end", end.format(DATE_TIME_FORMATTER),
+                "start", start.format(Constant.FORMATTER),
+                "end", end.format(Constant.FORMATTER),
                 "uris", uris,
                 "unique", unique
         );
@@ -67,20 +65,20 @@ public class StatsClient extends BaseClient {
 
     public ResponseEntity<Object> getPetStatsWithoutUris(LocalDateTime start, LocalDateTime end, boolean unique) {
         Map<String, Object> parameters = Map.of(
-                "start", start.format(DATE_TIME_FORMATTER),
-                "end", end.format(DATE_TIME_FORMATTER),
+                "start", start.format(Constant.FORMATTER),
+                "end", end.format(Constant.FORMATTER),
                 "unique", unique
         );
         return get("/pets/stats?start={start}&end={end}&unique={unique}", parameters);
     }
 
     public ResponseEntity<Object> getKennelStatsWithUris(LocalDateTime start,
-                                                      LocalDateTime end,
-                                                      String[] uris,
-                                                      boolean unique) {
+                                                         LocalDateTime end,
+                                                         String[] uris,
+                                                         boolean unique) {
         Map<String, Object> parameters = Map.of(
-                "start", start.format(DATE_TIME_FORMATTER),
-                "end", end.format(DATE_TIME_FORMATTER),
+                "start", start.format(Constant.FORMATTER),
+                "end", end.format(Constant.FORMATTER),
                 "uris", uris,
                 "unique", unique
         );
@@ -89,8 +87,8 @@ public class StatsClient extends BaseClient {
 
     public ResponseEntity<Object> getKennelStatsWithoutUris(LocalDateTime start, LocalDateTime end, boolean unique) {
         Map<String, Object> parameters = Map.of(
-                "start", start.format(DATE_TIME_FORMATTER),
-                "end", end.format(DATE_TIME_FORMATTER),
+                "start", start.format(Constant.FORMATTER),
+                "end", end.format(Constant.FORMATTER),
                 "unique", unique
         );
         return get("/kennels/stats?start={start}&end={end}&unique={unique}", parameters);

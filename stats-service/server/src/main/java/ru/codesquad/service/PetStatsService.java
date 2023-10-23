@@ -48,6 +48,9 @@ public class PetStatsService implements StatsService {
 
     @Override
     public List<StatsDto> getStatsWithoutUris(LocalDateTime start, LocalDateTime end, boolean unique) {
+        if (start.isAfter(end)) {
+            throw new DateTimeException("Start is after end");
+        }
         List<StatsDto> statsByRequest = new ArrayList<>();
         if (!(unique)) {
             for (Stats stats : hitRepository.findAllNonUniqueVisitsWithoutUris(start, end)) {

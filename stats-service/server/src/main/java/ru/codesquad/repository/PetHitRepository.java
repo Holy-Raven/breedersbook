@@ -21,7 +21,7 @@ public interface PetHitRepository extends JpaRepository<PetHit, Long> {
             "from PetHit as h " +
             "where ((cast(h.timestamp as date)) between (cast(?1 as date)) and (cast(?2 as date))) " +
             "and h.uri IN (?3) " +
-            "group by h.ip, h.app, h.uri " +
+            "group by h.app, h.uri " +
             "order by count(distinct h.ip) desc")
     List<Stats> findAllUniqueVisitsWithUris(LocalDateTime start, LocalDateTime end, String[] uris);
 
@@ -35,7 +35,7 @@ public interface PetHitRepository extends JpaRepository<PetHit, Long> {
     @Query("select new ru.codesquad.model.Stats(h.app, h.uri, count(distinct h.ip)) " +
             "from PetHit as h " +
             "where ((cast(h.timestamp as date)) between (cast(?1 as date)) and (cast(?2 as date))) " +
-            "group by h.ip, h.app, h.uri " +
+            "group by h.app, h.uri " +
             "order by count(distinct h.ip) desc")
     List<Stats> findAllUniqueVisitsWithoutUris(LocalDateTime start, LocalDateTime end);
 }
