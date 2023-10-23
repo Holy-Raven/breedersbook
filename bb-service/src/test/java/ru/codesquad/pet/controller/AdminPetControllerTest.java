@@ -1,7 +1,6 @@
 package ru.codesquad.pet.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = AdminPetController.class)
 class AdminPetControllerTest {
     private static final String URL = "/admin/pets";
-    private static final int SIZE_DEFAULT = 10;
 
     @Autowired
     ObjectMapper mapper;
@@ -27,11 +25,6 @@ class AdminPetControllerTest {
 
     @Autowired
     private MockMvc mvc;
-
-    @BeforeEach
-    void setup() {
-
-    }
 
     @Test
     void shouldCreateMockMvc() {

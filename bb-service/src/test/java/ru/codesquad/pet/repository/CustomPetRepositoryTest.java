@@ -25,7 +25,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static ru.codesquad.pet.util.TestFactory.*;
+import static ru.codesquad.util.TestFactory.*;
 
 @SpringBootTest
 @AutoConfigureTestDatabase
