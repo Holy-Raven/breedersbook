@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
+
     private final JwtTokenUtils jwtTokenUtils;
 
     //что бы встроится в цепочку фильтров спринга

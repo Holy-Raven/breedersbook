@@ -1,11 +1,14 @@
 package ru.codesquad.user;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ValidationException;
@@ -23,13 +26,18 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 @Transactional(readOnly = true)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final RoleService roleService;
     private final UnionService unionService;
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -43,6 +51,7 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getUserRole());
         user.setRoles(roles);
+        user.setPassword(passwordEncoder.encode(userNewDto.getPassword()));
 
         user = userRepository.save(user);
 
@@ -173,6 +182,13 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = findByUsername(username);
+
+        if (username.equals("admin")) {
+            Set<Role> roles = user.getRoles();
+            roles.add(roleService.getAdminRole());
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),

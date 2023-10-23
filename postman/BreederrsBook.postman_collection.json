@@ -7,6 +7,270 @@
 	},
 	"item": [
 		{
+			"name": "security",
+			"item": [
+				{
+					"name": "auth admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"100\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "auth jared",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jared\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth"
+					},
+					"response": []
+				},
+				{
+					"name": "get admin hello buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXJlZCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2OTgwODU1MTAsImlhdCI6MTY5ODA4MzcxMH0.8JeehwQu3MYx9fQoIrs5XVFnBgfMgEVhBeYEpqVagi8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/admin"
+					},
+					"response": []
+				},
+				{
+					"name": "get private hello breeder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXJlZCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2OTgwODU1MTAsImlhdCI6MTY5ODA4MzcxMH0.8JeehwQu3MYx9fQoIrs5XVFnBgfMgEVhBeYEpqVagi8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/private"
+					},
+					"response": []
+				},
+				{
+					"name": "get info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXJlZCIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE2OTgwODU1MTAsImlhdCI6MTY5ODA4MzcxMH0.8JeehwQu3MYx9fQoIrs5XVFnBgfMgEVhBeYEpqVagi8"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/info"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "home page",
+			"item": [
+				{
+					"name": "get home",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/home"
+					},
+					"response": []
+				},
+				{
+					"name": "get hello breeder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/home/hello-breeder"
+					},
+					"response": []
+				},
+				{
+					"name": "get hello user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/home/hello-user"
+					},
+					"response": []
+				},
+				{
+					"name": "get hello buyer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате String\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.string;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/home/hello-buyer"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User",
 			"item": [
 				{
