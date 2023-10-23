@@ -70,19 +70,14 @@ public class HelloController {
 
     private String readFile(String file) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
-
         StringBuilder stringBuilder = new StringBuilder();
 
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
             }
             return stringBuilder.toString();
-
-        } finally {
-            reader.close();
         }
     }
 }
