@@ -26,11 +26,9 @@ public class HelloController {
     @Operation(summary = "Загрузка приветственной странички приложения",
             description = "Первая страница, которую видит пользователь заходя на сайт"
     )
-    public String home() throws IOException {
+    public String home() {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\home.txt";
-
-        return readFile(file);
+        return "home";
     }
 
     @GetMapping("private")
@@ -38,11 +36,9 @@ public class HelloController {
     @Operation(summary = "Загрузка приветственной странички для заводчиков",
             description = "Описание функционала приложения для заводчиков"
     )
-    public String helloBreeder() throws IOException {
+    public String helloBreeder() {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\hello_breeder.txt";
-
-        return readFile(file);
+        return "private";
     }
 
     @GetMapping("admin")
@@ -52,9 +48,7 @@ public class HelloController {
     )
     public String helloBuyer() throws IOException {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\hello_buyer.txt";
-
-        return readFile(file);
+        return "admin";
     }
 
     @GetMapping("info")
