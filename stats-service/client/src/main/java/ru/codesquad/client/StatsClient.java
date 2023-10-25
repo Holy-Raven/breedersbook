@@ -16,11 +16,11 @@ import java.util.Map;
 
 @Service
 public class StatsClient extends BaseClient {
-    @Value("${bb-server.url}")
+    @Value("${bb.app.name}")
     public String nameApp;
 
     @Autowired
-    public StatsClient(@Value("${bb-server.url}") String serverUrl,
+    public StatsClient(@Value("${statistics.server.url}") String serverUrl,
                        RestTemplateBuilder builder) {
         super(
                 builder
