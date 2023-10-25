@@ -15,7 +15,7 @@ import java.security.Principal;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
+@RequestMapping(path = "/home")
 @Tag(name = "AllUsers: приветствие", description = "Приветственная страница сайта")
 public class HelloController {
 
@@ -46,7 +46,7 @@ public class HelloController {
     @Operation(summary = "Загрузка приветственной странички для покупателей",
             description = "Описание функционала приложения для покупателей"
     )
-    public String helloBuyer() throws IOException {
+    public String helloBuyer() {
 
         return "admin";
     }
@@ -59,19 +59,14 @@ public class HelloController {
 
     private String readFile(String file) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
-
         StringBuilder stringBuilder = new StringBuilder();
 
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while((line = reader.readLine()) != null) {
                 stringBuilder.append(line);
             }
             return stringBuilder.toString();
-
-        } finally {
-            reader.close();
         }
     }
 }
