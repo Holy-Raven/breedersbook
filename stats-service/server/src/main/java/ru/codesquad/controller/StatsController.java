@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.dto.HitDto;
 import ru.codesquad.dto.StatsDto;
-import ru.codesquad.service.PetStatsService;
+import ru.codesquad.service.StatsService;
 import ru.codesquad.util.Constant;
 
 import javax.validation.Valid;
@@ -18,31 +18,32 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pets")
 @AllArgsConstructor
 @Slf4j
-@Tag(name = "Статистика питомцев", description = "API для работы со статистикой питомцев")
-public class PetStatsController {
-    private final PetStatsService statsService;
+@Tag(name = "Статистика", description = "API для работы со статистикой")
+public class StatsController {
+    private final StatsService statsService;
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(
             summary = "Сохранение перехода по эндпоинту",
-            description = "Позволяет сохранить просмотр питомца"
+            description = "Позволяет сохранить просмотр сущности"
     )
-    public void saveHit(@RequestBody @Valid HitDto hitDto) {
+    public void saveHit(@RequestBody @Valid HitDto hitDto,
+                        @RequestParam @Parameter(description = "Наименование сущности") String entity) {
         log.info("Creating hit");
-        statsService.save(hitDto);
+        statsService.save(hitDto, entity);
     }
 
     @GetMapping("/stats")
     @Operation(
             summary = "Получение статистики",
-            description = "Позволяет получить статистику просмотров питомца(ев) при указании конкретных эндроинтов " +
-                    "либо статистику по всем питомцам в порядке убывания просмотров"
+            description = "Позволяет получить статистику просмотров сущности(ей) при указании конкретных эндроинтов " +
+                    "либо статистику по всем сущностям заданной категории в порядке убывания просмотров"
     )
-    public List<StatsDto> getStats(@RequestParam @DateTimeFormat(pattern = Constant.DATE_TIME_FORMAT)
+    public List<StatsDto> getStats(@RequestParam @Parameter(description = "Наименование сущности") String entity,
+                                   @RequestParam @DateTimeFormat(pattern = Constant.DATE_TIME_FORMAT)
                                    @Parameter(description = "Дата начала периода просмотров") LocalDateTime start,
                                    @RequestParam @DateTimeFormat(pattern = Constant.DATE_TIME_FORMAT)
                                    @Parameter(description = "Дата окончания периода просмотров") LocalDateTime end,
@@ -52,8 +53,8 @@ public class PetStatsController {
                                    @Parameter(description = "Уникальность ip-адреса") boolean unique) {
         log.info("Getting stats");
         if (uris == null) {
-            return statsService.getStatsWithoutUris(start, end, unique);
+            return statsService.getStatsWithoutUris(entity, start, end, unique);
         }
-        return statsService.getStatsWithUris(start, end, uris, unique);
+        return statsService.getStatsWithUris(entity, start, end, uris, unique);
     }
 }

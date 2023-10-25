@@ -1,4 +1,4 @@
-package ru.codesquad.pet.repository;
+package ru.codesquad.repository;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import ru.codesquad.Statistics;
 import ru.codesquad.model.PetHit;
 import ru.codesquad.model.Stats;
-import ru.codesquad.repository.PetHitRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
