@@ -1,5 +1,6 @@
 package ru.codesquad.location;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import static ru.codesquad.util.Constant.HEADER_USER;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/location")
+@RequestMapping(path = "/private/location")
 @Tag(name = "Private: адреса", description = "Закрытый API для работы с адресами")
 public class LocationController {
 
@@ -21,6 +22,9 @@ public class LocationController {
 
     @PostMapping("/user")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавление адреса для user",
+            description = "Если пользователь не найден, возвращается статус NOT_FOUND и сообщение об ошибке."
+    )
     public LocationDto addUserLocation(@RequestHeader(HEADER_USER) Long yourId,
                                        @Valid @RequestBody LocationDto locationDto) {
 
@@ -30,6 +34,10 @@ public class LocationController {
 
     @PostMapping("/kennel")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавление адреса для kennel",
+            description = "Если хозяин питомника не найден, возвращается статус NOT_FOUND и сообщение об ошибке. " +
+                          "Если у пользователя нет питомника, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public LocationDto addKennelLocation(@RequestHeader(HEADER_USER) Long yourId,
                                          @Valid @RequestBody LocationDto locationDto) {
 
@@ -39,6 +47,11 @@ public class LocationController {
 
     @PostMapping("/kennel/default")
     @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Добавление адреса для kennel по умолчанию (адрес пользователя)",
+            description = "Если хозяин питомника не найден, возвращается статус NOT_FOUND и сообщение об ошибке. " +
+                          "Если у пользователя нет питомника, возвращается статут CONFLICT и сообщение об ошибке." +
+                          "Если у пользователя нет адреса, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public LocationDto addKennelDefaultLocation(@RequestHeader(HEADER_USER) Long yourId) {
 
         log.info("User {} add location in his kennel ", yourId);
@@ -47,6 +60,10 @@ public class LocationController {
 
     @PatchMapping("/user")
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление адреса для user",
+            description = "Если пользователь не найден, возвращается статус NOT_FOUND и сообщение об ошибке." +
+                          "Если у пользователя нет адреса, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public LocationDto updateUserLocation(@RequestHeader(HEADER_USER) Long yourId,
                                           @Valid @RequestBody LocationUpdateDto locationUpdateDto) {
 
@@ -56,6 +73,11 @@ public class LocationController {
 
     @PatchMapping("/kennel")
     @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление адреса для kennel",
+            description = "Если хозяин питомника не найден, возвращается статус NOT_FOUND и сообщение об ошибке. " +
+                          "Если у пользователя нет питомника, возвращается статут CONFLICT и сообщение об ошибке." +
+                          "Если у питомника нет адреса, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public LocationDto updateKennelLocation(@RequestHeader(HEADER_USER) Long yourId,
                                             @Valid @RequestBody LocationUpdateDto locationUpdateDto) {
 
@@ -65,6 +87,10 @@ public class LocationController {
 
     @DeleteMapping("/user")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление адреса у kennel",
+            description = "Если хозяин питомника не найден, возвращается статус NOT_FOUND и сообщение об ошибке. " +
+                          "Если у пользователя нет адреса, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public void deleteUserLocation(@RequestHeader(HEADER_USER) Long yourId) {
 
         log.info("User {} deleted location from profile ", yourId);
@@ -73,6 +99,11 @@ public class LocationController {
 
     @DeleteMapping("/kennel")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление адреса у kennel",
+            description = "Если хозяин питомника не найден, возвращается статус NOT_FOUND и сообщение об ошибке. " +
+                          "Если у пользователя нет питомника, возвращается статут CONFLICT и сообщение об ошибке." +
+                          "Если у питомника нет адреса, возвращается статут CONFLICT и сообщение об ошибке."
+    )
     public void deleteKennelLocation(@RequestHeader(HEADER_USER) Long yourId) {
 
         log.info("User {} deleted location from his kennel ", yourId);
