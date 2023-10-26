@@ -10,62 +10,51 @@ import org.springframework.web.bind.annotation.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.Principal;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/home")
+@RequestMapping(path = "/")
 @Tag(name = "AllUsers: приветствие", description = "Приветственная страница сайта")
 public class HelloController {
 
     String file;
 
-    @GetMapping
+    @GetMapping("home")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Загрузка приветственной странички приложения",
             description = "Первая страница, которую видит пользователь заходя на сайт"
     )
-    public String home() throws IOException {
+    public String home() {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\home.txt";
-
-        return readFile(file);
+        return "home";
     }
 
-    @GetMapping("/hello-breeder")
+    @GetMapping("private")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Загрузка приветственной странички для заводчиков",
             description = "Описание функционала приложения для заводчиков"
     )
-    public String helloBreeder() throws IOException {
+    public String helloBreeder() {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\hello_breeder.txt";
-
-        return readFile(file);
+        return "private";
     }
 
-    @GetMapping("/hello-buyer")
+    @GetMapping("admin")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Загрузка приветственной странички для покупателей",
             description = "Описание функционала приложения для покупателей"
     )
-    public String helloBuyer() throws IOException {
+    public String helloBuyer() {
 
-        file = "bb-service\\src\\main\\resources\\readme-resources\\hello_buyer.txt";
-
-        return readFile(file);
+        return "admin";
     }
 
-    @GetMapping("/hello-user")
+    @GetMapping("info")
     @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "Загрузка приветственной странички для пользователей",
-            description = "Описание функционала приложения для пользователей"
-    )
-    public String helloUser() throws IOException {
-
-        file = "bb-service\\src\\main\\resources\\readme-resources\\hello_user.txt";
-
-        return readFile(file);
+    public String getInfo(Principal principal){
+        return principal.getName();
     }
 
     private String readFile(String file) throws IOException {

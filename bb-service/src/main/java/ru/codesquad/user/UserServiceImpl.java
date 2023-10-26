@@ -1,8 +1,13 @@
 package ru.codesquad.user;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.exception.ValidationException;
@@ -14,6 +19,7 @@ import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,13 +28,19 @@ import java.util.Set;
 @Slf4j
 @Service
 @Transactional(readOnly = true)
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final RoleService roleService;
     private final UnionService unionService;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+    private PasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -42,6 +54,7 @@ public class UserServiceImpl implements UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getUserRole());
         user.setRoles(roles);
+        user.setPassword(passwordEncoder.encode(userNewDto.getPassword()));
 
         user = userRepository.save(user);
 
@@ -156,5 +169,34 @@ public class UserServiceImpl implements UserService {
         userRepository.findAll(pageRequest).forEach(user -> userDtoList.add(UserMapper.returnUserDto(user)));
 
         return userDtoList;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(
+                String.format("Пользователь '%s' не найден", username)
+        ));
+    }
+
+    //берем USER из базы данных (ищем по username) и преобразуем в USERDETAILS
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = findByUsername(username);
+
+        if (username.equals("admin")) {
+            Set<Role> roles = user.getRoles();
+            roles.add(roleService.getAdminRole());
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList())
+        );
     }
 }

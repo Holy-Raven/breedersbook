@@ -1,10 +1,11 @@
 package ru.codesquad.user;
 
+import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.codesquad.user.dto.*;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserService extends UserDetailsService {
 
     UserDto addUser(UserNewDto userNewDto);
 
@@ -21,4 +22,6 @@ public interface UserService {
     boolean deleteUserByAdmin(Long userId, String typeDelete);
 
     List<UserDto> getAllUsers(Integer from, Integer size);
+
+    User findByUsername(String username);
 }

@@ -36,7 +36,7 @@ public class User {
     @Column(name = "last_name", nullable = false)
     String lastName;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
     String email;
 
     @Column(name = "username", unique = true)
@@ -50,14 +50,14 @@ public class User {
     UserInfo userInfo;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id", nullable = false)
+    @JoinColumn(name = "location_id")
     Location location;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "kennel_id")
     Kennel kennel;
 
-    @Column(name = "created")
+    @Column(name = "created", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
 
