@@ -15,13 +15,13 @@ import java.security.Principal;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/home")
+@RequestMapping(path = "/")
 @Tag(name = "AllUsers: приветствие", description = "Приветственная страница сайта")
 public class HelloController {
 
     String file;
 
-    @GetMapping
+    @GetMapping("home")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Загрузка приветственной странички приложения",
             description = "Первая страница, которую видит пользователь заходя на сайт"
