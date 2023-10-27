@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Service
 public class StatsClient extends BaseClient {
-    @Value("${bb.app.name}")
+    @Value("${app.name}")
     public String nameApp;
 
     @Autowired
