@@ -15,7 +15,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/home")
-@Tag(name = "AllUsers: приветствие", description = "Приветственная страница сайта")
+@Tag(name = "Public: приветствие", description = "Приветственная страница сайта")
 public class HelloController {
 
     String file;

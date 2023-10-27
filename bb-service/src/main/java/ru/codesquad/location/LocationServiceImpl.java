@@ -109,6 +109,7 @@ public class LocationServiceImpl implements LocationService {
         User user = unionService.getUserOrNotFound(yourId);
         Location location = isUserLocation(user);
 
+        unionService.getLocationOrNotFound(user.getLocation().getId());
         locationRepository.deleteById(location.getId());
 
         return true;
@@ -119,11 +120,8 @@ public class LocationServiceImpl implements LocationService {
     public Boolean deleteKennelLocation(Long yourId) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = user.getKennel();
-
-        isUserKennel(user);
-        Location location = kennel.getLocation();
-        isKennelLocation(kennel);
+        Kennel kennel = isUserKennel(user);
+        Location location = isKennelLocation(kennel);
 
         unionService.getLocationOrNotFound(kennel.getLocation().getId());
         locationRepository.deleteById(location.getId());
