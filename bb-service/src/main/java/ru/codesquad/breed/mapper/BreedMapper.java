@@ -36,4 +36,15 @@ public class BreedMapper {
                 .photoUrl(breedNewDto.getPhotoUrl())
                 .build();
     }
+
+    public static Breed returnBreed(BreedFullDto breedFullDtoDto) {
+        return Breed.builder()
+                .id(breedFullDtoDto.getId())
+                .petType(breedFullDtoDto.getPetType())
+                .name(breedFullDtoDto.getName())
+                .description(breedFullDtoDto.getDescription())
+                .furType(breedFullDtoDto.getFurType())
+                .photoUrl(breedFullDtoDto.getPhotoUrl())
+                .build();
+    }
 }

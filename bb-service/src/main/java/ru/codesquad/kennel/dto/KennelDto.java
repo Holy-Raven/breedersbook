@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.breed.dto.BreedFullDto;
+import ru.codesquad.breed.dto.BreedShortDto;
 import ru.codesquad.location.LocationDto;
+import ru.codesquad.util.enums.PetType;
 
 import java.time.LocalDateTime;
 
@@ -20,6 +23,8 @@ public class KennelDto {
 
     Long id;
 
+    PetType petType;
+
     String name;
 
     String descriptions;
@@ -32,4 +37,6 @@ public class KennelDto {
     String photo;
 
     LocationDto location;
+
+    BreedShortDto breed;
 }

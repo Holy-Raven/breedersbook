@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.codesquad.breed.Breed;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
@@ -39,7 +40,8 @@ public class KennelServiceImpl implements KennelService {
     public KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = returnKennel(kennelNewDto);
+        Breed breed = unionService.getBreedOrNotFound(kennelNewDto.getBreedId());
+        Kennel kennel = returnKennel(kennelNewDto, breed);
 
         kennel.setPhone(unionService.checkPhoneNumber(kennel.getPhone()));
         kennel = kennelRepository.save(kennel);

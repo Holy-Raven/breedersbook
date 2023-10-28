@@ -13,5 +13,7 @@ import java.util.List;
 public interface BreedRepository extends JpaRepository<Breed, Long> {
     List<Breed> findByFurType(FurType furType);
 
+    Breed findByName(String name);
+
     Page<Breed> findByFurType(FurType furType, PageRequest page);
 }

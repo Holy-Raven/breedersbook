@@ -21,6 +21,10 @@ import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
 @Schema(description = "Данные для добавления питомника")
 public class KennelNewDto {
 
+    @NotBlank(message = "Pet Type can't be blank")
+    @Size(min = 3, max = 3, message = "Pet Type size should be exact 3-chars-length")
+    String petType;
+
     @Size(min = 4, max = 250, message = "name must be greater than 4 and less than 250")
     @NotBlank(message = "Name cannot be empty and consist only of spaces.")
     String name;
@@ -41,4 +45,7 @@ public class KennelNewDto {
     @Past(message = "end may be in the past")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
+
+    @NotNull(message = "You should specify breed of your pet")
+    Long breedId;
 }
