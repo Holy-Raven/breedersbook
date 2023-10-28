@@ -1407,6 +1407,165 @@
 			]
 		},
 		{
+			"name": "Breed",
+			"item": [
+				{
+					"name": "addCatBreed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"cat\",\n    \"name\": \"British\",\n    \"description\": \"The British Shorthair has a broad chest, muscular neck, strong jaws and a well developed muzzle. The legs are thick and strong. The breed looks like what she originally was, a cat that was to keep rodents out of the barn and the house. The coat of the British is thick and dense.\",\n    \"furType\": \"short\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/admin/breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "addDogBreed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"dog\",\n    \"name\": \"Brussels Griffon\",\n    \"description\": \"Brussels griffons are small-sized dogs weighing eight to 12 pounds (four to six kilograms). A Brussels griffon's height is about 10 inches at the shoulder. Their body is square and their head is large and round with a very short nose.\",\n    \"furType\": \"short\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/admin/breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "getBreedById - cat",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/admin/breeds/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getBreedById - dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/admin/breeds/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Kennel",
 			"item": [
 				{
@@ -1447,7 +1606,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"5 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"5 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\",\n  \"breedId\": \"2\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1491,7 +1650,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2030-10-11 08:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2030-10-11 08:00:00\",\n  \"breedId\": \"2\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1536,7 +1695,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Golden Psarnya\",\n  \"descriptions\": \"Psarnya Jared Leto\",\n  \"phone\": \"8 (975) 325-78-86\",\n  \"photo\": \"https://www.isrageo.com/wp-content/uploads/2020/07/sobvek-.jpg\",\n  \"created\": \"2010-10-11 08:00:00\",\n  \"breedId\": \"2\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1581,7 +1740,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\",\n  \"breedId\": \"1\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1625,7 +1784,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (986) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (986) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\",\n  \"breedId\": \"1\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1670,7 +1829,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\",\n  \"breedId\": \"2\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1715,7 +1874,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Mur-Rock pride\",\n  \"descriptions\": \"Cat's-House by Ozzy Osbourne\",\n  \"phone\": \"8 (998) 118-05-19\",\n  \"photo\": \"https://avatars.dzeninfra.ru/get-zen_brief/6271726/pub_629e5f3e9cd04c7f1ce0a54e_629e616d25adf418085d6014/scale_1200\",\n  \"created\": \"1988-02-08 07:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"Mur-Rock pride\",\n  \"descriptions\": \"Cat's-House by Ozzy Osbourne\",\n  \"phone\": \"8 (998) 118-05-19\",\n  \"photo\": \"https://avatars.dzeninfra.ru/get-zen_brief/6271726/pub_629e5f3e9cd04c7f1ce0a54e_629e616d25adf418085d6014/scale_1200\",\n  \"created\": \"1988-02-08 07:00:00\",\n    \"breedId\": \"1\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -1967,7 +2126,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\",\n  \"breedId\": \"1\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -2040,7 +2199,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\"\n}"
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"Tsap-Csarap\",\n  \"descriptions\": \"Cat's-House by Taylor Momsen\",\n  \"phone\": \"8 (966) 566-08-12\",\n  \"photo\": \"https://psihosamatica.ru/wp-content/uploads/2023/01/kotyi.jpg\",\n  \"created\": \"2018-12-01 12:00:00\",\n  \"breedId\": \"1\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},
@@ -2681,131 +2840,6 @@
 							"raw": ""
 						},
 						"url": "{{baseUrl}}/private/location/kennel/default"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Breed",
-			"item": [
-				{
-					"name": "addCatBreed",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200 or 201\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
-									"});",
-									"pm.test(\"Has response\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"pm.test(\"Test location fields\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('id');",
-									"    pm.expect(jsonData).to.have.property('petType');",
-									"    pm.expect(jsonData).to.have.property('name');",
-									"    pm.expect(jsonData).to.have.property('description');",
-									"    pm.expect(jsonData).to.have.property('furType');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"petType\": \"cat\",\n    \"name\": \"British\",\n    \"description\": \"The British Shorthair has a broad chest, muscular neck, strong jaws and a well developed muzzle. The legs are thick and strong. The breed looks like what she originally was, a cat that was to keep rodents out of the barn and the house. The coat of the British is thick and dense.\",\n    \"furType\": \"short\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{baseUrl}}/admin/breeds"
-					},
-					"response": []
-				},
-				{
-					"name": "addDogBreed",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200 or 201\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
-									"});",
-									"pm.test(\"Has response\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"pm.test(\"Test location fields\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('id');",
-									"    pm.expect(jsonData).to.have.property('petType');",
-									"    pm.expect(jsonData).to.have.property('name');",
-									"    pm.expect(jsonData).to.have.property('description');",
-									"    pm.expect(jsonData).to.have.property('furType');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"petType\": \"dog\",\n    \"name\": \"Brussels Griffon\",\n    \"description\": \"Brussels griffons are small-sized dogs weighing eight to 12 pounds (four to six kilograms). A Brussels griffon's height is about 10 inches at the shoulder. Their body is square and their head is large and round with a very short nose.\",\n    \"furType\": \"short\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{baseUrl}}/admin/breeds"
-					},
-					"response": []
-				},
-				{
-					"name": "getBreedById",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200 or 201\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
-									"});",
-									"pm.test(\"Has response\", function () {",
-									"    pm.response.to.be.withBody;",
-									"    pm.response.to.be.json;",
-									"});",
-									"pm.test(\"Test location fields\", function () {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('id');",
-									"    pm.expect(jsonData).to.have.property('petType');",
-									"    pm.expect(jsonData).to.have.property('name');",
-									"    pm.expect(jsonData).to.have.property('description');",
-									"    pm.expect(jsonData).to.have.property('furType');",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{baseUrl}}/admin/breeds/1"
 					},
 					"response": []
 				}
