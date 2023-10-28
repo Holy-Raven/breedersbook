@@ -1,0 +1,764 @@
+{
+	"info": {
+		"_postman_id": "be273ee3-ffd5-45af-9f38-7c6512562928",
+		"name": "BreedersBook - Feature \"Statistics\"",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29185180"
+	},
+	"item": [
+		{
+			"name": "Сохранение информации о том, что к животному с id=1 был запрос",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"app\": \"bb-service\",\r\n    \"uri\": \"/pets/1\",\r\n    \"ip\": \"192.158.1.38\",\r\n    \"timestamp\": \"2023-10-10 10:10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hit?entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hit"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Сохранение информации о том, что к животному с id=1 был запрос (тот же ip)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"app\": \"bb-service\",\r\n    \"uri\": \"/pets/1\",\r\n    \"ip\": \"192.158.1.38\",\r\n    \"timestamp\": \"2023-10-10 10:10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hit?entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hit"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Сохранение информации о том, что к животному с id=2 был запрос",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"app\": \"bb-service\",\r\n    \"uri\": \"/pets/2\",\r\n    \"ip\": \"192.158.1.38\",\r\n    \"timestamp\": \"2023-10-10 10:10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hit?entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hit"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Сохранение информации о том, что к животному с id=2 был запрос (иной ip)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"app\": \"bb-service\",\r\n    \"uri\": \"/pets/2\",\r\n    \"ip\": \"192.158.1.39\",\r\n    \"timestamp\": \"2023-10-10 10:10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hit?entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hit"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение статистики по посещениям (тест на обработку параметра uris)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const source = pm.collectionVariables.get('response');\r",
+							"const target = pm.response.json();\r",
+							"const target1 = pm.response.json()[0];\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать 1 запись\", function () {\r",
+							"    pm.expect(target).to.have.length(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поля: app, uri, hits\", function () {\r",
+							"pm.expect(target1).to.have.property('app');\r",
+							"pm.expect(target1).to.have.property('uri');\r",
+							"pm.expect(target1).to.have.property('hits');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/stats?entity=PET&start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/pets/1&unique=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						},
+						{
+							"key": "start",
+							"value": "2020-05-05 00:00:00"
+						},
+						{
+							"key": "end",
+							"value": "2035-05-05 00:00:00"
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1"
+						},
+						{
+							"key": "unique",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение статистики по посещениям (без параметра uris)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const source = pm.collectionVariables.get('response');\r",
+							"const target = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать более 1 записи\", function () {\r",
+							"    pm.expect(target.length).to.be.above(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2020-05-05 00:00:00"
+						},
+						{
+							"key": "end",
+							"value": "2035-05-05 00:00:00"
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1",
+							"disabled": true
+						},
+						{
+							"key": "unique",
+							"value": "false",
+							"disabled": true
+						},
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение статистики по посещениям (тест на опциональность параметра unique)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json при запросе без опционального параметра unique\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const source = pm.collectionVariables.get('response');\r",
+							"const target = pm.response.json()[0];\r",
+							"\r",
+							"pm.test(\"При запросе с unique==true должен быть всего 1 уникальный запрос\", function () {\r",
+							"    pm.expect(target.hits).to.equal(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поля: app, uri, hits\", function () {\r",
+							"    pm.expect(target).to.have.all.keys('app', 'uri', 'hits');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/stats?entity=PET&start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&uris=/pets/1&unique=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						},
+						{
+							"key": "start",
+							"value": "2020-05-05 00:00:00"
+						},
+						{
+							"key": "end",
+							"value": "2035-05-05 00:00:00"
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1"
+						},
+						{
+							"key": "unique",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение статистики по посещениям (тест на верную обработку запроса с неверными датами начала и конца диапазона времени)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+							"    pm.response.to.be.badRequest;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/stats?entity=PET&start=2035-05-05 00:00:00&end=2020-05-05 00:00:00&uris=/pets/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "PET"
+						},
+						{
+							"key": "start",
+							"value": "2035-05-05 00:00:00",
+							"description": "(Required) Дата и время начала диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")"
+						},
+						{
+							"key": "end",
+							"value": "2020-05-05 00:00:00",
+							"description": "(Required) Дата и время конца диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")"
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1"
+						},
+						{
+							"key": "unique",
+							"value": "false",
+							"description": "Нужно ли учитывать только уникальные посещения (только с уникальным ip)",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Тест на верную обработку запроса без даты начала",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+							"    pm.response.to.be.badRequest;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/stats?uris=/pets/1&end=2020-05-05 00:00:00&entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2035-05-05 00:00:00",
+							"description": "(Required) Дата и время начала диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")",
+							"disabled": true
+						},
+						{
+							"key": "unique",
+							"value": "false",
+							"description": "Нужно ли учитывать только уникальные посещения (только с уникальным ip)",
+							"disabled": true
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1"
+						},
+						{
+							"key": "end",
+							"value": "2020-05-05 00:00:00"
+						},
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Тест на верную обработку запроса без даты конца",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 400\", function () {\r",
+							"    pm.response.to.be.badRequest;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/stats?start=2035-05-05 00:00:00&uris=/pets/1&entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2035-05-05 00:00:00",
+							"description": "(Required) Дата и время начала диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")"
+						},
+						{
+							"key": "end",
+							"value": "2020-05-05 00:00:00",
+							"description": "(Required) Дата и время конца диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")",
+							"disabled": true
+						},
+						{
+							"key": "unique",
+							"value": "false",
+							"description": "Нужно ли учитывать только уникальные посещения (только с уникальным ip)",
+							"disabled": true
+						},
+						{
+							"key": "uris",
+							"value": "/pets/1"
+						},
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Сохранение информации о том, что к животному с id=1 был запрос",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"app\": \"bb-service\",\r\n    \"uri\": \"/pets/1\",\r\n    \"ip\": \"192.158.1.38\",\r\n    \"timestamp\": \"2023-10-10 10:10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/hit?entity=pet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"hit"
+					],
+					"query": [
+						{
+							"key": "entity",
+							"value": "pet"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Тест корреткной работы сохранения и просмотра количества просмотров",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+							"    pm.response.to.be.ok;    \r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							"const target = pm.response.json();\r",
+							"const source = pm.collectionVariables.get('source');\r",
+							"\r",
+							"\r",
+							"pm.test(\"Посты должны содержать поля: app, uri, hits\", function () {\r",
+							"    pm.expect(target[0]).to.have.all.keys('app', 'uri', 'hits');\r",
+							"    pm.expect(target[1]).to.have.all.keys('app', 'uri', 'hits');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"В теле ответа должна соблюдаться сортировка по убыванию количества просмотров\", function(){\r",
+							"    pm.expect(target[0].hits).to.be.above(target[1].hits);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/stats?start=2020-05-05 00:00:00&end=2035-05-05 00:00:00&entity=PET",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"stats"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2020-05-05 00:00:00",
+							"description": "(Required) Дата и время начала диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")"
+						},
+						{
+							"key": "end",
+							"value": "2035-05-05 00:00:00",
+							"description": "(Required) Дата и время конца диапазона за который нужно выгрузить статистику (в формате \"yyyy-MM-dd HH:mm:ss\")"
+						},
+						{
+							"key": "uris",
+							"value": "aliqua o",
+							"description": "Список uri для которых нужно выгрузить статистику",
+							"disabled": true
+						},
+						{
+							"key": "unique",
+							"value": "false",
+							"description": "Нужно ли учитывать только уникальные посещения (только с уникальным ip)",
+							"disabled": true
+						},
+						{
+							"key": "entity",
+							"value": "PET"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:9090"
+		}
+	]
+}
