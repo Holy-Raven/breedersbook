@@ -69,6 +69,7 @@ public class KennelMapper {
 
     public static KennelShortDto returnKennelShortDto(Kennel kennel) {
         KennelShortDto kennelShortDto = KennelShortDto.builder()
+                .petType(kennel.getType())
                 .name(kennel.getName())
                 .descriptions(kennel.getDescriptions())
                 .phone(kennel.getPhone())

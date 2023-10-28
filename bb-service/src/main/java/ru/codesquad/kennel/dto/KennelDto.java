@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import ru.codesquad.breed.dto.BreedFullDto;
 import ru.codesquad.breed.dto.BreedShortDto;
 import ru.codesquad.location.LocationDto;
 import ru.codesquad.util.enums.PetType;
