@@ -125,6 +125,7 @@ public class TestFactory {
 
     public static Kennel makeNewKennel(int number) {
         return Kennel.builder()
+                .type(PetType.DOG)
                 .name("Name" + number)
                 .descriptions("Description" + number)
                 .phone("+7900123456" + number)

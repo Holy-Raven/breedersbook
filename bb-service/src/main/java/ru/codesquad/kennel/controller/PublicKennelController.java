@@ -13,6 +13,9 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
+import static ru.codesquad.exception.util.ErrorMessages.FROM_ERROR_MESSAGE;
+import static ru.codesquad.exception.util.ErrorMessages.SIZE_ERROR_MESSAGE;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -38,8 +41,11 @@ public class PublicKennelController {
     @Operation(summary = "Получение списка питомников",
             description = "Получение списка питомников(краткая информация) с постраничным выводом."
     )
-    public List<KennelShortDto> getAllKennels(@PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
-                                              @Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
+    public List<KennelShortDto> getAllKennels(@PositiveOrZero(message = FROM_ERROR_MESSAGE)
+                                              @RequestParam(defaultValue = "0") Integer from,
+                                              @Positive(message = SIZE_ERROR_MESSAGE)
+                                              @RequestParam(defaultValue = "10") Integer size)
+    {
 
         log.info("List all Kennels");
         return kennelService.getPublicAllKennels(from, size);

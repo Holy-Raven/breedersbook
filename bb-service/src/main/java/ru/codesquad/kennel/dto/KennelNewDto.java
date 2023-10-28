@@ -46,6 +46,5 @@ public class KennelNewDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
     LocalDateTime created;
 
-    @NotNull(message = "You should specify breed of your pet")
     Long breedId;
 }

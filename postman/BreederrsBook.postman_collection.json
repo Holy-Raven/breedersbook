@@ -1410,7 +1410,7 @@
 			"name": "Breed",
 			"item": [
 				{
-					"name": "addCatBreed",
+					"name": "addCatBreed - British",
 					"event": [
 						{
 							"listen": "test",
@@ -1453,7 +1453,7 @@
 					"response": []
 				},
 				{
-					"name": "addDogBreed",
+					"name": "addDogBreed - Brussels Griffon",
 					"event": [
 						{
 							"listen": "test",
@@ -1485,6 +1485,49 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"petType\": \"dog\",\n    \"name\": \"Brussels Griffon\",\n    \"description\": \"Brussels griffons are small-sized dogs weighing eight to 12 pounds (four to six kilograms). A Brussels griffon's height is about 10 inches at the shoulder. Their body is square and their head is large and round with a very short nose.\",\n    \"furType\": \"short\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/admin/breeds"
+					},
+					"response": []
+				},
+				{
+					"name": "addDogBreed - Сhinese crested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('furType');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"dog\",\n    \"name\": \"Сhinese crested\",\n    \"description\": \"Dogs of this breed can be both naked (hair is available only in the area of the head, tail and limbs), and with soft veil—like hair covering the entire body - puffs (powder puff)\",\n    \"furType\": \"short\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1560,6 +1603,53 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{baseUrl}}/admin/breeds/2"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllBreedByRype - dog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/breeds?type=dog&from=0&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "dog"
+								},
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -1829,7 +1919,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\",\n  \"breedId\": \"2\"\n}"
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"Psarnya №1\",\n  \"descriptions\": \"Psarnya Till Lindemann\",\n  \"phone\": \"8 (987) 856-12-11\",\n  \"photo\": \"https://blog.dogbuddy.com/wp-content/uploads/2016/07/1280x720-63S-1152x720.jpg\",\n  \"created\": \"2006-08-09 06:00:00\",\n  \"breedId\": \"3\"\n}"
 						},
 						"url": "{{baseUrl}}/private/kennels"
 					},

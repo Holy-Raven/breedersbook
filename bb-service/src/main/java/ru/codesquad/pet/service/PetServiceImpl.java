@@ -2,6 +2,7 @@ package ru.codesquad.pet.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
@@ -116,7 +117,8 @@ public class PetServiceImpl implements PetService {
                                                 int priceFrom, Integer priceTo,
                                                 PetSort petSort, Integer from, Integer size,
                                                 String ip) {
-        List<Long> breedIds = breedRepo.findByFurType(fur).stream().map(Breed::getId).collect(Collectors.toList());
+        PageRequest pageRequest = PageRequest.of(from / size, size);
+        List<Long> breedIds = breedRepo.findByFurType(fur, pageRequest).stream().map(Breed::getId).collect(Collectors.toList());
         PublicSearchCriteria criteria = PublicSearchCriteria.builder()
                 .petType(petType)
                 .breedIds(breedIds)

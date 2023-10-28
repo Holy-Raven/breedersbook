@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS kennels
     photo_url    VARCHAR(2048),
 
     location_id  BIGINT,
-    breed_id     BIGINT                                    NOT NULL,
+    breed_id     BIGINT,
 
     CONSTRAINT fk_kennels_location_id FOREIGN KEY (location_id) REFERENCES locations (id) ON DELETE SET NULL,
     CONSTRAINT fk_kennels_breed_id FOREIGN KEY (breed_id) REFERENCES breeds (id),
