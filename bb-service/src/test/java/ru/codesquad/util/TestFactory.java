@@ -130,6 +130,7 @@ public class TestFactory {
                 .descriptions("Description" + number)
                 .phone("+7900123456" + number)
                 .created(LocalDateTime.now())
+                .photo("photo")
                 .build();
     }
 
