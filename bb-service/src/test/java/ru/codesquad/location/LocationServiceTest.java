@@ -10,6 +10,7 @@ import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.KennelRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
+import ru.codesquad.user.UserService;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.UnionService;
 

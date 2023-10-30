@@ -2,7 +2,6 @@ package ru.codesquad.kennel;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +16,6 @@ import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.PetType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -76,7 +74,7 @@ public class KennelServiceImpl implements KennelService {
     public Boolean deleteKennel(Long kennelId) {
 
         unionService.getKennelOrNotFound(kennelId);
-        User user = userRepository.findByKennelId(kennelId).get();
+        User user = userRepository.findByKennelId(kennelId);
         kennelRepository.deleteById(kennelId);
 
         Set<Role> roles = user.getRoles();
