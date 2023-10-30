@@ -12,7 +12,6 @@ import ru.codesquad.kennel.dto.KennelMapper;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.location.*;
 import ru.codesquad.role.Role;
-import ru.codesquad.role.RoleRepository;
 import ru.codesquad.role.RoleService;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
@@ -55,20 +54,14 @@ public class KennelServiceTest {
 
     private Breed breed;
 
-    private LocationDto locationDto;
-
     private KennelDto kennelDto;
 
     private KennelNewDto kennelNewDto;
-
-    private Set<Role> roleSet;
 
     @BeforeEach
     void beforeEach() {
 
         location = makeNewLocation(1);
-        locationDto = LocationMapper.returnLocationDto(location);
-
         userInfo = makeNewUserInfo(1);
 
         breed = makeNewBreed();
@@ -83,7 +76,7 @@ public class KennelServiceTest {
         user = makeNewUser(userInfo, kennel, 1);
         user.setId(1L);
         user.setKennel(kennel);
-        roleSet = new HashSet<>();
+        Set<Role> roleSet = new HashSet<>();
         roleSet.add(roleService.getUserRole());
         user.setRoles(roleSet);
 

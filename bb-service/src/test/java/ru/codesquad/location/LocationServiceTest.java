@@ -3,14 +3,14 @@ package ru.codesquad.location;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.KennelRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
-import ru.codesquad.user.UserService;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.UnionService;
 
@@ -18,23 +18,23 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static ru.codesquad.util.TestFactory.*;
 
+@ExtendWith(MockitoExtension.class)
 @RequiredArgsConstructor
-@SpringBootTest
 public class LocationServiceTest {
 
-    @Autowired
-    private LocationService locationService;
+    @InjectMocks
+    private LocationServiceImpl locationService;
 
-    @MockBean
+    @Mock
     private LocationRepository locationRepository;
 
-    @MockBean
+    @Mock
     private KennelRepository kennelRepository;
 
-    @MockBean
+    @Mock
     private UserRepository userRepository;
 
-    @MockBean
+    @Mock
     private UnionService unionService;
 
     private User user;
