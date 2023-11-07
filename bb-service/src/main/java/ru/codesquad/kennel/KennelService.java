@@ -25,4 +25,6 @@ public interface KennelService {
     List<KennelDto> getAllKennelByAdminFromParam(Integer from, Integer size, String type, Long breedId);
 
     List<KennelShortDto> getAllKennelByPublicFromParam(Integer from, Integer size, String type, Long breedId);
+
+    PetType makePetType(String type);
 }

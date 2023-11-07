@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import ru.codesquad.breed.Breed;
-import ru.codesquad.kennel.dto.KennelDto;
-import ru.codesquad.kennel.dto.KennelMapper;
-import ru.codesquad.kennel.dto.KennelNewDto;
+import ru.codesquad.kennel.dto.*;
 import ru.codesquad.location.*;
 import ru.codesquad.role.Role;
 import ru.codesquad.role.RoleService;
@@ -17,8 +16,11 @@ import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.util.UnionService;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.PetType;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.mockito.Mockito.*;
@@ -48,18 +50,32 @@ public class KennelServiceTest {
 
     private Kennel kennel;
 
+    private Kennel kennel2;
+
+    private Kennel kennel3;
+
     private UserInfo userInfo;
 
     private Location location;
 
     private Breed breed;
 
+    private PetType petType;
+
     private KennelDto kennelDto;
 
     private KennelNewDto kennelNewDto;
 
+    private KennelUpdateDto kennelUpdateDto;
+
+    private PageRequest pageRequest;
+
     @BeforeEach
     void beforeEach() {
+
+        pageRequest = PageRequest.of(0 / 10, 10);
+
+        petType = PetType.DOG;
 
         location = makeNewLocation(1);
         userInfo = makeNewUserInfo(1);
@@ -72,6 +88,13 @@ public class KennelServiceTest {
         kennel.setLocation(location);
         kennel.setBreed(breed);
         kennelDto = KennelMapper.returnKennelDto(kennel);
+
+        kennel2 = makeNewKennel(2);
+        kennel2.setId(2L);
+        kennel2.setBreed(breed);
+        kennel3 = makeNewKennel(3);
+        kennel3.setId(3L);
+        kennel3.setBreed(breed);
 
         user = makeNewUser(userInfo, kennel, 1);
         user.setId(1L);
@@ -87,6 +110,12 @@ public class KennelServiceTest {
                 .phone("+79001234561")
                 .photo("photo")
                 .created(kennel.getCreated())
+                .build();
+
+        kennelUpdateDto = KennelUpdateDto.builder()
+                .name("NameUp")
+                .descriptions("DescriptionUp")
+                .phone("+79001234569")
                 .build();
     }
 
@@ -145,5 +174,50 @@ public class KennelServiceTest {
         kennelRepository.deleteById(kennel.getId());
 
         verify(kennelRepository, times(1)).deleteById(1L);
+    }
+
+    @Test
+    void updateKennel() {
+
+        when(unionService.getUserOrNotFound(anyLong())).thenReturn(user);
+        when(kennelRepository.save(any(Kennel.class))).thenReturn(kennel);
+
+        KennelDto kennelDtoTest = kennelService.updateKennel(user.getId(),kennelUpdateDto);
+
+        assertEquals(kennelDtoTest.getName(), kennel.getName());
+        assertEquals(kennelDtoTest.getDescriptions(), kennel.getDescriptions());
+        assertEquals(kennelDtoTest.getPhone(), kennel.getPhone());
+
+        verify(kennelRepository, times(1)).save(kennel);
+    }
+
+    @Test
+    void getPublicKennelById() {
+
+        when(unionService.getKennelOrNotFound(anyLong())).thenReturn(kennel);
+
+        KennelShortDto kennelShortDtoTest = kennelService.getPublicKennelById(kennel.getId());
+
+        assertEquals(kennelShortDtoTest.getName(), kennelDto.getName());
+        assertEquals(kennelShortDtoTest.getDescriptions(), kennelDto.getDescriptions());
+        assertEquals(kennelShortDtoTest.getPhone(), kennelDto.getPhone());
+
+        verify(unionService, times(1)).getKennelOrNotFound(kennel.getId());
+    }
+
+    @Test
+    void getAllKennelByAdminFromParam() {
+
+        List<Kennel> kennelList = List.of(kennel, kennel2, kennel3);
+
+        when(EnumUtil.getValue(PetType.class, anyString())).thenReturn(petType);
+//        when(kennelService.makePetType(anyString())).thenReturn(petType);
+
+        when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), pageRequest)).thenReturn(kennelList);
+        List<KennelDto> kennelDtoTestList = kennelService.getAllKennelByAdminFromParam(0, 10, "DOG", 1L);
+
+        assertEquals(kennelList.size(), kennelDtoTestList.size());
+
+        verify(kennelRepository, times(1)).findKennelByParam(PetType.DOG, 1L, pageRequest);
     }
 }

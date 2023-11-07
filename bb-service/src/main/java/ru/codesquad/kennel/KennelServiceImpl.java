@@ -151,10 +151,7 @@ public class KennelServiceImpl implements KennelService {
     @Transactional(readOnly = true)
     public List<KennelDto> getAllKennelByAdminFromParam(Integer from, Integer size, String type, Long breedId) {
 
-        PetType petType = null;
-        if (type !=null) {
-            petType = EnumUtil.getValue(PetType.class, type);
-        }
+        PetType petType = makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
@@ -166,14 +163,21 @@ public class KennelServiceImpl implements KennelService {
     @Transactional(readOnly = true)
     public List<KennelShortDto> getAllKennelByPublicFromParam(Integer from, Integer size, String type, Long breedId) {
 
-        PetType petType = null;
-        if (type !=null) {
-            petType = EnumUtil.getValue(PetType.class, type);
-        }
+        PetType petType = makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
 
         return  kennelList.stream().map(KennelMapper::returnKennelShortDto).collect(Collectors.toList());
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public PetType makePetType(String type) {
+
+        PetType petType = null;
+        if (type != null) {
+            petType = EnumUtil.getValue(PetType.class, type);
+        }
+        return petType;
     }
 }
