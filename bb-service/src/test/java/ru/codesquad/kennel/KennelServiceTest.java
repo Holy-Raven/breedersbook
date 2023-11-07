@@ -210,13 +210,23 @@ public class KennelServiceTest {
 
         List<Kennel> kennelList = List.of(kennel, kennel2, kennel3);
 
-        when(EnumUtil.getValue(PetType.class, anyString())).thenReturn(petType);
-//        when(kennelService.makePetType(anyString())).thenReturn(petType);
-
-        when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), pageRequest)).thenReturn(kennelList);
+        when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), any())).thenReturn(kennelList);
         List<KennelDto> kennelDtoTestList = kennelService.getAllKennelByAdminFromParam(0, 10, "DOG", 1L);
 
         assertEquals(kennelList.size(), kennelDtoTestList.size());
+
+        verify(kennelRepository, times(1)).findKennelByParam(PetType.DOG, 1L, pageRequest);
+    }
+
+    @Test
+    void getAllKennelByPublicFromParam() {
+
+        List<Kennel> kennelList = List.of(kennel, kennel2, kennel3);
+
+        when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), any())).thenReturn(kennelList);
+        List<KennelShortDto> kennelShortDtoTestList = kennelService.getAllKennelByPublicFromParam(0, 10, "DOG", 1L);
+
+        assertEquals(kennelList.size(), kennelShortDtoTestList.size());
 
         verify(kennelRepository, times(1)).findKennelByParam(PetType.DOG, 1L, pageRequest);
     }
