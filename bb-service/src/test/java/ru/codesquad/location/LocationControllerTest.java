@@ -18,6 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.codesquad.util.Constant.HEADER_USER;
 
 
 @WebMvcTest(controllers = LocationController.class)
@@ -32,7 +33,7 @@ public class LocationControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    private LocationDto UserLocationDto;
+    private LocationDto userLocationDto;
 
     private LocationDto KennelLocationDto;
 
@@ -43,7 +44,7 @@ public class LocationControllerTest {
     @BeforeEach
     void beforeEach() {
 
-        UserLocationDto = LocationDto.builder()
+        userLocationDto = LocationDto.builder()
                 .country("Russia")
                 .city("Samara")
                 .street("Mira")
@@ -81,22 +82,22 @@ public class LocationControllerTest {
 
     @Test
     void addUserLocation() throws Exception {
-        when(locationService.addUserLocation(anyLong(), any(LocationDto.class))).thenReturn(UserLocationDto);
+        when(locationService.addUserLocation(anyLong(), any(LocationDto.class))).thenReturn(userLocationDto);
 
         mvc.perform(post("/private/location/user")
-                        .header("B-B-User-Id", 1)
-                        .content(mapper.writeValueAsString(UserLocationDto))
+                        .header(HEADER_USER, 1)
+                        .content(mapper.writeValueAsString(userLocationDto))
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.country", is(UserLocationDto.getCountry()), String.class))
-                .andExpect(jsonPath("$.city", is(UserLocationDto.getCity()), String.class))
-                .andExpect(jsonPath("$.street", is(UserLocationDto.getStreet()), String.class))
-                .andExpect(jsonPath("$.house", is(UserLocationDto.getHouse()), String.class))
-                .andExpect(jsonPath("$.apartment", is(UserLocationDto.getApartment()), Integer.class));
+                .andExpect(jsonPath("$.country", is(userLocationDto.getCountry()), String.class))
+                .andExpect(jsonPath("$.city", is(userLocationDto.getCity()), String.class))
+                .andExpect(jsonPath("$.street", is(userLocationDto.getStreet()), String.class))
+                .andExpect(jsonPath("$.house", is(userLocationDto.getHouse()), String.class))
+                .andExpect(jsonPath("$.apartment", is(userLocationDto.getApartment()), Integer.class));
 
-        verify(locationService, times(1)).addUserLocation(1L, UserLocationDto);
+        verify(locationService, times(1)).addUserLocation(1L, userLocationDto);
     }
 
     @Test
@@ -104,7 +105,7 @@ public class LocationControllerTest {
         when(locationService.addKennelLocation(anyLong(), any(LocationDto.class))).thenReturn(KennelLocationDto);
 
         mvc.perform(post("/private/location/kennel")
-                        .header("B-B-User-Id", 1)
+                        .header(HEADER_USER, 1)
                         .content(mapper.writeValueAsString(KennelLocationDto))
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -121,20 +122,20 @@ public class LocationControllerTest {
 
     @Test
     void addKennelDefaultLocation() throws Exception {
-        when(locationService.addKennelDefaultLocation(anyLong())).thenReturn(UserLocationDto);
+        when(locationService.addKennelDefaultLocation(anyLong())).thenReturn(userLocationDto);
 
         mvc.perform(post("/private/location/kennel/default")
-                        .header("B-B-User-Id", 1)
-                        .content(mapper.writeValueAsString(UserLocationDto))
+                        .header(HEADER_USER, 1)
+                        .content(mapper.writeValueAsString(userLocationDto))
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.country", is(UserLocationDto.getCountry()), String.class))
-                .andExpect(jsonPath("$.city", is(UserLocationDto.getCity()), String.class))
-                .andExpect(jsonPath("$.street", is(UserLocationDto.getStreet()), String.class))
-                .andExpect(jsonPath("$.house", is(UserLocationDto.getHouse()), String.class))
-                .andExpect(jsonPath("$.apartment", is(UserLocationDto.getApartment()), Integer.class));
+                .andExpect(jsonPath("$.country", is(userLocationDto.getCountry()), String.class))
+                .andExpect(jsonPath("$.city", is(userLocationDto.getCity()), String.class))
+                .andExpect(jsonPath("$.street", is(userLocationDto.getStreet()), String.class))
+                .andExpect(jsonPath("$.house", is(userLocationDto.getHouse()), String.class))
+                .andExpect(jsonPath("$.apartment", is(userLocationDto.getApartment()), Integer.class));
 
         verify(locationService, times(1)).addKennelDefaultLocation(1L);
     }
@@ -144,7 +145,7 @@ public class LocationControllerTest {
         when(locationService.updateUserLocation(anyLong(), any(LocationUpdateDto.class))).thenReturn(newLocation);
 
         mvc.perform(patch("/private/location/user")
-                        .header("B-B-User-Id", 1)
+                        .header(HEADER_USER, 1)
                         .content(mapper.writeValueAsString(locationUpdateDto))
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -164,7 +165,7 @@ public class LocationControllerTest {
         when(locationService.updateKennelLocation(anyLong(), any(LocationUpdateDto.class))).thenReturn(newLocation);
 
         mvc.perform(patch("/private/location/kennel")
-                        .header("B-B-User-Id", 1)
+                        .header(HEADER_USER, 1)
                         .content(mapper.writeValueAsString(locationUpdateDto))
                         .characterEncoding(StandardCharsets.UTF_8)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -183,7 +184,7 @@ public class LocationControllerTest {
     void deleteUserLocation() throws Exception {
 
         mvc.perform(delete("/private/location/user")
-                        .header("B-B-User-Id", 1))
+                        .header(HEADER_USER, 1))
                 .andExpect(status().isNoContent());
 
         verify(locationService, times(1)).deleteUserLocation(1L);
@@ -193,7 +194,7 @@ public class LocationControllerTest {
     void deleteKennelLocation() throws Exception {
 
         mvc.perform(delete("/private/location/kennel")
-                        .header("B-B-User-Id", 1))
+                        .header(HEADER_USER, 1))
                 .andExpect(status().isNoContent());
 
         verify(locationService, times(1)).deleteKennelLocation(1L);

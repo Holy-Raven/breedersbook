@@ -5,20 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.codesquad.breed.Breed;
 import ru.codesquad.exception.ConflictException;
-import ru.codesquad.kennel.dto.KennelDto;
-import ru.codesquad.kennel.dto.KennelNewDto;
-import ru.codesquad.kennel.dto.KennelShortDto;
-import ru.codesquad.kennel.dto.KennelUpdateDto;
+import ru.codesquad.kennel.dto.*;
 import ru.codesquad.role.Role;
 import ru.codesquad.role.RoleService;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.util.UnionService;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.PetType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static ru.codesquad.kennel.dto.KennelMapper.*;
 import static ru.codesquad.util.Constant.CURRENT_TIME;
@@ -39,7 +39,8 @@ public class KennelServiceImpl implements KennelService {
     public KennelDto addKennel(Long yourId, KennelNewDto kennelNewDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
-        Kennel kennel = returnKennel(kennelNewDto);
+        Breed breed = unionService.getBreedOrNotFound(kennelNewDto.getBreedId());
+        Kennel kennel = returnKennel(kennelNewDto, breed);
 
         kennel.setPhone(unionService.checkPhoneNumber(kennel.getPhone()));
         kennel = kennelRepository.save(kennel);
@@ -73,7 +74,7 @@ public class KennelServiceImpl implements KennelService {
     public Boolean deleteKennel(Long kennelId) {
 
         unionService.getKennelOrNotFound(kennelId);
-        User user = userRepository.findByKennelId(kennelId).get();
+        User user = userRepository.findByKennelId(kennelId);
         kennelRepository.deleteById(kennelId);
 
         Set<Role> roles = user.getRoles();
@@ -148,25 +149,35 @@ public class KennelServiceImpl implements KennelService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<KennelDto> getAdminAllKennels(Integer from, Integer size) {
+    public List<KennelDto> getAllKennelByAdminFromParam(Integer from, Integer size, String type, Long breedId) {
+
+        PetType petType = makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
-        List<KennelDto> kennelDtoList = new ArrayList<>();
+        List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
 
-        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelDtoList.add(returnKennelDto(kennel)));
-
-        return kennelDtoList;
+        return kennelList.stream().map(KennelMapper::returnKennelDto).collect(Collectors.toList());
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<KennelShortDto> getPublicAllKennels(Integer from, Integer size) {
+    public List<KennelShortDto> getAllKennelByPublicFromParam(Integer from, Integer size, String type, Long breedId) {
+
+        PetType petType = makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
-        List<KennelShortDto> kennelShortDto = new ArrayList<>();
+        List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
 
-        kennelRepository.findAll(pageRequest).forEach(kennel -> kennelShortDto.add(returnKennelShortDto(kennel)));
+        return  kennelList.stream().map(KennelMapper::returnKennelShortDto).collect(Collectors.toList());
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public PetType makePetType(String type) {
 
-        return kennelShortDto;
+        PetType petType = null;
+        if (type != null) {
+            petType = EnumUtil.getValue(PetType.class, type);
+        }
+        return petType;
     }
 }

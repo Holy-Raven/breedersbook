@@ -4,6 +4,7 @@ import ru.codesquad.kennel.dto.KennelDto;
 import ru.codesquad.kennel.dto.KennelNewDto;
 import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.kennel.dto.KennelUpdateDto;
+import ru.codesquad.util.enums.PetType;
 
 import java.util.List;
 
@@ -21,7 +22,9 @@ public interface KennelService {
 
     KennelShortDto getPublicKennelById(Long kennelId);
 
-    List<KennelDto> getAdminAllKennels(Integer from, Integer size);
+    List<KennelDto> getAllKennelByAdminFromParam(Integer from, Integer size, String type, Long breedId);
 
-    List<KennelShortDto> getPublicAllKennels(Integer from, Integer size);
+    List<KennelShortDto> getAllKennelByPublicFromParam(Integer from, Integer size, String type, Long breedId);
+
+    PetType makePetType(String type);
 }

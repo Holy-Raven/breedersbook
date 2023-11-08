@@ -3,7 +3,9 @@ package ru.codesquad.kennel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import ru.codesquad.breed.Breed;
 import ru.codesquad.location.Location;
+import ru.codesquad.util.enums.PetType;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -25,6 +27,10 @@ public class Kennel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pet_type", nullable = false)
+    PetType type;
 
     @Column(name = "name", nullable = false, unique = true)
     @Size(max = 250)
@@ -49,4 +55,8 @@ public class Kennel {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", nullable = false)
     Location location;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breed_id")
+    Breed breed;
 }

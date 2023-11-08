@@ -8,10 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelShortDto;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.PetType;
 
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
+
+import static ru.codesquad.exception.util.ErrorMessages.FROM_ERROR_MESSAGE;
+import static ru.codesquad.exception.util.ErrorMessages.SIZE_ERROR_MESSAGE;
 
 @Slf4j
 @RestController
@@ -38,10 +43,14 @@ public class PublicKennelController {
     @Operation(summary = "Получение списка питомников",
             description = "Получение списка питомников(краткая информация) с постраничным выводом."
     )
-    public List<KennelShortDto> getAllKennels(@PositiveOrZero @RequestParam(name = "from", defaultValue = "0") Integer from,
-                                              @Positive @RequestParam(name = "size", defaultValue = "10") Integer size) {
-
-        log.info("List all Kennels");
-        return kennelService.getPublicAllKennels(from, size);
+    public List<KennelShortDto> getAllKennelByPublicFromParam(@RequestParam(required = false, name = "type") String type,
+                                                            @RequestParam(required = false, name = "breed") Long breed,
+                                                            @PositiveOrZero(message = FROM_ERROR_MESSAGE)
+                                                            @RequestParam(defaultValue = "0") Integer from,
+                                                            @Positive(message = SIZE_ERROR_MESSAGE)
+                                                            @RequestParam(defaultValue = "10") Integer size)
+    {
+        log.info("List all Kennels by param for public");
+        return kennelService.getAllKennelByPublicFromParam(from, size, type, breed);
     }
 }
