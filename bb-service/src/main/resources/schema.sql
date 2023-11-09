@@ -258,7 +258,7 @@ CREATE TABLE IF NOT EXISTS clubs_kennels
     club_id     BIGINT NOT NULL,
     kennel_id   BIGINT NOT NULL,
 
-    CONSTRAINT fk_clubs_users_to_clubs FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE,
+    CONSTRAINT fk_clubs_kennels_to_clubs FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE,
     CONSTRAINT fk_clubs_kennels_to_kennels FOREIGN KEY (kennel_id) REFERENCES kennels (id) ON DELETE CASCADE,
 
     PRIMARY KEY (club_id, kennel_id)
