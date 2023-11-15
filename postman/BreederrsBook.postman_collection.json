@@ -953,6 +953,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "get all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "7",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": "{{baseUrl}}/admin/users"
+					},
+					"response": []
 				}
 			]
 		},
@@ -3055,7 +3087,7 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "1",
+								"value": "2",
 								"type": "text"
 							}
 						],
@@ -3107,7 +3139,7 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "2",
+								"value": "1",
 								"type": "text"
 							}
 						],
@@ -3159,7 +3191,7 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "1",
+								"value": "2",
 								"type": "text"
 							}
 						],
@@ -3202,7 +3234,7 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "2",
+								"value": "1",
 								"type": "text"
 							}
 						],
@@ -3281,7 +3313,7 @@
 						"header": [
 							{
 								"key": "B-B-User-Id",
-								"value": "1",
+								"value": "2",
 								"type": "text"
 							}
 						],
@@ -3295,6 +3327,144 @@
 							}
 						},
 						"url": "{{baseUrl}}/private/pets/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Club",
+			"item": [
+				{
+					"name": "add club Jared Leto bad PetType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"ww22British cat club\",\n  \"descriptions\": \"British cat club from J.L.\",\n  \"photo\": \"https://wp-s.ru/wallpapers/5/16/293857227813431/the-grey-cat-is-lying-in-the-basket.jpg\",\n  \"created\": \"2015-10-11 18:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "add club Jared Leto bad Breed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"С22hinese crested club\",\n  \"descriptions\": \"Сhinese crested club from J.L.\",\n  \"photo\": \"https://lapkins.ru/upload/iblock/a54/a54d0036624c9f84916f57c30b7ab688.jpg\",\n  \"created\": \"2015-10-11 18:00:00\",\n  \"breedId\": \"3\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "add club Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"brussels griffon club\",\n  \"descriptions\": \"brussels griffon club from J.L.\",\n  \"photo\": \"https://natalyland.ru/wp-content/uploads/e/a/9/ea976eca2eff121a6e4e6ba3c6bdedc1.jpeg\",\n  \"created\": \"2015-10-11 18:00:00\",\n  \"breedId\": \"2\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
 					},
 					"response": []
 				}

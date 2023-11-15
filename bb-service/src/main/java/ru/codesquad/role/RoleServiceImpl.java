@@ -25,4 +25,14 @@ public class RoleServiceImpl implements RoleService {
     public Role getBreederRole() {
         return roleRepository.findByName("ROLE_BREEDER").get();
     }
+
+    @Override
+    public Role getClubAdminRole() {
+        return roleRepository.findByName("ROLE_CLUB_ADMIN").get();
+    }
+
+    @Override
+    public Role getClubModeratorRole() {
+        return roleRepository.findByName("ROLE_CLUB_MODERATOR").get();
+    }
 }
