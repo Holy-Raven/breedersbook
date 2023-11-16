@@ -246,6 +246,10 @@ CREATE TABLE IF NOT EXISTS clubs_users
 (
     club_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL,
+    role_id INTEGER NOT NULL,
+
+    status  VARCHAR(6),
+    update  TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
 
     CONSTRAINT fk_clubs_users_to_clubs FOREIGN KEY (club_id) REFERENCES clubs (id) ON DELETE CASCADE,
     CONSTRAINT fk_clubs_users_to_users FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,

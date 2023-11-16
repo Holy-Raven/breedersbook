@@ -8,6 +8,8 @@ public interface RoleService {
 
     Role getBreederRole();
 
+    Role getClubUserRole();
+
     Role getClubAdminRole();
 
     Role getClubModeratorRole();

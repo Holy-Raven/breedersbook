@@ -27,6 +27,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    public Role getClubUserRole() {
+        return roleRepository.findByName("ROLE_CLUB_USER").get();
+    }
+
+    @Override
     public Role getClubAdminRole() {
         return roleRepository.findByName("ROLE_CLUB_ADMIN").get();
     }
