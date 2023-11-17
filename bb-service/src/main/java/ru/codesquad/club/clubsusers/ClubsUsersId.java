@@ -16,9 +16,9 @@ import java.io.Serializable;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ClubsUsersId implements Serializable {
 
-    Club club;
+    Long clubId;
 
-    User user;
+    Long userId;
 }
 
 //@Embeddable

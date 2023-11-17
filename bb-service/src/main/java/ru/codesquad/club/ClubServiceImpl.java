@@ -66,11 +66,6 @@ public class ClubServiceImpl implements ClubService {
 
         Club club = ClubMapper.returnClub(clubNewDto, clubBreed);
         club = clubRepository.save(club);
-
-        Set<Role> roles = user.getRoles();
-        roles.add(roleService.getBreederRole());
-        user.setRoles(roles);
-
         userRepository.save(user);
 
         return ClubMapper.returnClubDto(club);

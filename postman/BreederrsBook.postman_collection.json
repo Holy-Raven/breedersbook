@@ -3053,7 +3053,7 @@
 			"name": "Pet",
 			"item": [
 				{
-					"name": "addCat",
+					"name": "addCat for Tailor",
 					"event": [
 						{
 							"listen": "test",
@@ -3105,7 +3105,7 @@
 					"response": []
 				},
 				{
-					"name": "addDog",
+					"name": "addDog for Jared",
 					"event": [
 						{
 							"listen": "test",
@@ -3146,6 +3146,58 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"petType\": \"dog\",\n    \"gender\": \"female\",\n    \"pattern\": \"solid\",\n    \"colors\": [\n        \"black\",\n        \"brown\"\n    ],\n    \"temper\": \"Is highly affectionate and forms strong bonds with their owners. They thrive on human companionship and are always eager to be by their side.\",\n    \"name\": \"Ozzy\",\n    \"description\": \"Can also be a bit stubborn at times, so a consistent, kind, and patient hand is essential.\",\n    \"birthDate\": \"2021-12-10\",\n    \"forSale\": true,\n    \"price\": 5000,\n    \"sterilized\": false,\n    \"breedId\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{baseUrl}}/private/pets"
+					},
+					"response": []
+				},
+				{
+					"name": "addDog for Till",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 or 201\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201]);",
+									"});",
+									"pm.test(\"Has response\", function () {",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									"pm.test(\"Test location fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData).to.have.property('petType');",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"    pm.expect(jsonData).to.have.property('description');",
+									"    pm.expect(jsonData).to.have.property('gender');",
+									"    pm.expect(jsonData).to.have.property('pattern');",
+									"    pm.expect(jsonData).to.have.property('colors');",
+									"    pm.expect(jsonData).to.have.property('sterilized');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"petType\": \"dog\",\n    \"gender\": \"male\",\n    \"pattern\": \"solid\",\n    \"colors\": [\n        \"black\"\n    ],\n    \"temper\": \"They thrive on human companionship and are always eager to be by their side.\",\n    \"name\": \"Jack\",\n    \"description\": \"Can also be a bit stubborn at times, so a consistent, kind, and patient hand is essential.\",\n    \"birthDate\": \"2020-11-10\",\n    \"forSale\": true,\n    \"price\": 2000,\n    \"sterilized\": false,\n    \"breedId\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3463,6 +3515,96 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"brussels griffon club\",\n  \"descriptions\": \"brussels griffon club from J.L.\",\n  \"photo\": \"https://natalyland.ru/wp-content/uploads/e/a/9/ea976eca2eff121a6e4e6ba3c6bdedc1.jpeg\",\n  \"created\": \"2015-10-11 18:00:00\",\n  \"breedId\": \"2\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "add club Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"British cat club\",\n  \"descriptions\": \"British Cat's-House from T.M.\",\n  \"photo\": \"https://gorodprizrak.com/wp-content/uploads/2023/06/b92b6324792de085d483b73185eebdfc.jpg\",\n  \"created\": \"2020-04-01 10:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "add club Till Lindemann",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"chinese crested club\",\n  \"descriptions\": \"Сhinese crested club from T.L.\",\n  \"photo\": \"https://lapkins.ru/upload/uf/b97/b976c55cc2baf9ca9811419766692c26.jpg\",\n  \"created\": \"2021-01-11 15:00:00\",\n  \"breedId\": \"3\"\n}"
 						},
 						"url": "{{baseUrl}}/private/clubs"
 					},

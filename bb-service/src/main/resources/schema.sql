@@ -246,8 +246,8 @@ CREATE TABLE IF NOT EXISTS clubs_users
 (
     club_id BIGINT NOT NULL,
     user_id BIGINT NOT NULL,
-    role_id INTEGER NOT NULL,
 
+    role    VARCHAR(5),
     status  VARCHAR(6),
     update  TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW() NOT NULL,
 

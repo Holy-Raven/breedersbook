@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import ru.codesquad.club.Club;
 import ru.codesquad.role.Role;
 import ru.codesquad.user.User;
+import ru.codesquad.util.enums.ClubRole;
 import ru.codesquad.util.enums.Status;
 
 import javax.persistence.*;
@@ -42,18 +43,17 @@ public class ClubsUsers {
 //    })
 //    ClubsUsersId clubsUsersId;
 
-    @NotEmpty
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    Role role;
-
-    @Column(name = "update")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
-    LocalDateTime created;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    ClubRole role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     Status status;
+
+    @Column(name = "update")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
+    LocalDateTime created;
 }
 
 
