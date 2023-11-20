@@ -19,6 +19,7 @@ import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.ClubRole;
 import ru.codesquad.util.enums.Status;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.codesquad.util.Constant.CURRENT_TIME;
@@ -74,11 +75,10 @@ public class ClubServiceImpl implements ClubService {
         ClubsUsers clubsUsers = ClubsUsers.builder()
                 .userId(user.getId())
                 .clubId(club.getId())
-                .created(CURRENT_TIME)
+                .created(LocalDate.from(CURRENT_TIME))
                 .status(Status.ACTIVE)
                 .role(ClubRole.ADMIN)
                 .build();
-
         clubsUsersRepository.save(clubsUsers);
 
         return ClubMapper.returnClubDto(club);

@@ -7,9 +7,9 @@ import ru.codesquad.util.enums.ClubRole;
 import ru.codesquad.util.enums.Status;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
+import static ru.codesquad.util.Constant.DATE_FORMAT;
 
 @Data
 @Entity
@@ -38,8 +38,8 @@ public class ClubsUsers {
     Status status;
 
     @Column(name = "update")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
-    LocalDateTime created;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    LocalDate created;
 }
 
 
