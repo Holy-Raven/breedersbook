@@ -3609,6 +3609,128 @@
 						"url": "{{baseUrl}}/private/clubs"
 					},
 					"response": []
+				},
+				{
+					"name": "Teylor Momson join club  Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"British cat club\",\n  \"descriptions\": \"British Cat's-House from T.M.\",\n  \"photo\": \"https://gorodprizrak.com/wp-content/uploads/2023/06/b92b6324792de085d483b73185eebdfc.jpg\",\n  \"created\": \"2020-04-01 10:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Till Lindeman join club  Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"British cat club\",\n  \"descriptions\": \"British Cat's-House from T.M.\",\n  \"photo\": \"https://gorodprizrak.com/wp-content/uploads/2023/06/b92b6324792de085d483b73185eebdfc.jpg\",\n  \"created\": \"2020-04-01 10:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

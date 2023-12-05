@@ -5,6 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.repository.BreedRepository;
+import ru.codesquad.club.Club;
+import ru.codesquad.club.ClubRepository;
+import ru.codesquad.club.clubsusers.ClubsUsers;
+import ru.codesquad.club.clubsusers.ClubsUsersId;
+import ru.codesquad.club.clubsusers.ClubsUsersRepository;
 import ru.codesquad.exception.NotFoundException;
 import ru.codesquad.exception.ValidationException;
 import ru.codesquad.kennel.Kennel;
@@ -26,13 +31,14 @@ import java.util.Optional;
 @Slf4j
 public class UnionServiceImpl implements UnionService {
 
-
     private final UserRepository userRepository;
     private final UserInfoRepository userInfoRepository;
     private final LocationRepository locationRepository;
     private final KennelRepository kennelRepository;
     private final BreedRepository breedRepository;
     private final PetRepository petRepository;
+    private final ClubRepository clubRepository;
+    private final ClubsUsersRepository clubsUsersRepository;
 
     @Override
     public User getUserOrNotFound(Long userId) {
@@ -107,6 +113,23 @@ public class UnionServiceImpl implements UnionService {
     public Pet getPetOrNotFound(Long petId) {
         return petRepository.findById(petId)
                 .orElseThrow(() -> new NotFoundException(Pet.class, String.format("Pet id %d not found.", petId)));
+    }
+
+    @Override
+    public Club getClubOrNotFound(Long clubId) {
+        return clubRepository.findById(clubId)
+                .orElseThrow(()-> new NotFoundException(Club.class, String.format("Club id %d not found.", clubId)));
+    }
+
+    @Override
+    public ClubsUsers getClubsUsersOrNotFound(Long clubId, Long userId) {
+
+        getClubOrNotFound(clubId);
+        getUserOrNotFound(userId);
+
+        ClubsUsersId clubsUsersId = new ClubsUsersId(clubId, userId);
+
+        return clubsUsersRepository.findById(clubsUsersId).orElseThrow(()-> new NotFoundException(ClubsUsers.class, String.format("ClubsUsers club %d, user %d not found", clubId, userId)));
     }
 
     @Override

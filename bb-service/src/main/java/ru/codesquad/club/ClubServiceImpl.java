@@ -5,8 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
-import ru.codesquad.club.clubsusers.ClubsUsers;
-import ru.codesquad.club.clubsusers.ClubsUsersRepository;
+import ru.codesquad.club.clubsusers.*;
+import ru.codesquad.club.clubsusers.dto.ClubsUsersMapper;
+import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubMapper;
 import ru.codesquad.club.dto.ClubNewDto;
@@ -21,6 +22,7 @@ import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static ru.codesquad.util.Constant.CURRENT_TIME;
 
@@ -82,5 +84,26 @@ public class ClubServiceImpl implements ClubService {
         clubsUsersRepository.save(clubsUsers);
 
         return ClubMapper.returnClubDto(club);
+    }
+
+    @Override
+    public ClubsUsersShortDto joinInClub(Long yourId, Long clubId) {
+
+        Optional<ClubsUsers> optionalClubsUsers = clubsUsersRepository.findById(new ClubsUsersId(clubId, yourId));
+
+        if (optionalClubsUsers.isPresent() && !optionalClubsUsers.get().getStatus().equals(Status.DELETE)) {
+                throw new ConflictException(String.format("user id %d уже является членом club id %d.", yourId, clubId));
+        }
+
+        ClubsUsers clubsUsers = ClubsUsers.builder()
+                .userId(yourId)
+                .clubId(clubId)
+                .role(ClubRole.USER)
+                .status(Status.ACTIVE)
+                .created(LocalDate.from(CURRENT_TIME))
+                .build();
+
+        clubsUsers = clubsUsersRepository.save(clubsUsers);
+        return ClubsUsersMapper.returnClubsUsersShortDto(clubsUsers);
     }
 }

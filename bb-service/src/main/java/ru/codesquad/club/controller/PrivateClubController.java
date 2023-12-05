@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.club.ClubService;
+import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
 
@@ -33,5 +34,17 @@ public class PrivateClubController {
 
         log.info("User {} add club {} ", yourId, ClubNewDto.getName());
         return clubService.addClub(yourId, ClubNewDto);
+    }
+
+    @PostMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    @Operation(summary = "Вступление в  клуба",
+            description = "Вступить в клубы могут только авторизованные пользователи"
+    )
+    public ClubsUsersShortDto joinInClub(@RequestHeader(HEADER_USER) Long yourId,
+                                         @PathVariable Long clubId) {
+
+        log.info("User {} join in club {} ", yourId, clubId);
+        return clubService.joinInClub(yourId, clubId);
     }
 }

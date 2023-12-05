@@ -5,10 +5,17 @@ import java.util.Objects;
 
 public class ClubsUsersId implements Serializable {
 
+    public ClubsUsersId(Long clubId, Long userId) {
+        this.clubId = clubId;
+        this.userId = userId;
+    }
+
+    public ClubsUsersId() {
+    }
+
     Long clubId;
 
     Long userId;
-
 
     public Long getClubId() {
         return clubId;
