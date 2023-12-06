@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.club.ClubService;
+import ru.codesquad.club.clubsusers.ClubsUsers;
+import ru.codesquad.club.clubsusers.dto.ClubsUsersFullDto;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
@@ -46,5 +48,30 @@ public class PrivateClubController {
 
         log.info("User {} join in club {} ", yourId, clubId);
         return clubService.joinInClub(yourId, clubId);
+    }
+
+    @DeleteMapping("/{clubId}/user/{userId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление участника из своего клуба по id",
+            description = "Удалить юзера из клюуба может только участник клуба с ролью ADMIN"
+    )
+    public void kickOutOfClub(@RequestHeader(HEADER_USER) Long yourId,
+                                           @PathVariable Long clubId,
+                                           @PathVariable Long userId) {
+
+        log.info("Admin {} kicked user {} from club {}", yourId, userId, clubId);
+        clubService.kickOutOfClub(clubId, yourId, userId);
+    }
+
+    @DeleteMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Выйти из состава клуба по id",
+            description = "Выйти можно из клуба только участником которого ты являешься"
+    )
+    public void exitFromClub(@RequestHeader(HEADER_USER) Long yourId,
+                                          @PathVariable Long clubId) {
+
+        log.info(" User {} exit from club {}", yourId, clubId);
+        clubService.exitOutOfClub(clubId, yourId);
     }
 }

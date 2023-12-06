@@ -40,4 +40,10 @@ public class ErrorHandler {
     public ErrorResponse handleEmailExistException(final ConflictException e) {
         return new ErrorResponse(e.getMessage());
     }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleForbiddenException(final ForbiddenException e) {
+        return new ErrorResponse(e.getMessage());
+    }
 }

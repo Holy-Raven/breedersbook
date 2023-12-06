@@ -12,6 +12,7 @@ import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubMapper;
 import ru.codesquad.club.dto.ClubNewDto;
 import ru.codesquad.exception.ConflictException;
+import ru.codesquad.exception.ForbiddenException;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
 import ru.codesquad.user.User;
@@ -39,6 +40,7 @@ public class ClubServiceImpl implements ClubService {
     private final ClubsUsersRepository clubsUsersRepository;
 
     @Override
+    @Transactional
     public ClubDto addClub(Long yourId, ClubNewDto clubNewDto) {
 
         User user = unionService.getUserOrNotFound(yourId);
@@ -87,6 +89,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional
     public ClubsUsersShortDto joinInClub(Long yourId, Long clubId) {
 
         Optional<ClubsUsers> optionalClubsUsers = clubsUsersRepository.findById(new ClubsUsersId(clubId, yourId));
@@ -105,5 +108,50 @@ public class ClubServiceImpl implements ClubService {
 
         clubsUsers = clubsUsersRepository.save(clubsUsers);
         return ClubsUsersMapper.returnClubsUsersShortDto(clubsUsers);
+    }
+
+    @Override
+    @Transactional
+    public Boolean kickOutOfClub(Long clubId, Long yourId, Long userId) {
+
+        unionService.getClubOrNotFound(clubId);
+        unionService.getUserOrNotFound(yourId);
+        unionService.getUserOrNotFound(userId);
+
+        ClubsUsers clubsUsersAdmin = unionService.getClubsUsersOrNotFound(clubId, yourId);
+        if (!clubsUsersAdmin.getRole().equals(ClubRole.ADMIN)) {
+            throw new ForbiddenException("Только администратор клуба может исключить юзера из состава.");
+        }
+
+        ClubsUsers clubsUsersUser = unionService.getClubsUsersOrNotFound(clubId, userId);
+        if (clubsUsersUser.getStatus().equals(Status.DELETE)) {
+            throw new ConflictException("Данный юзер уже не является членом клуба");
+        }
+
+        outOfClub(clubId, userId);
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public Boolean exitOutOfClub(Long clubId, Long yourId) {
+
+        unionService.getClubOrNotFound(clubId);
+        unionService.getUserOrNotFound(yourId);
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+        if (clubsUsers.getStatus().equals(Status.DELETE)) {
+            throw new ConflictException("Ваше членство в клубе было отозвано ранее.");
+        }
+
+        outOfClub(clubId, yourId);
+        return true;
+    }
+
+    private void outOfClub (Long clubId, Long userId) {
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, userId);
+        clubsUsers.setStatus(Status.DELETE);
+        clubsUsersRepository.save(clubsUsers);
     }
 }
