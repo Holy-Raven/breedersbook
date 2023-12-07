@@ -2,6 +2,7 @@ package ru.codesquad.club;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
@@ -17,6 +18,8 @@ import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
+import ru.codesquad.user.dto.UserMapper;
+import ru.codesquad.user.dto.UserShortDto;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.ClubRole;
 import ru.codesquad.util.enums.Status;
@@ -24,6 +27,7 @@ import ru.codesquad.util.enums.Status;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static ru.codesquad.util.Constant.CURRENT_TIME;
 
@@ -148,10 +152,23 @@ public class ClubServiceImpl implements ClubService {
         return true;
     }
 
+    @Override
+    public List<UserShortDto> getAllSubscribersClubById(Integer from, Integer size, Long clubId) {
+
+        unionService.getClubOrNotFound(clubId);
+
+        PageRequest pageRequest = PageRequest.of(from / size, size);
+        List<User> userList = clubRepository.getAllUsersClubById(clubId, pageRequest);
+
+        return userList.stream().map(user -> UserMapper.returnUserShortDto(user)).collect(Collectors.toList());
+    }
+
     private void outOfClub (Long clubId, Long userId) {
 
         ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, userId);
         clubsUsers.setStatus(Status.DELETE);
+        clubsUsers.setCreated(LocalDate.from(CURRENT_TIME));
+
         clubsUsersRepository.save(clubsUsers);
     }
 }

@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.club.ClubService;
-import ru.codesquad.club.clubsusers.ClubsUsers;
-import ru.codesquad.club.clubsusers.dto.ClubsUsersFullDto;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
