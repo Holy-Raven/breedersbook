@@ -25,7 +25,7 @@ public class PublicClubController {
 
     private final ClubService clubService;
 
-    @GetMapping("/{clubId}/users")
+    @GetMapping("/{clubId}/subscribers")
     @ResponseStatus(value = HttpStatus.OK)
     @Operation(summary = "Получение списка подписчиков клуба",
             description = "Получение списка подписчиков(краткая информация) с постраничным выводом."
