@@ -1,0 +1,53 @@
+package ru.codesquad.club;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+import ru.codesquad.breed.Breed;
+import ru.codesquad.util.enums.PetType;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+
+import static ru.codesquad.util.Constant.DATE_TIME_FORMAT;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "clubs", schema = "public")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class Club {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "pet_type", nullable = false)
+    PetType type;
+
+    @Column(name = "name", nullable = false, unique = true)
+    @Size(max = 250)
+    String name;
+
+    @Column(name = "description")
+    @Size(max = 5000)
+    String descriptions;
+
+    @Column(name = "created")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_TIME_FORMAT)
+    LocalDateTime created;
+
+    @Column(name = "photo_url")
+    @Size(max = 2048)
+    String photo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "breed_id")
+    Breed breed;
+}

@@ -1,6 +1,8 @@
 package ru.codesquad.util;
 
 import ru.codesquad.breed.Breed;
+import ru.codesquad.club.Club;
+import ru.codesquad.club.clubsusers.ClubsUsers;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.location.Location;
 import ru.codesquad.pet.model.Pet;
@@ -21,6 +23,10 @@ public interface UnionService {
     Breed getBreedOrNotFound(Long breedId);
 
     Pet getPetOrNotFound(Long petId);
+
+    Club getClubOrNotFound(Long clubId);
+
+    ClubsUsers getClubsUsersOrNotFound(Long clubId, Long userId);
 
     String checkPhoneNumber(String number);
 

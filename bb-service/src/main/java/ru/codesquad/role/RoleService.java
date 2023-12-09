@@ -7,4 +7,11 @@ public interface RoleService {
     Role getAdminRole();
 
     Role getBreederRole();
+
+    Role getClubUserRole();
+
+    Role getClubAdminRole();
+
+    Role getClubModeratorRole();
+
 }
