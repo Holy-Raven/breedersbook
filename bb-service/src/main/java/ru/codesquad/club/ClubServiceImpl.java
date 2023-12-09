@@ -89,7 +89,12 @@ public class ClubServiceImpl implements ClubService {
                 .build();
         clubsUsersRepository.save(clubsUsers);
 
-        return ClubMapper.returnClubDto(club);
+        ClubDto clubDto = ClubMapper.returnClubDto(club);
+        clubDto.setSubscribersCount(clubsUsersRepository.subscribersCount(club.getId()));
+        System.out.println();
+        System.out.println(clubDto);
+        System.out.println();
+        return clubDto;
     }
 
     @Override

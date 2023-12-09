@@ -33,4 +33,6 @@ public class ClubDto {
     String photo;
 
     BreedShortDto breed;
+
+    int subscribersCount;
 }
