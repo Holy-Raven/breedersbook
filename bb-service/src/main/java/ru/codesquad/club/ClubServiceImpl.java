@@ -12,6 +12,7 @@ import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubMapper;
 import ru.codesquad.club.dto.ClubNewDto;
+import ru.codesquad.club.dto.ClubShortDto;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.exception.ForbiddenException;
 import ru.codesquad.pet.model.Pet;
@@ -166,6 +167,36 @@ public class ClubServiceImpl implements ClubService {
         List<User> userList = clubRepository.getAllUsersClubById(clubId, pageRequest);
 
         return userList.stream().map(user -> UserMapper.returnUserShortDto(user)).collect(Collectors.toList());
+    }
+
+    @Override
+    public ClubDto getPrivateClubById(Long clubId, Long yourId) {
+
+        Club club = unionService.getClubOrNotFound(clubId);
+        User user = unionService.getUserOrNotFound(yourId);
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+
+        if (clubsUsers.getStatus().equals(Status.DELETE)) {
+            throw new ConflictException(String.format("User  id %d, на данный момент не является членом клуба.", yourId));
+        }
+        if (clubsUsers.getRole().equals(ClubRole.USER)) {
+            throw new ConflictException(String.format("User id %d, не руководитель группы.", yourId));
+        }
+
+        ClubDto clubDto = ClubMapper.returnClubDto(club);
+        clubDto.setSubscribersCount(clubsUsersRepository.subscribersCount(clubId));
+
+        return clubDto;
+    }
+
+    @Override
+    public ClubShortDto getPublicClubById(Long clubId) {
+
+        Club club = unionService.getClubOrNotFound(clubId);
+        ClubShortDto clubShortDto = ClubMapper.returnClubShortDto(club);
+        clubShortDto.setSubscribersCount(clubsUsersRepository.subscribersCount(clubId));
+
+        return clubShortDto;
     }
 
     private void outOfClub (Long clubId, Long userId) {

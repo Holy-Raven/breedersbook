@@ -38,7 +38,7 @@ public class PrivateClubController {
 
     @PostMapping("/{clubId}")
     @ResponseStatus(value = HttpStatus.CREATED)
-    @Operation(summary = "Вступление в  клуба",
+    @Operation(summary = "Вступление в клуба",
             description = "Вступить в клубы могут только авторизованные пользователи"
     )
     public ClubsUsersShortDto joinInClub(@RequestHeader(HEADER_USER) Long yourId,
@@ -72,4 +72,17 @@ public class PrivateClubController {
         log.info(" User {} exit from club {}", yourId, clubId);
         clubService.exitOutOfClub(clubId, yourId);
     }
+
+    @GetMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Получение клуба по id",
+            description = "Полное описание клуба. Если клуб не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
+    public ClubDto getPrivateClubById(@RequestHeader(HEADER_USER) Long yourId,
+                               @PathVariable Long clubId) {
+
+        log.info("Get Club {} ", clubId);
+        return clubService.getPrivateClubById(clubId, yourId);
+    }
+
 }
