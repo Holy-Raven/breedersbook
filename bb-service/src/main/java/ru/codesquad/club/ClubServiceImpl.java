@@ -17,6 +17,7 @@ import ru.codesquad.exception.ConflictException;
 import ru.codesquad.exception.ForbiddenException;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
+import ru.codesquad.role.Role;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.user.dto.UserMapper;
@@ -28,6 +29,7 @@ import ru.codesquad.util.enums.Status;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static ru.codesquad.util.Constant.CURRENT_TIME;
@@ -159,6 +161,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserShortDto> getAllSubscribersClubById(Integer from, Integer size, Long clubId) {
 
         unionService.getClubOrNotFound(clubId);
@@ -170,6 +173,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ClubDto getPrivateClubById(Long clubId, Long yourId) {
 
         Club club = unionService.getClubOrNotFound(clubId);
@@ -190,6 +194,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ClubShortDto getPublicClubById(Long clubId) {
 
         Club club = unionService.getClubOrNotFound(clubId);
@@ -199,6 +204,30 @@ public class ClubServiceImpl implements ClubService {
         return clubShortDto;
     }
 
+    @Override
+    @Transactional
+    public Boolean deletePrivateClub(Long yourId, Long clubId) {
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+
+        if (!clubsUsers.getRole().equals(ClubRole.ADMIN)) {
+            throw new ConflictException(String.format("User %d не является админом клуба club %d", yourId, clubId));
+        }
+
+        clubRepository.deleteById(clubId);
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public Boolean deleteClub(Long clubId) {
+
+        unionService.getClubOrNotFound(clubId);
+        clubRepository.deleteById(clubId);
+
+        return true;
+    }
     private void outOfClub (Long clubId, Long userId) {
 
         ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, userId);

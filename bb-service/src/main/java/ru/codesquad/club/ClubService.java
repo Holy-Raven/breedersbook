@@ -23,4 +23,8 @@ public interface ClubService {
     ClubDto getPrivateClubById(Long clubId, Long yourId);
 
     ClubShortDto getPublicClubById(Long clubId);
+
+    Boolean deletePrivateClub(Long yourId, Long clubId);
+
+    Boolean deleteClub(Long clubId);
 }
