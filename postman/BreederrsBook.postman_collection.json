@@ -4031,14 +4031,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"raw": "{{baseUrl}}/private/clubs/:clubId/leave",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"clubs",
-								":clubId"
+								":clubId",
+								"leave"
 							],
 							"variable": [
 								{
@@ -4089,14 +4090,15 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"raw": "{{baseUrl}}/private/clubs/:clubId/leave",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"private",
 								"clubs",
-								":clubId"
+								":clubId",
+								"leave"
 							],
 							"variable": [
 								{
@@ -4324,6 +4326,178 @@
 								{
 									"key": "clubId",
 									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teylor Momson delete club Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 409 - уже не является членом клуба \", function () {",
+									"    pm.response.to.have.status(409);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teylor Momson delete club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204 - нет содержимого\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin delete club Till Lindeman",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 204 - нет содержимого\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{baseUrl}}/admin/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"admin",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "3"
 								}
 							]
 						}
