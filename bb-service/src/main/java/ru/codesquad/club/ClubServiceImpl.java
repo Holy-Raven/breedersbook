@@ -225,6 +225,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional
     public ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto) {
 
         ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);

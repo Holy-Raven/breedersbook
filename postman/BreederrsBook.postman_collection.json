@@ -2416,7 +2416,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"pm.test(\"Ответ должен содержать код статус 200 и данные в формате json\", function() {\r",
 									"    pm.response.to.have.status(200);\r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -4503,6 +4503,322 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "path club Jared Leto",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 200 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"J.L. brussels griffon club\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add new club Teylor Momson  (id 4)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"British cat club\",\n  \"descriptions\": \"British Cat's-House from T.M.\",\n  \"photo\": \"https://gorodprizrak.com/wp-content/uploads/2023/06/b92b6324792de085d483b73185eebdfc.jpg\",\n  \"created\": \"2020-04-01 10:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "add new club Till Lindemann (id 5)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "3",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"DOG\",\n  \"name\": \"chinese crested club\",\n  \"descriptions\": \"Сhinese crested club from T.L.\",\n  \"photo\": \"https://lapkins.ru/upload/uf/b97/b976c55cc2baf9ca9811419766692c26.jpg\",\n  \"created\": \"2021-01-11 15:00:00\",\n  \"breedId\": \"3\"\n}"
+						},
+						"url": "{{baseUrl}}/private/clubs"
+					},
+					"response": []
+				},
+				{
+					"name": "Jared Leto  join new club  Teylor Momson",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {",
+									"    pm.response.to.have.status(201);",
+									"    pm.response.to.be.withBody;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"petType\": \"CAT\",\n  \"name\": \"British cat club\",\n  \"descriptions\": \"British Cat's-House from T.M.\",\n  \"photo\": \"https://gorodprizrak.com/wp-content/uploads/2023/06/b92b6324792de085d483b73185eebdfc.jpg\",\n  \"created\": \"2020-04-01 10:00:00\",\n  \"breedId\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "path club Jared Leto (alien club)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 409 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(409);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"J.L. brussels griffon club\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "path club Jared Leto (not consist  club)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Ответ должен содержать код статус 404 и данные в формате json\", function() {\r",
+									"    pm.response.to.have.status(404);\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "B-B-User-Id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"J.L. brussels griffon club\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/private/clubs/:clubId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"private",
+								"clubs",
+								":clubId"
+							],
+							"variable": [
+								{
+									"key": "clubId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -4535,7 +4851,8 @@
 		},
 		{
 			"key": "id1",
-			"value": "1"
+			"value": "1",
+			"disabled": true
 		}
 	]
 }
