@@ -127,7 +127,7 @@ public class KennelServiceImpl implements KennelService {
                 kennel.setPhoto(kennelUpdateDto.getPhoto());
             }
             if (kennelUpdateDto.getCreated() != null && !kennelUpdateDto.getCreated().isBefore(CURRENT_TIME)) {
-                kennel.setPhoto(kennelUpdateDto.getPhoto());
+                kennel.setCreated(kennelUpdateDto.getCreated());
             }
 
             kennel = kennelRepository.save(kennel);

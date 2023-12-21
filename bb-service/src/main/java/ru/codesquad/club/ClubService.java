@@ -4,6 +4,7 @@ import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
 import ru.codesquad.club.dto.ClubShortDto;
+import ru.codesquad.club.dto.ClubUpdateDto;
 import ru.codesquad.user.dto.UserShortDto;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface ClubService {
     Boolean deletePrivateClub(Long yourId, Long clubId);
 
     Boolean deleteClub(Long clubId);
+
+    ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto);
 }

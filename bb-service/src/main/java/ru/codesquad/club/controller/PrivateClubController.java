@@ -10,6 +10,9 @@ import ru.codesquad.club.ClubService;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
+import ru.codesquad.club.dto.ClubUpdateDto;
+import ru.codesquad.kennel.dto.KennelDto;
+import ru.codesquad.kennel.dto.KennelUpdateDto;
 
 import javax.validation.Valid;
 
@@ -95,5 +98,18 @@ public class PrivateClubController {
 
         log.info("User {} deleted club {}", yourId, clubId);
         clubService.deletePrivateClub(yourId, clubId);
+    }
+
+    @PatchMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление клуба по id",
+            description = " Если клуб не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
+    public ClubDto updateClubById(@RequestHeader(HEADER_USER) Long yourId,
+                                  @PathVariable Long clubId,
+                                  @Valid @RequestBody ClubUpdateDto clubUpdateDto) {
+
+        log.info("User id {} update profile club id {}", yourId, clubId);
+        return clubService.updateClubById(yourId, clubId, clubUpdateDto);
     }
 }

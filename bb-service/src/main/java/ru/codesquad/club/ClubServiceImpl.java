@@ -9,15 +9,11 @@ import ru.codesquad.breed.Breed;
 import ru.codesquad.club.clubsusers.*;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersMapper;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
-import ru.codesquad.club.dto.ClubDto;
-import ru.codesquad.club.dto.ClubMapper;
-import ru.codesquad.club.dto.ClubNewDto;
-import ru.codesquad.club.dto.ClubShortDto;
+import ru.codesquad.club.dto.*;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.exception.ForbiddenException;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
-import ru.codesquad.role.Role;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.user.dto.UserMapper;
@@ -29,7 +25,6 @@ import ru.codesquad.util.enums.Status;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static ru.codesquad.util.Constant.CURRENT_TIME;
@@ -228,6 +223,36 @@ public class ClubServiceImpl implements ClubService {
 
         return true;
     }
+
+    @Override
+    public ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto) {
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+
+        if (!clubsUsers.getRole().equals(ClubRole.ADMIN)) {
+            throw new ConflictException(String.format("User %d не является админом клуба club %d", yourId, clubId));
+        }
+
+        Club club = clubRepository.findById(clubsUsers.getClubId()).get();
+
+        if (clubUpdateDto.getName() != null && !clubUpdateDto.getName().isBlank()) {
+            club.setName(clubUpdateDto.getName());
+        }
+        if (clubUpdateDto.getDescriptions() != null && !clubUpdateDto.getDescriptions().isBlank()) {
+            club.setDescriptions(clubUpdateDto.getDescriptions());
+        }
+        if (clubUpdateDto.getPhoto() != null && !clubUpdateDto.getPhoto().isBlank()) {
+            club.setPhoto(clubUpdateDto.getPhoto());
+        }
+        if (clubUpdateDto.getCreated() != null && !clubUpdateDto.getCreated().isBefore(CURRENT_TIME)) {
+            club.setCreated(clubUpdateDto.getCreated());
+        }
+
+        club = clubRepository.save(club);
+
+        return ClubMapper.returnClubDto(club);
+    }
+
     private void outOfClub (Long clubId, Long userId) {
 
         ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, userId);
