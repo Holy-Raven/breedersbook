@@ -57,13 +57,13 @@ public class PublicClubController {
             description = "Получение списка существующих клубов(краткая информация) с постраничным выводом."
     )
     public List<ClubShortDto> getAllClubByPublicFromParam(@RequestParam(required = false, name = "type") String type,
-                                                          @RequestParam(required = false, name = "breed") Long breed,
+                                                          @RequestParam(required = false, name = "breed") Long breedId,
                                                           @PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                                           @RequestParam(defaultValue = "0") Integer from,
                                                           @Positive(message = SIZE_ERROR_MESSAGE)
                                                           @RequestParam(defaultValue = "10") Integer size)
     {
         log.info("List all Clubs by param for public");
-        return clubService.getAllClubByPublicFromParam(from, size, type, breed);
+        return clubService.getAllClubByPublicFromParam(from, size, type, breedId);
     }
 }

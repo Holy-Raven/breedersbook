@@ -42,7 +42,7 @@ public class AdminKennelController {
             description = "Получение списка питомников с постраничным выводом."
     )
     public List<KennelDto> getAllKennelByAdminFromParam(@RequestParam(required = false, name = "type") String type,
-                                                      @RequestParam(required = false, name = "breed") Long breed,
+                                                      @RequestParam(required = false, name = "breed") Long breedId,
                                                       @PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                                       @RequestParam(defaultValue = "0") Integer from,
                                                       @Positive(message = SIZE_ERROR_MESSAGE)
@@ -50,6 +50,6 @@ public class AdminKennelController {
     {
 
         log.info("List all Kennels by param for admin");
-        return kennelService.getAllKennelByAdminFromParam(from, size, type, breed);
+        return kennelService.getAllKennelByAdminFromParam(from, size, type, breedId);
     }
 }

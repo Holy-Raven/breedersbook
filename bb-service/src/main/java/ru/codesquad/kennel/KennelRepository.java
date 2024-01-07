@@ -15,6 +15,6 @@ public interface KennelRepository extends JpaRepository<Kennel, Long> {
             "GROUP BY k.id " +
             "ORDER BY k.id ASC")
     List<Kennel> findKennelByParam(@Param("type") PetType type,
-                                   @Param("breed") Long breed,
+                                   @Param("breed") Long breedId,
                                    PageRequest pageRequest);
 }

@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.codesquad.kennel.Kennel;
 import ru.codesquad.kennel.KennelService;
-import ru.codesquad.kennel.controller.PublicKennelController;
 import ru.codesquad.kennel.dto.KennelMapper;
 import ru.codesquad.kennel.dto.KennelShortDto;
 
