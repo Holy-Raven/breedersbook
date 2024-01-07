@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.codesquad.club.ClubService;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubShortDto;
+import ru.codesquad.kennel.dto.KennelShortDto;
 import ru.codesquad.user.dto.UserShortDto;
 
 import javax.validation.constraints.Positive;
@@ -54,4 +55,19 @@ public class PublicClubController {
         return clubService.getPublicClubById(clubId);
     }
 
+    @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Получение списка существующих клубов",
+            description = "Получение списка существующих клубов(краткая информация) с постраничным выводом."
+    )
+    public List<ClubShortDto> getAllClubByPublicFromParam(@RequestParam(required = false, name = "type") String type,
+                                                          @RequestParam(required = false, name = "breed") Long breed,
+                                                          @PositiveOrZero(message = FROM_ERROR_MESSAGE)
+                                                          @RequestParam(defaultValue = "0") Integer from,
+                                                          @Positive(message = SIZE_ERROR_MESSAGE)
+                                                          @RequestParam(defaultValue = "10") Integer size)
+    {
+        log.info("List all Clubs by param for public");
+        return clubService.getAllClubByPublicFromParam(from, size, type, breed);
+    }
 }

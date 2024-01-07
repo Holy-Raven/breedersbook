@@ -30,4 +30,6 @@ public interface ClubService {
     Boolean deleteClub(Long clubId);
 
     ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto);
+
+    List<ClubShortDto> getAllClubByPublicFromParam(Integer from, Integer size, String type, Long breed);
 }

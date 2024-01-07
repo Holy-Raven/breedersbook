@@ -11,8 +11,7 @@ import java.util.List;
 public interface KennelRepository extends JpaRepository<Kennel, Long> {
 
     @Query(value = "SELECT k FROM Kennel AS k " +
-            "WHERE (:type IS NULL OR k.type = :type) " +
-            "AND (:breed IS NULL OR :breed = k.breed.id) " +
+            "WHERE (:type IS NULL OR k.type = :type) AND (:breed IS NULL OR :breed = k.breed.id) " +
             "GROUP BY k.id " +
             "ORDER BY k.id ASC")
     List<Kennel> findKennelByParam(@Param("type") PetType type,

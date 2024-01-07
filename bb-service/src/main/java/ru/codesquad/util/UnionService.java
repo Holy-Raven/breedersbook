@@ -8,6 +8,7 @@ import ru.codesquad.location.Location;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.user.User;
 import ru.codesquad.userinfo.UserInfo;
+import ru.codesquad.util.enums.PetType;
 
 public interface UnionService {
     User getUserOrNotFound(Long userId);
@@ -33,4 +34,6 @@ public interface UnionService {
     void checkOwner(Long userId, Long petId);
 
     void checkOwner(Long userId, Pet pet);
+
+    PetType makePetType(String type);
 }

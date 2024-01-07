@@ -3,6 +3,7 @@ package ru.codesquad.util;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.repository.BreedRepository;
 import ru.codesquad.club.Club;
@@ -22,6 +23,8 @@ import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.userinfo.UserInfo;
 import ru.codesquad.userinfo.UserInfoRepository;
+import ru.codesquad.util.enums.EnumUtil;
+import ru.codesquad.util.enums.PetType;
 import ru.codesquad.util.enums.Status;
 
 import java.util.Optional;
@@ -171,5 +174,16 @@ public class UnionServiceImpl implements UnionService {
             throw new ValidationException(
                     String.format("User with id %d is not owner of pet with id %d", userId, pet.getId()));
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public PetType makePetType(String type) {
+
+        PetType petType = null;
+        if (type != null) {
+            petType = EnumUtil.getValue(PetType.class, type);
+        }
+        return petType;
     }
 }
