@@ -11,8 +11,6 @@ import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
 import ru.codesquad.club.dto.ClubUpdateDto;
-import ru.codesquad.kennel.dto.KennelDto;
-import ru.codesquad.kennel.dto.KennelUpdateDto;
 
 import javax.validation.Valid;
 

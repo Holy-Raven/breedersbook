@@ -31,5 +31,7 @@ public interface ClubService {
 
     ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto);
 
-    List<ClubShortDto> getAllClubByPublicFromParam(Integer from, Integer size, String type, Long breed);
+    List<ClubShortDto> getAllClubByPublicFromParam(Integer from, Integer size, String type, Long breedId);
+
+    List<ClubDto>  getAllClubsByAdminFromParam(Integer from, Integer size, String type, Long breedId);
 }

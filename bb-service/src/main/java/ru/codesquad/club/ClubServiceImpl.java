@@ -12,8 +12,6 @@ import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.*;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.exception.ForbiddenException;
-import ru.codesquad.kennel.Kennel;
-import ru.codesquad.kennel.dto.KennelMapper;
 import ru.codesquad.pet.model.Pet;
 import ru.codesquad.pet.repository.PetRepository;
 import ru.codesquad.user.User;
@@ -255,6 +253,17 @@ public class ClubServiceImpl implements ClubService {
         club = clubRepository.save(club);
 
         return ClubMapper.returnClubDto(club);
+    }
+
+    @Override
+    public List<ClubDto> getAllClubsByAdminFromParam(Integer from, Integer size, String type, Long breedId) {
+        PetType petType = unionService.makePetType(type);
+
+        PageRequest pageRequest = PageRequest.of(from / size, size);
+        List<Club> clubList = clubRepository.findClubByParam(petType, breedId, pageRequest);
+
+        return  clubList.stream().map(ClubMapper::returnClubDto).collect(Collectors.toList());
+
     }
 
     @Override
