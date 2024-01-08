@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.codesquad.kennel.KennelService;
 import ru.codesquad.kennel.dto.KennelShortDto;
-import ru.codesquad.util.enums.EnumUtil;
-import ru.codesquad.util.enums.PetType;
-
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
@@ -44,13 +41,13 @@ public class PublicKennelController {
             description = "Получение списка питомников(краткая информация) с постраничным выводом."
     )
     public List<KennelShortDto> getAllKennelByPublicFromParam(@RequestParam(required = false, name = "type") String type,
-                                                            @RequestParam(required = false, name = "breed") Long breed,
+                                                            @RequestParam(required = false, name = "breed") Long breedId,
                                                             @PositiveOrZero(message = FROM_ERROR_MESSAGE)
                                                             @RequestParam(defaultValue = "0") Integer from,
                                                             @Positive(message = SIZE_ERROR_MESSAGE)
                                                             @RequestParam(defaultValue = "10") Integer size)
     {
         log.info("List all Kennels by param for public");
-        return kennelService.getAllKennelByPublicFromParam(from, size, type, breed);
+        return kennelService.getAllKennelByPublicFromParam(from, size, type, breedId);
     }
 }

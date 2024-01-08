@@ -13,7 +13,6 @@ import ru.codesquad.role.RoleService;
 import ru.codesquad.user.User;
 import ru.codesquad.user.UserRepository;
 import ru.codesquad.util.UnionService;
-import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.PetType;
 
 import java.util.List;
@@ -127,7 +126,7 @@ public class KennelServiceImpl implements KennelService {
                 kennel.setPhoto(kennelUpdateDto.getPhoto());
             }
             if (kennelUpdateDto.getCreated() != null && !kennelUpdateDto.getCreated().isBefore(CURRENT_TIME)) {
-                kennel.setPhoto(kennelUpdateDto.getPhoto());
+                kennel.setCreated(kennelUpdateDto.getCreated());
             }
 
             kennel = kennelRepository.save(kennel);
@@ -151,7 +150,7 @@ public class KennelServiceImpl implements KennelService {
     @Transactional(readOnly = true)
     public List<KennelDto> getAllKennelByAdminFromParam(Integer from, Integer size, String type, Long breedId) {
 
-        PetType petType = makePetType(type);
+        PetType petType = unionService.makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
@@ -163,21 +162,11 @@ public class KennelServiceImpl implements KennelService {
     @Transactional(readOnly = true)
     public List<KennelShortDto> getAllKennelByPublicFromParam(Integer from, Integer size, String type, Long breedId) {
 
-        PetType petType = makePetType(type);
+        PetType petType = unionService.makePetType(type);
 
         PageRequest pageRequest = PageRequest.of(from / size, size);
         List<Kennel> kennelList = kennelRepository.findKennelByParam(petType, breedId, pageRequest);
 
         return  kennelList.stream().map(KennelMapper::returnKennelShortDto).collect(Collectors.toList());
-    }
-    @Override
-    @Transactional(readOnly = true)
-    public PetType makePetType(String type) {
-
-        PetType petType = null;
-        if (type != null) {
-            petType = EnumUtil.getValue(PetType.class, type);
-        }
-        return petType;
     }
 }

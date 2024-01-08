@@ -1,12 +1,8 @@
 package ru.codesquad.kennel.dto;
 
-import lombok.RequiredArgsConstructor;
 import ru.codesquad.breed.Breed;
 import ru.codesquad.breed.mapper.BreedMapper;
-import ru.codesquad.breed.repository.BreedRepository;
 import ru.codesquad.kennel.Kennel;
-import ru.codesquad.pet.enums.CatPattern;
-import ru.codesquad.pet.enums.DogPattern;
 import ru.codesquad.util.enums.EnumUtil;
 import ru.codesquad.util.enums.PetType;
 

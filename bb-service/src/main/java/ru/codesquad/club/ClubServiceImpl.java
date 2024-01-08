@@ -9,10 +9,7 @@ import ru.codesquad.breed.Breed;
 import ru.codesquad.club.clubsusers.*;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersMapper;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
-import ru.codesquad.club.dto.ClubDto;
-import ru.codesquad.club.dto.ClubMapper;
-import ru.codesquad.club.dto.ClubNewDto;
-import ru.codesquad.club.dto.ClubShortDto;
+import ru.codesquad.club.dto.*;
 import ru.codesquad.exception.ConflictException;
 import ru.codesquad.exception.ForbiddenException;
 import ru.codesquad.pet.model.Pet;
@@ -23,6 +20,7 @@ import ru.codesquad.user.dto.UserMapper;
 import ru.codesquad.user.dto.UserShortDto;
 import ru.codesquad.util.UnionService;
 import ru.codesquad.util.enums.ClubRole;
+import ru.codesquad.util.enums.PetType;
 import ru.codesquad.util.enums.Status;
 
 import java.time.LocalDate;
@@ -159,6 +157,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserShortDto> getAllSubscribersClubById(Integer from, Integer size, Long clubId) {
 
         unionService.getClubOrNotFound(clubId);
@@ -170,6 +169,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ClubDto getPrivateClubById(Long clubId, Long yourId) {
 
         Club club = unionService.getClubOrNotFound(clubId);
@@ -190,6 +190,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ClubShortDto getPublicClubById(Long clubId) {
 
         Club club = unionService.getClubOrNotFound(clubId);
@@ -197,6 +198,83 @@ public class ClubServiceImpl implements ClubService {
         clubShortDto.setSubscribersCount(clubsUsersRepository.subscribersCount(clubId));
 
         return clubShortDto;
+    }
+
+    @Override
+    @Transactional
+    public Boolean deletePrivateClub(Long yourId, Long clubId) {
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+
+        if (!clubsUsers.getRole().equals(ClubRole.ADMIN)) {
+            throw new ConflictException(String.format("User %d не является админом клуба club %d", yourId, clubId));
+        }
+
+        clubRepository.deleteById(clubId);
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public Boolean deleteClub(Long clubId) {
+
+        unionService.getClubOrNotFound(clubId);
+        clubRepository.deleteById(clubId);
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public ClubDto updateClubById(Long yourId, Long clubId, ClubUpdateDto clubUpdateDto) {
+
+        ClubsUsers clubsUsers = unionService.getClubsUsersOrNotFound(clubId, yourId);
+
+        if (!clubsUsers.getRole().equals(ClubRole.ADMIN)) {
+            throw new ConflictException(String.format("User %d не является админом клуба club %d", yourId, clubId));
+        }
+
+        Club club = clubRepository.findById(clubsUsers.getClubId()).get();
+
+        if (clubUpdateDto.getName() != null && !clubUpdateDto.getName().isBlank()) {
+            club.setName(clubUpdateDto.getName());
+        }
+        if (clubUpdateDto.getDescriptions() != null && !clubUpdateDto.getDescriptions().isBlank()) {
+            club.setDescriptions(clubUpdateDto.getDescriptions());
+        }
+        if (clubUpdateDto.getPhoto() != null && !clubUpdateDto.getPhoto().isBlank()) {
+            club.setPhoto(clubUpdateDto.getPhoto());
+        }
+        if (clubUpdateDto.getCreated() != null && !clubUpdateDto.getCreated().isBefore(CURRENT_TIME)) {
+            club.setCreated(clubUpdateDto.getCreated());
+        }
+
+        club = clubRepository.save(club);
+
+        return ClubMapper.returnClubDto(club);
+    }
+
+    @Override
+    public List<ClubDto> getAllClubsByAdminFromParam(Integer from, Integer size, String type, Long breedId) {
+        PetType petType = unionService.makePetType(type);
+
+        PageRequest pageRequest = PageRequest.of(from / size, size);
+        List<Club> clubList = clubRepository.findClubByParam(petType, breedId, pageRequest);
+
+        return  clubList.stream().map(ClubMapper::returnClubDto).collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<ClubShortDto> getAllClubByPublicFromParam(Integer from, Integer size, String type, Long breedId) {
+
+        PetType petType = unionService.makePetType(type);
+
+        PageRequest pageRequest = PageRequest.of(from / size, size);
+        List<Club> clubList = clubRepository.findClubByParam(petType, breedId, pageRequest);
+
+        return  clubList.stream().map(ClubMapper::returnClubShortDto).collect(Collectors.toList());
     }
 
     private void outOfClub (Long clubId, Long userId) {

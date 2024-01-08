@@ -10,6 +10,7 @@ import ru.codesquad.club.ClubService;
 import ru.codesquad.club.clubsusers.dto.ClubsUsersShortDto;
 import ru.codesquad.club.dto.ClubDto;
 import ru.codesquad.club.dto.ClubNewDto;
+import ru.codesquad.club.dto.ClubUpdateDto;
 
 import javax.validation.Valid;
 
@@ -61,7 +62,7 @@ public class PrivateClubController {
         clubService.kickOutOfClub(clubId, yourId, userId);
     }
 
-    @DeleteMapping("/{clubId}")
+    @DeleteMapping("/{clubId}/leave")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @Operation(summary = "Выйти из состава клуба по id",
             description = "Выйти можно из клуба только участником которого ты являешься"
@@ -79,10 +80,34 @@ public class PrivateClubController {
             description = "Полное описание клуба. Если клуб не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
     )
     public ClubDto getPrivateClubById(@RequestHeader(HEADER_USER) Long yourId,
-                               @PathVariable Long clubId) {
+                                      @PathVariable Long clubId) {
 
         log.info("Get Club {} ", clubId);
         return clubService.getPrivateClubById(clubId, yourId);
     }
 
+    @DeleteMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @Operation(summary = "Удаление клуба по id",
+            description = "Если клуб не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
+    public void deleteClubById(@RequestHeader(HEADER_USER) Long yourId,
+                               @PathVariable Long clubId) {
+
+        log.info("User {} deleted club {}", yourId, clubId);
+        clubService.deletePrivateClub(yourId, clubId);
+    }
+
+    @PatchMapping("/{clubId}")
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "Обновление клуба по id",
+            description = " Если клуб не найден или пользователь не является владельцем, возвращается сообщение об ошибке."
+    )
+    public ClubDto updateClubById(@RequestHeader(HEADER_USER) Long yourId,
+                                  @PathVariable Long clubId,
+                                  @Valid @RequestBody ClubUpdateDto clubUpdateDto) {
+
+        log.info("User id {} update profile club id {}", yourId, clubId);
+        return clubService.updateClubById(yourId, clubId, clubUpdateDto);
+    }
 }

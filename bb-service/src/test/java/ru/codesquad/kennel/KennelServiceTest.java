@@ -210,6 +210,7 @@ public class KennelServiceTest {
 
         List<Kennel> kennelList = List.of(kennel, kennel2, kennel3);
 
+        when(unionService.makePetType(any(String.class))).thenReturn(PetType.DOG);
         when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), any())).thenReturn(kennelList);
         List<KennelDto> kennelDtoTestList = kennelService.getAllKennelByAdminFromParam(0, 10, "DOG", 1L);
 
@@ -223,6 +224,7 @@ public class KennelServiceTest {
 
         List<Kennel> kennelList = List.of(kennel, kennel2, kennel3);
 
+        when(unionService.makePetType(any(String.class))).thenReturn(PetType.DOG);
         when(kennelRepository.findKennelByParam(any(PetType.class), anyLong(), any())).thenReturn(kennelList);
         List<KennelShortDto> kennelShortDtoTestList = kennelService.getAllKennelByPublicFromParam(0, 10, "DOG", 1L);
 
